@@ -2,7 +2,7 @@
 
 Paste this into a new Claude Code session on the `siddharthrana/mirthmix` repository:
 
-> Continue building MirthMix. Read `docs/HANDOFF.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md` and `docs/BUILD_PROMPT.md` first, then carry on from "Next steps" in PROGRESS.md. Work on branch `claude/upbeat-feynman-o2ywiv`. Payments must match the Weblume repo (`siddharthrana/weblume`, `apps/api/src/billing`): Google Play Billing verified by NestJS + Paddle/Dodo on the web. Commit and push after each step.
+> Continue building MirthMix. Read `docs/HANDOFF.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md` and `docs/BUILD_PROMPT.md` first, then carry on from "Next steps" in PROGRESS.md. Branch from `main` for new work. Payments must match the Weblume repo (`siddharthrana/weblume`, `apps/api/src/billing`): Google Play Billing verified by NestJS + Paddle/Dodo on the web. Commit and push after each step.
 
 ## Status
 
@@ -10,7 +10,7 @@ Phases 1–3 are complete and pushed. **Next is Phase 4 (payments, same design a
 
 ## Where things are
 
-- **Branch:** `claude/upbeat-feynman-o2ywiv` (all work pushed). No PR yet.
+- **Branches:** `main` holds Phases 1–3 (merged from `claude/upbeat-feynman-o2ywiv`). Start new work on a branch from `main` and open a PR into it.
 - **Status and next steps:** `docs/PROGRESS.md` (always the source of truth; updated at every commit).
 - **Why things are the way they are:** `docs/DECISIONS.md`.
 - **The full product spec and phases:** `docs/BUILD_PROMPT.md`.
