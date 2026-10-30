@@ -459,11 +459,7 @@
       "id": "gta-jobs-002",
       "category": "jobs",
       "answer": "Pilot",
-      "clues": [
-        "My office is above the clouds.",
-        "I talk to air traffic control.",
-        "I fly planes."
-      ]
+      "clues": ["My office is above the clouds.", "I talk to air traffic control.", "I fly planes."]
     },
     {
       "id": "gta-jobs-003",

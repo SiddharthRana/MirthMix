@@ -50,12 +50,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "Which gas do plants take in from the air to make food?",
-      "choices": [
-        "Carbon dioxide",
-        "Oxygen",
-        "Nitrogen",
-        "Helium"
-      ],
+      "choices": ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
       "answer": 0,
       "explanation": "Plants use carbon dioxide, water and sunlight in photosynthesis.",
       "source": "Encyclopaedia Britannica: Photosynthesis",
@@ -67,12 +62,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "At sea level, at what temperature does water boil?",
-      "choices": [
-        "100 °C",
-        "90 °C",
-        "80 °C",
-        "120 °C"
-      ],
+      "choices": ["100 °C", "90 °C", "80 °C", "120 °C"],
       "answer": 0,
       "explanation": "At standard sea-level pressure, pure water boils at 100 °C.",
       "source": "Encyclopaedia Britannica: Boiling point",
@@ -84,12 +74,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "What is the chemical symbol for gold?",
-      "choices": [
-        "Au",
-        "Ag",
-        "Gd",
-        "Go"
-      ],
+      "choices": ["Au", "Ag", "Gd", "Go"],
       "answer": 0,
       "explanation": "Au comes from the Latin word for gold, aurum.",
       "source": "Royal Society of Chemistry: Periodic Table — Gold",
@@ -101,12 +86,7 @@
       "category": "science",
       "difficulty": "medium",
       "question": "How many bones are in a typical adult human body?",
-      "choices": [
-        "206",
-        "186",
-        "226",
-        "306"
-      ],
+      "choices": ["206", "186", "226", "306"],
       "answer": 0,
       "explanation": "Babies have more bones; many fuse together as we grow.",
       "source": "Encyclopaedia Britannica: Human skeleton",
@@ -118,12 +98,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "Which natural material is the hardest?",
-      "choices": [
-        "Diamond",
-        "Quartz",
-        "Iron",
-        "Granite"
-      ],
+      "choices": ["Diamond", "Quartz", "Iron", "Granite"],
       "answer": 0,
       "explanation": "Diamond tops the Mohs hardness scale at 10.",
       "source": "Encyclopaedia Britannica: Mohs hardness",
@@ -135,12 +110,7 @@
       "category": "science",
       "difficulty": "medium",
       "question": "Where in a human cell is most of its DNA kept?",
-      "choices": [
-        "Nucleus",
-        "Cell membrane",
-        "Ribosome",
-        "Cytoplasm"
-      ],
+      "choices": ["Nucleus", "Cell membrane", "Ribosome", "Cytoplasm"],
       "answer": 0,
       "explanation": "The nucleus holds the chromosomes.",
       "source": "Encyclopaedia Britannica: Cell nucleus",
@@ -169,12 +139,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "Which organ pumps blood around your body?",
-      "choices": [
-        "Heart",
-        "Lungs",
-        "Liver",
-        "Kidneys"
-      ],
+      "choices": ["Heart", "Lungs", "Liver", "Kidneys"],
       "answer": 0,
       "explanation": "The heart pumps blood through the arteries and veins.",
       "source": "Encyclopaedia Britannica: Heart",
@@ -186,12 +151,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "What is H₂O better known as?",
-      "choices": [
-        "Water",
-        "Salt",
-        "Hydrogen peroxide",
-        "Air"
-      ],
+      "choices": ["Water", "Salt", "Hydrogen peroxide", "Air"],
       "answer": 0,
       "explanation": "Two hydrogen atoms and one oxygen atom make a water molecule.",
       "source": "Encyclopaedia Britannica: Water",
@@ -203,12 +163,7 @@
       "category": "science",
       "difficulty": "easy",
       "question": "Which vitamin does your skin make in sunlight?",
-      "choices": [
-        "Vitamin D",
-        "Vitamin C",
-        "Vitamin A",
-        "Vitamin K"
-      ],
+      "choices": ["Vitamin D", "Vitamin C", "Vitamin A", "Vitamin K"],
       "answer": 0,
       "explanation": "UVB light helps the skin produce vitamin D.",
       "source": "NHS: Vitamin D",
@@ -220,12 +175,7 @@
       "category": "science",
       "difficulty": "medium",
       "question": "Which gas makes up most of Earth's atmosphere?",
-      "choices": [
-        "Nitrogen",
-        "Oxygen",
-        "Carbon dioxide",
-        "Argon"
-      ],
+      "choices": ["Nitrogen", "Oxygen", "Carbon dioxide", "Argon"],
       "answer": 0,
       "explanation": "Nitrogen makes up about 78% of dry air.",
       "source": "NASA Earth Fact Sheet",
@@ -237,12 +187,7 @@
       "category": "science",
       "difficulty": "medium",
       "question": "Which unit measures electrical resistance?",
-      "choices": [
-        "Ohm",
-        "Volt",
-        "Watt",
-        "Ampere"
-      ],
+      "choices": ["Ohm", "Volt", "Watt", "Ampere"],
       "answer": 0,
       "explanation": "Resistance is measured in ohms, named after Georg Ohm.",
       "source": "NIST: SI units",
@@ -254,12 +199,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "Which is the largest ocean on Earth?",
-      "choices": [
-        "Pacific",
-        "Atlantic",
-        "Indian",
-        "Arctic"
-      ],
+      "choices": ["Pacific", "Atlantic", "Indian", "Arctic"],
       "answer": 0,
       "explanation": "The Pacific covers about a third of Earth's surface.",
       "source": "Encyclopaedia Britannica: Pacific Ocean",
@@ -271,12 +211,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "What is the capital of Japan?",
-      "choices": [
-        "Tokyo",
-        "Osaka",
-        "Kyoto",
-        "Seoul"
-      ],
+      "choices": ["Tokyo", "Osaka", "Kyoto", "Seoul"],
       "answer": 0,
       "explanation": "Tokyo has been Japan's capital since 1868.",
       "source": "Encyclopaedia Britannica: Tokyo",
@@ -288,12 +223,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "Which river flows through Egypt and is one of the longest in the world?",
-      "choices": [
-        "Nile",
-        "Congo",
-        "Niger",
-        "Zambezi"
-      ],
+      "choices": ["Nile", "Congo", "Niger", "Zambezi"],
       "answer": 0,
       "explanation": "The Nile flows north into the Mediterranean Sea.",
       "source": "Encyclopaedia Britannica: Nile River",
@@ -305,12 +235,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "How many continents are there, by the most common count?",
-      "choices": [
-        "7",
-        "5",
-        "6",
-        "8"
-      ],
+      "choices": ["7", "5", "6", "8"],
       "answer": 0,
       "explanation": "Africa, Antarctica, Asia, Australia, Europe, North America and South America.",
       "source": "National Geographic: Continent",
@@ -322,12 +247,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "Which country has the largest area?",
-      "choices": [
-        "Russia",
-        "Canada",
-        "China",
-        "United States"
-      ],
+      "choices": ["Russia", "Canada", "China", "United States"],
       "answer": 0,
       "explanation": "Russia spans about 17 million square kilometres.",
       "source": "Encyclopaedia Britannica: Russia",
@@ -339,12 +259,7 @@
       "category": "geography",
       "difficulty": "medium",
       "question": "What is the capital of Australia?",
-      "choices": [
-        "Canberra",
-        "Sydney",
-        "Melbourne",
-        "Perth"
-      ],
+      "choices": ["Canberra", "Sydney", "Melbourne", "Perth"],
       "answer": 0,
       "explanation": "Canberra was purpose-built as the capital.",
       "source": "Encyclopaedia Britannica: Canberra",
@@ -356,12 +271,7 @@
       "category": "geography",
       "difficulty": "easy",
       "question": "Which country's flag has a red maple leaf?",
-      "choices": [
-        "Canada",
-        "Switzerland",
-        "Austria",
-        "Japan"
-      ],
+      "choices": ["Canada", "Switzerland", "Austria", "Japan"],
       "answer": 0,
       "explanation": "Canada adopted the maple leaf flag in 1965.",
       "source": "Government of Canada: National flag",
@@ -373,12 +283,7 @@
       "category": "geography",
       "difficulty": "medium",
       "question": "Mount Kilimanjaro is in which country?",
-      "choices": [
-        "Tanzania",
-        "Kenya",
-        "Uganda",
-        "Ethiopia"
-      ],
+      "choices": ["Tanzania", "Kenya", "Uganda", "Ethiopia"],
       "answer": 0,
       "explanation": "It is in north-eastern Tanzania, near the Kenyan border.",
       "source": "Encyclopaedia Britannica: Kilimanjaro",
@@ -390,12 +295,7 @@
       "category": "geography",
       "difficulty": "medium",
       "question": "Which desert stretches across Mongolia and northern China?",
-      "choices": [
-        "Gobi",
-        "Sahara",
-        "Kalahari",
-        "Atacama"
-      ],
+      "choices": ["Gobi", "Sahara", "Kalahari", "Atacama"],
       "answer": 0,
       "explanation": "The Gobi is a cold desert in East Asia.",
       "source": "Encyclopaedia Britannica: Gobi",
@@ -407,12 +307,7 @@
       "category": "geography",
       "difficulty": "medium",
       "question": "What is the capital of Brazil?",
-      "choices": [
-        "Brasília",
-        "Rio de Janeiro",
-        "São Paulo",
-        "Salvador"
-      ],
+      "choices": ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"],
       "answer": 0,
       "explanation": "Brasília became the capital in 1960.",
       "source": "Encyclopaedia Britannica: Brasília",
@@ -424,12 +319,7 @@
       "category": "geography",
       "difficulty": "hard",
       "question": "Which strait separates Spain from Morocco?",
-      "choices": [
-        "Strait of Gibraltar",
-        "Strait of Hormuz",
-        "Bosporus",
-        "Strait of Malacca"
-      ],
+      "choices": ["Strait of Gibraltar", "Strait of Hormuz", "Bosporus", "Strait of Malacca"],
       "answer": 0,
       "explanation": "It links the Atlantic Ocean and the Mediterranean Sea.",
       "source": "Encyclopaedia Britannica: Strait of Gibraltar",
@@ -441,12 +331,7 @@
       "category": "geography",
       "difficulty": "medium",
       "question": "Which is the smallest country in the world by area?",
-      "choices": [
-        "Vatican City",
-        "Monaco",
-        "San Marino",
-        "Malta"
-      ],
+      "choices": ["Vatican City", "Monaco", "San Marino", "Malta"],
       "answer": 0,
       "explanation": "Vatican City covers less than half a square kilometre.",
       "source": "Encyclopaedia Britannica: Vatican City",
@@ -458,12 +343,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "Which is the fastest land animal?",
-      "choices": [
-        "Cheetah",
-        "Lion",
-        "Horse",
-        "Greyhound"
-      ],
+      "choices": ["Cheetah", "Lion", "Horse", "Greyhound"],
       "answer": 0,
       "explanation": "Cheetahs can sprint faster than 100 km/h over short distances.",
       "source": "Encyclopaedia Britannica: Cheetah",
@@ -475,12 +355,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "How many legs does a spider have?",
-      "choices": [
-        "8",
-        "6",
-        "10",
-        "12"
-      ],
+      "choices": ["8", "6", "10", "12"],
       "answer": 0,
       "explanation": "Spiders are arachnids, which have eight legs.",
       "source": "Encyclopaedia Britannica: Spider",
@@ -492,12 +367,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "What is the largest animal known to have lived?",
-      "choices": [
-        "Blue whale",
-        "African elephant",
-        "Megalodon",
-        "Giraffe"
-      ],
+      "choices": ["Blue whale", "African elephant", "Megalodon", "Giraffe"],
       "answer": 0,
       "explanation": "Blue whales can be around 30 metres long.",
       "source": "NOAA Fisheries: Blue whale",
@@ -509,12 +379,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "What do giant pandas mostly eat?",
-      "choices": [
-        "Bamboo",
-        "Fish",
-        "Fruit",
-        "Insects"
-      ],
+      "choices": ["Bamboo", "Fish", "Fruit", "Insects"],
       "answer": 0,
       "explanation": "Bamboo makes up nearly all of a giant panda's diet.",
       "source": "WWF: Giant panda",
@@ -526,12 +391,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "What is a group of lions called?",
-      "choices": [
-        "A pride",
-        "A pack",
-        "A herd",
-        "A flock"
-      ],
+      "choices": ["A pride", "A pack", "A herd", "A flock"],
       "answer": 0,
       "explanation": "Lions are the most social big cats and live in prides.",
       "source": "Encyclopaedia Britannica: Lion",
@@ -543,12 +403,7 @@
       "category": "nature",
       "difficulty": "medium",
       "question": "Which bird can fly backwards?",
-      "choices": [
-        "Hummingbird",
-        "Sparrow",
-        "Eagle",
-        "Pigeon"
-      ],
+      "choices": ["Hummingbird", "Sparrow", "Eagle", "Pigeon"],
       "answer": 0,
       "explanation": "Hummingbirds can hover and fly in every direction.",
       "source": "Encyclopaedia Britannica: Hummingbird",
@@ -560,12 +415,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "Frogs belong to which group of animals?",
-      "choices": [
-        "Amphibians",
-        "Reptiles",
-        "Mammals",
-        "Fish"
-      ],
+      "choices": ["Amphibians", "Reptiles", "Mammals", "Fish"],
       "answer": 0,
       "explanation": "Most amphibians start life in water and later live on land.",
       "source": "Encyclopaedia Britannica: Amphibian",
@@ -577,12 +427,7 @@
       "category": "nature",
       "difficulty": "medium",
       "question": "How many hearts does an octopus have?",
-      "choices": [
-        "3",
-        "1",
-        "2",
-        "8"
-      ],
+      "choices": ["3", "1", "2", "8"],
       "answer": 0,
       "explanation": "Two hearts pump blood to the gills and one to the rest of the body.",
       "source": "Smithsonian Ocean: Octopus",
@@ -594,12 +439,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "Which tree grows acorns?",
-      "choices": [
-        "Oak",
-        "Pine",
-        "Maple",
-        "Palm"
-      ],
+      "choices": ["Oak", "Pine", "Maple", "Palm"],
       "answer": 0,
       "explanation": "Acorns are the nuts of oak trees.",
       "source": "Encyclopaedia Britannica: Oak",
@@ -611,12 +451,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "Which mammal can truly fly?",
-      "choices": [
-        "Bat",
-        "Flying squirrel",
-        "Sugar glider",
-        "Colugo"
-      ],
+      "choices": ["Bat", "Flying squirrel", "Sugar glider", "Colugo"],
       "answer": 0,
       "explanation": "The others glide; bats are the only mammals capable of powered flight.",
       "source": "Encyclopaedia Britannica: Bat",
@@ -628,12 +463,7 @@
       "category": "nature",
       "difficulty": "easy",
       "question": "What is a baby kangaroo called?",
-      "choices": [
-        "Joey",
-        "Cub",
-        "Kid",
-        "Calf"
-      ],
+      "choices": ["Joey", "Cub", "Kid", "Calf"],
       "answer": 0,
       "explanation": "A joey grows in its mother's pouch.",
       "source": "Encyclopaedia Britannica: Kangaroo",
@@ -645,12 +475,7 @@
       "category": "nature",
       "difficulty": "medium",
       "question": "Roughly how long is an African elephant's pregnancy?",
-      "choices": [
-        "About 22 months",
-        "About 9 months",
-        "About 12 months",
-        "About 36 months"
-      ],
+      "choices": ["About 22 months", "About 9 months", "About 12 months", "About 36 months"],
       "answer": 0,
       "explanation": "It is the longest pregnancy of any land mammal.",
       "source": "Encyclopaedia Britannica: Elephant",
@@ -662,12 +487,7 @@
       "category": "india",
       "difficulty": "easy",
       "question": "What is India's national animal?",
-      "choices": [
-        "Bengal tiger",
-        "Asiatic lion",
-        "Indian elephant",
-        "Peacock"
-      ],
+      "choices": ["Bengal tiger", "Asiatic lion", "Indian elephant", "Peacock"],
       "answer": 0,
       "explanation": "The tiger was declared the national animal in 1973.",
       "source": "Government of India: National symbols",
@@ -679,12 +499,7 @@
       "category": "india",
       "difficulty": "easy",
       "question": "What is the capital of India?",
-      "choices": [
-        "New Delhi",
-        "Mumbai",
-        "Kolkata",
-        "Bengaluru"
-      ],
+      "choices": ["New Delhi", "Mumbai", "Kolkata", "Bengaluru"],
       "answer": 0,
       "explanation": "New Delhi has been the capital since independence.",
       "source": "Government of India: National portal",
@@ -713,12 +528,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "In which year did India's Constitution come into effect?",
-      "choices": [
-        "1950",
-        "1947",
-        "1949",
-        "1952"
-      ],
+      "choices": ["1950", "1947", "1949", "1952"],
       "answer": 0,
       "explanation": "It came into force on 26 January 1950, now celebrated as Republic Day.",
       "source": "Government of India: Constitution of India",
@@ -730,12 +540,7 @@
       "category": "india",
       "difficulty": "easy",
       "question": "Which state's name means 'land of five rivers'?",
-      "choices": [
-        "Punjab",
-        "Haryana",
-        "Assam",
-        "Bihar"
-      ],
+      "choices": ["Punjab", "Haryana", "Assam", "Bihar"],
       "answer": 0,
       "explanation": "In Persian, 'panj' means five and 'ab' means water.",
       "source": "Encyclopaedia Britannica: Punjab",
@@ -747,12 +552,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "Which classical dance from Kerala is known for its elaborate make-up and costumes?",
-      "choices": [
-        "Kathakali",
-        "Kathak",
-        "Bharatanatyam",
-        "Odissi"
-      ],
+      "choices": ["Kathakali", "Kathak", "Bharatanatyam", "Odissi"],
       "answer": 0,
       "explanation": "Kathakali dancers tell stories through expressions and gestures.",
       "source": "Encyclopaedia Britannica: Kathakali",
@@ -764,12 +564,7 @@
       "category": "india",
       "difficulty": "easy",
       "question": "Which city is called the 'Pink City'?",
-      "choices": [
-        "Jaipur",
-        "Udaipur",
-        "Jodhpur",
-        "Agra"
-      ],
+      "choices": ["Jaipur", "Udaipur", "Jodhpur", "Agra"],
       "answer": 0,
       "explanation": "Many of Jaipur's old buildings are painted a terracotta pink.",
       "source": "Encyclopaedia Britannica: Jaipur",
@@ -781,12 +576,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "Which Indian state has the longest coastline?",
-      "choices": [
-        "Gujarat",
-        "Tamil Nadu",
-        "Maharashtra",
-        "Andhra Pradesh"
-      ],
+      "choices": ["Gujarat", "Tamil Nadu", "Maharashtra", "Andhra Pradesh"],
       "answer": 0,
       "explanation": "Gujarat's coast is roughly 1,600 km long.",
       "source": "Encyclopaedia Britannica: Gujarat",
@@ -798,12 +588,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "Which Indian grandmaster won the world chess championship in 2000?",
-      "choices": [
-        "Viswanathan Anand",
-        "Pentala Harikrishna",
-        "Koneru Humpy",
-        "Dibyendu Barua"
-      ],
+      "choices": ["Viswanathan Anand", "Pentala Harikrishna", "Koneru Humpy", "Dibyendu Barua"],
       "answer": 0,
       "explanation": "Anand went on to win the world title several more times.",
       "source": "Encyclopaedia Britannica: Viswanathan Anand",
@@ -815,12 +600,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "What was the name of India's first satellite, launched in 1975?",
-      "choices": [
-        "Aryabhata",
-        "Bhaskara",
-        "Rohini",
-        "INSAT-1A"
-      ],
+      "choices": ["Aryabhata", "Bhaskara", "Rohini", "INSAT-1A"],
       "answer": 0,
       "explanation": "It was named after the ancient Indian mathematician and astronomer.",
       "source": "ISRO: Aryabhata",
@@ -832,12 +612,7 @@
       "category": "india",
       "difficulty": "easy",
       "question": "What is India's national flower?",
-      "choices": [
-        "Lotus",
-        "Rose",
-        "Marigold",
-        "Jasmine"
-      ],
+      "choices": ["Lotus", "Rose", "Marigold", "Jasmine"],
       "answer": 0,
       "explanation": "The lotus is a symbol in Indian art and mythology.",
       "source": "Government of India: National symbols",
@@ -849,12 +624,7 @@
       "category": "india",
       "difficulty": "medium",
       "question": "Which river is the longest flowing within India?",
-      "choices": [
-        "Ganga",
-        "Godavari",
-        "Yamuna",
-        "Narmada"
-      ],
+      "choices": ["Ganga", "Godavari", "Yamuna", "Narmada"],
       "answer": 0,
       "explanation": "The Ganga flows about 2,500 km from the Himalayas to the Bay of Bengal.",
       "source": "Encyclopaedia Britannica: Ganges River",
@@ -866,12 +636,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Which is the largest planet in our solar system?",
-      "choices": [
-        "Jupiter",
-        "Saturn",
-        "Neptune",
-        "Earth"
-      ],
+      "choices": ["Jupiter", "Saturn", "Neptune", "Earth"],
       "answer": 0,
       "explanation": "Jupiter is more than twice as massive as all the other planets combined.",
       "source": "NASA: Jupiter",
@@ -883,12 +648,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Which planet is known as the Red Planet?",
-      "choices": [
-        "Mars",
-        "Venus",
-        "Mercury",
-        "Jupiter"
-      ],
+      "choices": ["Mars", "Venus", "Mercury", "Jupiter"],
       "answer": 0,
       "explanation": "Iron oxide dust gives Mars its reddish colour.",
       "source": "NASA: Mars",
@@ -900,12 +660,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Which star is closest to Earth?",
-      "choices": [
-        "The Sun",
-        "Proxima Centauri",
-        "Sirius",
-        "Polaris"
-      ],
+      "choices": ["The Sun", "Proxima Centauri", "Sirius", "Polaris"],
       "answer": 0,
       "explanation": "Trick question: the Sun is a star. Proxima Centauri is the next closest.",
       "source": "NASA: The Sun",
@@ -917,12 +672,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Who was the first person to walk on the Moon?",
-      "choices": [
-        "Neil Armstrong",
-        "Buzz Aldrin",
-        "Yuri Gagarin",
-        "Michael Collins"
-      ],
+      "choices": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Michael Collins"],
       "answer": 0,
       "explanation": "Armstrong stepped onto the Moon on 20 July 1969 (Apollo 11).",
       "source": "NASA: Apollo 11",
@@ -934,12 +684,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Which planet is famous for its bright rings?",
-      "choices": [
-        "Saturn",
-        "Mars",
-        "Mercury",
-        "Venus"
-      ],
+      "choices": ["Saturn", "Mars", "Mercury", "Venus"],
       "answer": 0,
       "explanation": "Saturn's rings are mostly ice and rock.",
       "source": "NASA: Saturn",
@@ -951,12 +696,7 @@
       "category": "space",
       "difficulty": "medium",
       "question": "About how long does sunlight take to reach Earth?",
-      "choices": [
-        "About 8 minutes",
-        "About 8 seconds",
-        "About 8 hours",
-        "About 8 days"
-      ],
+      "choices": ["About 8 minutes", "About 8 seconds", "About 8 hours", "About 8 days"],
       "answer": 0,
       "explanation": "Light covers the 150 million km in roughly 8 minutes 20 seconds.",
       "source": "NASA: Sun facts",
@@ -985,12 +725,7 @@
       "category": "space",
       "difficulty": "easy",
       "question": "Which planet is closest to the Sun?",
-      "choices": [
-        "Mercury",
-        "Venus",
-        "Earth",
-        "Mars"
-      ],
+      "choices": ["Mercury", "Venus", "Earth", "Mars"],
       "answer": 0,
       "explanation": "Mercury orbits the Sun every 88 days.",
       "source": "NASA: Mercury",
