@@ -1,0 +1,246 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../content/content.dart';
+import '../../game/wyr_engine.dart';
+import '../../l10n/app_localizations.dart';
+import '../../state/providers.dart';
+import '../../state/wyr_session.dart';
+import '../../theme/app_theme.dart';
+import '../../theme/tokens.g.dart';
+import '../../widgets/brand.dart';
+
+class WyrResultsScreen extends ConsumerWidget {
+  const WyrResultsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final session = ref.watch(wyrSessionProvider);
+    final pack = ref.watch(contentProvider).wyr;
+
+    if (session == null || session.status != WyrStatus.finished) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: FilledButton(onPressed: () => context.go('/'), child: Text(l.goHome)),
+        ),
+      );
+    }
+
+    final results = wyrResults(session);
+    WyrRound? roundFor(String? id) => id == null ? null : session.rounds.firstWhere((r) => r.questionId == id);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l.resultsTitle),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            tooltip: l.resultsHome,
+            icon: const Icon(Icons.home_outlined),
+            onPressed: () {
+              ref.read(wyrSessionProvider.notifier).clear();
+              context.go('/');
+            },
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(MmSpace.s4),
+        children: [
+          GradientPanel(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l.modeWyrName, style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
+                const SizedBox(height: MmSpace.s1),
+                Text(
+                  l.resultsSummary(results.roundsPlayed, results.totalVotes),
+                  style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          if (results.mostDivisive case final id?) ...[
+            const SizedBox(height: MmSpace.s4),
+            _Highlight(
+              title: l.resultsDivisive,
+              icon: Icons.balance_rounded,
+              item: pack.item(id)!,
+              round: roundFor(id)!,
+            ),
+          ],
+          if (results.mostUnanimous case final id?) ...[
+            const SizedBox(height: MmSpace.s3),
+            _Highlight(
+              title: l.resultsUnanimous,
+              icon: Icons.groups_rounded,
+              item: pack.item(id)!,
+              round: roundFor(id)!,
+            ),
+          ],
+          const SizedBox(height: MmSpace.s6),
+          Semantics(header: true, child: Text(l.resultsAllRounds, style: theme.textTheme.titleLarge)),
+          const SizedBox(height: MmSpace.s2),
+          for (final (i, r) in session.rounds.indexed)
+            if (pack.item(r.questionId) case final item?) _RoundRow(index: i + 1, item: item, round: r),
+        ],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(MmSpace.s4, MmSpace.s2, MmSpace.s4, MmSpace.s4),
+          child: Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => context.pushReplacement('/play/would-you-rather/setup'),
+                  child: Text(l.resultsChangeSetup),
+                ),
+              ),
+              const SizedBox(width: MmSpace.s3),
+              Expanded(
+                child: FilledButton(
+                  onPressed: () {
+                    ref.read(wyrSessionProvider.notifier).restart();
+                    context.pushReplacement('/play/would-you-rather');
+                  },
+                  child: Text(l.resultsPlayAgain),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Highlight extends StatelessWidget {
+  const _Highlight({required this.title, required this.icon, required this.item, required this.round});
+
+  final String title;
+  final IconData icon;
+  final WyrItem item;
+  final WyrRound round;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(MmSpace.s4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: theme.colorScheme.primary),
+                const SizedBox(width: MmSpace.s2),
+                Text(title, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
+              ],
+            ),
+            const SizedBox(height: MmSpace.s3),
+            _SplitBar(item: item, round: round),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RoundRow extends StatelessWidget {
+  const _RoundRow({required this.index, required this.item, required this.round});
+
+  final int index;
+  final WyrItem item;
+  final WyrRound round;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final palette = MmPalette.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: MmSpace.s2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 28,
+            child: Text('$index', style: theme.textTheme.titleMedium?.copyWith(color: palette.textMuted)),
+          ),
+          Expanded(
+            child: round.skipped
+                ? Text(
+                    '${item.a} / ${item.b} — ${l.resultsSkipped}',
+                    style: theme.textTheme.bodyMedium?.copyWith(color: palette.textMuted),
+                  )
+                : _SplitBar(item: item, round: round),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Both options with their vote counts and a two-colour bar showing the split.
+class _SplitBar extends StatelessWidget {
+  const _SplitBar({required this.item, required this.round});
+
+  final WyrItem item;
+  final WyrRound round;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final palette = MmPalette.of(context);
+    return Semantics(
+      label: '${item.a}: ${l.playVotes(round.a)}. ${item.b}: ${l.playVotes(round.b)}.',
+      excludeSemantics: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text(item.a, style: theme.textTheme.bodyMedium)),
+              const SizedBox(width: MmSpace.s3),
+              Text(l.resultsSplit(round.a, round.b), style: theme.textTheme.labelLarge),
+              const SizedBox(width: MmSpace.s3),
+              Expanded(
+                child: Text(item.b, style: theme.textTheme.bodyMedium, textAlign: TextAlign.end),
+              ),
+            ],
+          ),
+          const SizedBox(height: MmSpace.s2),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(MmRadius.pill),
+            child: SizedBox(
+              height: 10,
+              child: round.total == 0
+                  ? ColoredBox(color: palette.surfaceMuted)
+                  : Row(
+                      children: [
+                        if (round.a > 0)
+                          Expanded(
+                            flex: round.a,
+                            child: ColoredBox(color: palette.optionA),
+                          ),
+                        if (round.b > 0)
+                          Expanded(
+                            flex: round.b,
+                            child: ColoredBox(color: palette.optionB),
+                          ),
+                      ],
+                    ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

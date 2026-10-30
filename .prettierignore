@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+coverage
+pnpm-lock.yaml
+apps/mobile
+packages/design-tokens/dist
+docs/BUILD_PROMPT.md
+apps/mobile/assets/content
+packages/game-engine/test-vectors

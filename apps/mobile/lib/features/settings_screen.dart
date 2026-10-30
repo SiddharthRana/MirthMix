@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../l10n/app_localizations.dart';
+import '../state/settings.dart';
+import '../theme/app_theme.dart';
+import '../theme/tokens.g.dart';
+
+const appVersion = '0.1.0';
+
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final palette = MmPalette.of(context);
+    final s = ref.watch(settingsProvider);
+    final c = ref.read(settingsProvider.notifier);
+
+    Widget section(String title) => Padding(
+      padding: const EdgeInsets.fromLTRB(MmSpace.s4, MmSpace.s6, MmSpace.s4, MmSpace.s2),
+      child: Semantics(
+        header: true,
+        child: Text(title, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
+      ),
+    );
+    Widget note(String body) => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: MmSpace.s4),
+      child: Text(body, style: theme.textTheme.bodyMedium?.copyWith(color: palette.textMuted)),
+    );
+
+    return Scaffold(
+      appBar: AppBar(title: Text(l.settings)),
+      body: ListView(
+        padding: const EdgeInsets.only(bottom: MmSpace.s8),
+        children: [
+          section(l.settingsTheme),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: MmSpace.s4),
+            child: SegmentedButton<ThemeMode>(
+              segments: [
+                ButtonSegment(value: ThemeMode.system, label: Text(l.settingsThemeSystem)),
+                ButtonSegment(value: ThemeMode.light, label: Text(l.settingsThemeLight)),
+                ButtonSegment(value: ThemeMode.dark, label: Text(l.settingsThemeDark)),
+              ],
+              selected: {s.themeMode},
+              showSelectedIcon: false,
+              onSelectionChanged: (v) => c.update(s.copyWith(themeMode: v.first)),
+            ),
+          ),
+          section(l.settingsPlay),
+          SwitchListTile(
+            title: Text(l.settingsBigText),
+            subtitle: Text(l.settingsBigTextBody),
+            value: s.bigText,
+            onChanged: (v) => c.update(s.copyWith(bigText: v)),
+          ),
+          SwitchListTile(
+            title: Text(l.settingsReduceMotion),
+            subtitle: Text(l.settingsReduceMotionBody),
+            value: s.reduceMotion,
+            onChanged: (v) => c.update(s.copyWith(reduceMotion: v)),
+          ),
+          SwitchListTile(
+            title: Text(l.settingsHaptics),
+            subtitle: Text(l.settingsHapticsBody),
+            value: s.haptics,
+            onChanged: (v) => c.update(s.copyWith(haptics: v)),
+          ),
+          ListTile(
+            title: Text(l.settingsShowOnboarding),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => context.push('/onboarding'),
+          ),
+          section(l.settingsPrivacy),
+          note(l.settingsPrivacyBody),
+          section(l.settingsAge),
+          note(l.settingsAgeBody),
+          section(l.settingsAbout),
+          ListTile(title: Text(l.settingsVersion(appVersion))),
+          ListTile(
+            title: Text(l.settingsLicenses),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => showLicensePage(context: context, applicationName: l.appTitle, applicationVersion: appVersion),
+          ),
+        ],
+      ),
+    );
+  }
+}

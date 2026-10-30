@@ -1,0 +1,898 @@
+{
+  "$schema": "../schema/pack.schema.json",
+  "mode": "would-you-rather",
+  "version": 1,
+  "categories": [
+    {
+      "id": "casual",
+      "name": "Casual",
+      "description": "Easy everyday choices to warm up the room.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "funny",
+      "name": "Funny",
+      "description": "Silly dilemmas made for laughing out loud.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "thoughtful",
+      "name": "Thoughtful",
+      "description": "Bigger questions that start real conversations.",
+      "tier": "free",
+      "ageRating": "13+",
+      "region": "global",
+      "contentNote": "Some questions touch on values and life choices."
+    },
+    {
+      "id": "group",
+      "name": "Group Friendly",
+      "description": "Choices about your friends, plans and parties.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "desi",
+      "name": "Desi Days",
+      "description": "Chai, cricket, weddings and family WhatsApp groups.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "in"
+    },
+    {
+      "id": "time-travel",
+      "name": "Time Travel",
+      "description": "Past, future and everything in between.",
+      "tier": "premium",
+      "ageRating": "all",
+      "region": "global"
+    }
+  ],
+  "items": [
+    {
+      "id": "wyr-casual-001",
+      "category": "casual",
+      "a": "Have breakfast for every meal",
+      "b": "Never eat breakfast again"
+    },
+    {
+      "id": "wyr-casual-002",
+      "category": "casual",
+      "a": "Always be 10 minutes early",
+      "b": "Always be 5 minutes late"
+    },
+    {
+      "id": "wyr-casual-003",
+      "category": "casual",
+      "a": "Live by the beach",
+      "b": "Live in the mountains"
+    },
+    {
+      "id": "wyr-casual-004",
+      "category": "casual",
+      "a": "Only watch movies",
+      "b": "Only watch series"
+    },
+    {
+      "id": "wyr-casual-005",
+      "category": "casual",
+      "a": "Have a perfect memory",
+      "b": "Have a perfect sense of direction"
+    },
+    {
+      "id": "wyr-casual-006",
+      "category": "casual",
+      "a": "Never use social media again",
+      "b": "Never watch a video online again"
+    },
+    {
+      "id": "wyr-casual-007",
+      "category": "casual",
+      "a": "Read minds for a day",
+      "b": "Be invisible for a day"
+    },
+    {
+      "id": "wyr-casual-008",
+      "category": "casual",
+      "a": "Have a personal chef",
+      "b": "Have a personal driver"
+    },
+    {
+      "id": "wyr-casual-009",
+      "category": "casual",
+      "a": "Work from a café every day",
+      "b": "Work from your bed every day"
+    },
+    {
+      "id": "wyr-casual-010",
+      "category": "casual",
+      "a": "Only listen to one song forever",
+      "b": "Only listen to a new random song each time"
+    },
+    {
+      "id": "wyr-casual-011",
+      "category": "casual",
+      "a": "Be great at every sport",
+      "b": "Be great at every instrument"
+    },
+    {
+      "id": "wyr-casual-012",
+      "category": "casual",
+      "a": "Have summer all year",
+      "b": "Have winter all year"
+    },
+    {
+      "id": "wyr-casual-013",
+      "category": "casual",
+      "a": "Travel by train everywhere",
+      "b": "Travel by plane everywhere"
+    },
+    {
+      "id": "wyr-casual-014",
+      "category": "casual",
+      "a": "Know every language",
+      "b": "Talk to animals"
+    },
+    {
+      "id": "wyr-casual-015",
+      "category": "casual",
+      "a": "Have unlimited data",
+      "b": "Have unlimited snacks"
+    },
+    {
+      "id": "wyr-casual-016",
+      "category": "casual",
+      "a": "Wake up at sunrise every day",
+      "b": "Stay up until sunrise every night"
+    },
+    {
+      "id": "wyr-casual-017",
+      "category": "casual",
+      "a": "Live without music",
+      "b": "Live without movies"
+    },
+    {
+      "id": "wyr-casual-018",
+      "category": "casual",
+      "a": "Always have a phone at 100%",
+      "b": "Always have perfect Wi-Fi"
+    },
+    {
+      "id": "wyr-casual-019",
+      "category": "casual",
+      "a": "Have a pet dragon the size of a cat",
+      "b": "Have a cat the size of a dragon"
+    },
+    {
+      "id": "wyr-casual-020",
+      "category": "casual",
+      "a": "Take a nap anywhere instantly",
+      "b": "Never need sleep at all"
+    },
+    {
+      "id": "wyr-casual-021",
+      "category": "casual",
+      "a": "Be famous online",
+      "b": "Be rich but completely unknown"
+    },
+    {
+      "id": "wyr-casual-022",
+      "category": "casual",
+      "a": "Only eat sweet food",
+      "b": "Only eat spicy food"
+    },
+    {
+      "id": "wyr-casual-023",
+      "category": "casual",
+      "a": "Have a house with a pool",
+      "b": "Have a house with a cinema room"
+    },
+    {
+      "id": "wyr-casual-024",
+      "category": "casual",
+      "a": "Go on a road trip",
+      "b": "Go on a cruise"
+    },
+    {
+      "id": "wyr-casual-025",
+      "category": "casual",
+      "a": "Be able to pause time",
+      "b": "Be able to rewind five minutes"
+    },
+    {
+      "id": "wyr-funny-001",
+      "category": "funny",
+      "a": "Sneeze glitter",
+      "b": "Hiccup bubbles"
+    },
+    {
+      "id": "wyr-funny-002",
+      "category": "funny",
+      "a": "Have a laugh that sounds like a duck",
+      "b": "Have a sneeze that sounds like a trumpet"
+    },
+    {
+      "id": "wyr-funny-003",
+      "category": "funny",
+      "a": "Narrate your life out loud",
+      "b": "Have a live studio audience laugh at everything you do"
+    },
+    {
+      "id": "wyr-funny-004",
+      "category": "funny",
+      "a": "Have spaghetti for hair",
+      "b": "Have marshmallows for fingers"
+    },
+    {
+      "id": "wyr-funny-005",
+      "category": "funny",
+      "a": "Only walk backwards",
+      "b": "Only speak in rhymes"
+    },
+    {
+      "id": "wyr-funny-006",
+      "category": "funny",
+      "a": "Dance every time you hear your name",
+      "b": "Sing every time you open a door"
+    },
+    {
+      "id": "wyr-funny-007",
+      "category": "funny",
+      "a": "Have a tail you can't control",
+      "b": "Have ears that wiggle when you lie"
+    },
+    {
+      "id": "wyr-funny-008",
+      "category": "funny",
+      "a": "Have a tiny elephant follow you everywhere",
+      "b": "Have a giant hamster live in your kitchen"
+    },
+    {
+      "id": "wyr-funny-009",
+      "category": "funny",
+      "a": "Wear a clown nose for a week",
+      "b": "Wear clown shoes for a month"
+    },
+    {
+      "id": "wyr-funny-010",
+      "category": "funny",
+      "a": "Have your thoughts appear as emojis above your head",
+      "b": "Have background music play wherever you go"
+    },
+    {
+      "id": "wyr-funny-011",
+      "category": "funny",
+      "a": "Burp every time you laugh",
+      "b": "Laugh every time you burp"
+    },
+    {
+      "id": "wyr-funny-012",
+      "category": "funny",
+      "a": "Have socks that are always slightly wet",
+      "b": "Have a pebble always in your shoe"
+    },
+    {
+      "id": "wyr-funny-013",
+      "category": "funny",
+      "a": "Be stuck in a lift with a mime",
+      "b": "Be stuck in a lift with an opera singer"
+    },
+    {
+      "id": "wyr-funny-014",
+      "category": "funny",
+      "a": "Have a pet that only speaks in movie quotes",
+      "b": "Have a phone that only autocorrects to food words"
+    },
+    {
+      "id": "wyr-funny-015",
+      "category": "funny",
+      "a": "Talk like a pirate at work for a week",
+      "b": "Dress like a superhero at work for a week"
+    },
+    {
+      "id": "wyr-funny-016",
+      "category": "funny",
+      "a": "Have your voice replaced by a kazoo",
+      "b": "Have your footsteps squeak like rubber ducks"
+    },
+    {
+      "id": "wyr-funny-017",
+      "category": "funny",
+      "a": "Fight one giant mosquito",
+      "b": "Fight a hundred tiny ones all night"
+    },
+    {
+      "id": "wyr-funny-018",
+      "category": "funny",
+      "a": "Always smell like popcorn",
+      "b": "Always smell like fresh paint"
+    },
+    {
+      "id": "wyr-funny-019",
+      "category": "funny",
+      "a": "Accidentally send a voice note to your boss",
+      "b": "Accidentally like your ex's photo from 2015"
+    },
+    {
+      "id": "wyr-funny-020",
+      "category": "funny",
+      "a": "Have a fridge that judges your snacks out loud",
+      "b": "Have a mirror that gives honest fashion advice"
+    },
+    {
+      "id": "wyr-funny-021",
+      "category": "funny",
+      "a": "Turn into a pigeon on Mondays",
+      "b": "Turn into a goldfish on Fridays"
+    },
+    {
+      "id": "wyr-funny-022",
+      "category": "funny",
+      "a": "Only communicate through interpretive dance",
+      "b": "Only communicate through charades"
+    },
+    {
+      "id": "wyr-funny-023",
+      "category": "funny",
+      "a": "Have hands that clap when you're nervous",
+      "b": "Have eyebrows that dance when you're happy"
+    },
+    {
+      "id": "wyr-funny-024",
+      "category": "funny",
+      "a": "Lose your phone in a ball pit",
+      "b": "Lose your shoes on a trampoline"
+    },
+    {
+      "id": "wyr-funny-025",
+      "category": "funny",
+      "a": "Be a famous meme",
+      "b": "Be a forgotten one-hit wonder"
+    },
+    {
+      "id": "wyr-thoughtful-001",
+      "category": "thoughtful",
+      "a": "Know when your life will change for the better",
+      "b": "Have it be a surprise"
+    },
+    {
+      "id": "wyr-thoughtful-002",
+      "category": "thoughtful",
+      "a": "Be remembered for your kindness",
+      "b": "Be remembered for your achievements"
+    },
+    {
+      "id": "wyr-thoughtful-003",
+      "category": "thoughtful",
+      "a": "Have more time",
+      "b": "Have more money"
+    },
+    {
+      "id": "wyr-thoughtful-004",
+      "category": "thoughtful",
+      "a": "Relive your best day once",
+      "b": "See one day of your future"
+    },
+    {
+      "id": "wyr-thoughtful-005",
+      "category": "thoughtful",
+      "a": "Have a few very close friends",
+      "b": "Have many good friends"
+    },
+    {
+      "id": "wyr-thoughtful-006",
+      "category": "thoughtful",
+      "a": "Always speak your mind",
+      "b": "Never say anything you regret"
+    },
+    {
+      "id": "wyr-thoughtful-007",
+      "category": "thoughtful",
+      "a": "Master one skill completely",
+      "b": "Be good at many things"
+    },
+    {
+      "id": "wyr-thoughtful-008",
+      "category": "thoughtful",
+      "a": "Live a calm, simple life",
+      "b": "Live an exciting, unpredictable life"
+    },
+    {
+      "id": "wyr-thoughtful-009",
+      "category": "thoughtful",
+      "a": "Know the honest opinion everyone has of you",
+      "b": "Never know what anyone thinks of you"
+    },
+    {
+      "id": "wyr-thoughtful-010",
+      "category": "thoughtful",
+      "a": "Change one decision in your past",
+      "b": "Get a hint about one future decision"
+    },
+    {
+      "id": "wyr-thoughtful-011",
+      "category": "thoughtful",
+      "a": "Be a great listener",
+      "b": "Be a great storyteller"
+    },
+    {
+      "id": "wyr-thoughtful-012",
+      "category": "thoughtful",
+      "a": "Have a job you love that pays little",
+      "b": "Have a job you dislike that pays a lot"
+    },
+    {
+      "id": "wyr-thoughtful-013",
+      "category": "thoughtful",
+      "a": "Explore the deep ocean",
+      "b": "Explore outer space"
+    },
+    {
+      "id": "wyr-thoughtful-014",
+      "category": "thoughtful",
+      "a": "Learn from your mistakes quickly",
+      "b": "Never make the same mistake twice"
+    },
+    {
+      "id": "wyr-thoughtful-015",
+      "category": "thoughtful",
+      "a": "Have everyone trust you",
+      "b": "Have everyone respect you"
+    },
+    {
+      "id": "wyr-thoughtful-016",
+      "category": "thoughtful",
+      "a": "Keep every photo you've taken",
+      "b": "Keep every message you've sent"
+    },
+    {
+      "id": "wyr-thoughtful-017",
+      "category": "thoughtful",
+      "a": "Be the oldest sibling",
+      "b": "Be the youngest sibling"
+    },
+    {
+      "id": "wyr-thoughtful-018",
+      "category": "thoughtful",
+      "a": "Spend a year travelling alone",
+      "b": "Spend a year at home with family"
+    },
+    {
+      "id": "wyr-thoughtful-019",
+      "category": "thoughtful",
+      "a": "Be able to forgive anything",
+      "b": "Be able to forget anything"
+    },
+    {
+      "id": "wyr-thoughtful-020",
+      "category": "thoughtful",
+      "a": "Make a small difference to many people",
+      "b": "Make a huge difference to one person"
+    },
+    {
+      "id": "wyr-thoughtful-021",
+      "category": "thoughtful",
+      "a": "Know everything about the past",
+      "b": "Know a little about the future"
+    },
+    {
+      "id": "wyr-thoughtful-022",
+      "category": "thoughtful",
+      "a": "Always win arguments",
+      "b": "Always know when you're wrong"
+    },
+    {
+      "id": "wyr-thoughtful-023",
+      "category": "thoughtful",
+      "a": "Live in the city you grew up in",
+      "b": "Live somewhere completely new"
+    },
+    {
+      "id": "wyr-thoughtful-024",
+      "category": "thoughtful",
+      "a": "Have a mentor for life",
+      "b": "Be a mentor for life"
+    },
+    {
+      "id": "wyr-thoughtful-025",
+      "category": "thoughtful",
+      "a": "Feel everything deeply",
+      "b": "Stay calm no matter what"
+    },
+    {
+      "id": "wyr-group-001",
+      "category": "group",
+      "a": "Plan the whole trip",
+      "b": "Just show up and go along with it"
+    },
+    {
+      "id": "wyr-group-002",
+      "category": "group",
+      "a": "Host every party",
+      "b": "Never have to host a party"
+    },
+    {
+      "id": "wyr-group-003",
+      "category": "group",
+      "a": "Have the group chat read your search history",
+      "b": "Have your playlist played at a party"
+    },
+    {
+      "id": "wyr-group-004",
+      "category": "group",
+      "a": "Be the friend who cooks",
+      "b": "Be the friend who cleans up"
+    },
+    {
+      "id": "wyr-group-005",
+      "category": "group",
+      "a": "Go to a concert together",
+      "b": "Go camping together"
+    },
+    {
+      "id": "wyr-group-006",
+      "category": "group",
+      "a": "Pick every restaurant for a year",
+      "b": "Never pick a restaurant again"
+    },
+    {
+      "id": "wyr-group-007",
+      "category": "group",
+      "a": "Have a group holiday at the beach",
+      "b": "Have a group holiday in the snow"
+    },
+    {
+      "id": "wyr-group-008",
+      "category": "group",
+      "a": "Be the DJ at every party",
+      "b": "Be the photographer at every party"
+    },
+    {
+      "id": "wyr-group-009",
+      "category": "group",
+      "a": "Have a weekly game night",
+      "b": "Have a monthly big night out"
+    },
+    {
+      "id": "wyr-group-010",
+      "category": "group",
+      "a": "Only travel with your best friend",
+      "b": "Only travel with your family"
+    },
+    {
+      "id": "wyr-group-011",
+      "category": "group",
+      "a": "Be the one who remembers every birthday",
+      "b": "Be the one who always picks the best gifts"
+    },
+    {
+      "id": "wyr-group-012",
+      "category": "group",
+      "a": "Lose the group chat for a month",
+      "b": "Lose your photo gallery for a month"
+    },
+    {
+      "id": "wyr-group-013",
+      "category": "group",
+      "a": "Plan a surprise party",
+      "b": "Be surprised by a party"
+    },
+    {
+      "id": "wyr-group-014",
+      "category": "group",
+      "a": "Share your phone screen with the group for an hour",
+      "b": "Let the group post one story from your account"
+    },
+    {
+      "id": "wyr-group-015",
+      "category": "group",
+      "a": "Have a karaoke night",
+      "b": "Have a movie marathon"
+    },
+    {
+      "id": "wyr-group-016",
+      "category": "group",
+      "a": "Be the group's designated navigator",
+      "b": "Be the group's designated money-splitter"
+    },
+    {
+      "id": "wyr-group-017",
+      "category": "group",
+      "a": "Always be the first to arrive",
+      "b": "Always be the last to leave"
+    },
+    {
+      "id": "wyr-group-018",
+      "category": "group",
+      "a": "Have a matching outfit day with the group",
+      "b": "Have a group tattoo of a tiny star"
+    },
+    {
+      "id": "wyr-group-019",
+      "category": "group",
+      "a": "Cook a meal together",
+      "b": "Order everything off the menu together"
+    },
+    {
+      "id": "wyr-group-020",
+      "category": "group",
+      "a": "Go on a mystery trip picked by friends",
+      "b": "Pick a mystery trip for your friends"
+    },
+    {
+      "id": "wyr-group-021",
+      "category": "group",
+      "a": "Have a talent show night",
+      "b": "Have a quiz night"
+    },
+    {
+      "id": "wyr-group-022",
+      "category": "group",
+      "a": "Win every board game but be a sore winner",
+      "b": "Lose every game but be a great sport"
+    },
+    {
+      "id": "wyr-group-023",
+      "category": "group",
+      "a": "Be in charge of the music on road trips",
+      "b": "Be in charge of the snacks on road trips"
+    },
+    {
+      "id": "wyr-group-024",
+      "category": "group",
+      "a": "Have the group plan your birthday",
+      "b": "Plan everyone else's birthdays"
+    },
+    {
+      "id": "wyr-group-025",
+      "category": "group",
+      "a": "Spend a weekend without phones together",
+      "b": "Spend a weekend filming a group video together"
+    },
+    {
+      "id": "wyr-desi-001",
+      "category": "desi",
+      "a": "Give up chai forever",
+      "b": "Give up coffee forever"
+    },
+    {
+      "id": "wyr-desi-002",
+      "category": "desi",
+      "a": "Attend five weddings in one week",
+      "b": "Plan one wedding from scratch"
+    },
+    {
+      "id": "wyr-desi-003",
+      "category": "desi",
+      "a": "Be the admin of the family WhatsApp group",
+      "b": "Leave the family WhatsApp group forever"
+    },
+    {
+      "id": "wyr-desi-004",
+      "category": "desi",
+      "a": "Watch a full cricket test match live",
+      "b": "Watch a three-hour movie with an interval twice"
+    },
+    {
+      "id": "wyr-desi-005",
+      "category": "desi",
+      "a": "Eat only street food for a month",
+      "b": "Eat only home food for a month"
+    },
+    {
+      "id": "wyr-desi-006",
+      "category": "desi",
+      "a": "Travel in a crowded local train daily",
+      "b": "Sit in traffic for an hour daily"
+    },
+    {
+      "id": "wyr-desi-007",
+      "category": "desi",
+      "a": "Have your relatives plan your career",
+      "b": "Have your relatives plan your wedding"
+    },
+    {
+      "id": "wyr-desi-008",
+      "category": "desi",
+      "a": "Live without biryani",
+      "b": "Live without dosa"
+    },
+    {
+      "id": "wyr-desi-009",
+      "category": "desi",
+      "a": "Dance at the baraat until midnight",
+      "b": "Lead the antakshari all night"
+    },
+    {
+      "id": "wyr-desi-010",
+      "category": "desi",
+      "a": "Answer 'what are your marks?' at every gathering",
+      "b": "Answer 'when are you getting married?' at every gathering"
+    },
+    {
+      "id": "wyr-desi-011",
+      "category": "desi",
+      "a": "Have mangoes all year",
+      "b": "Have monsoon all year"
+    },
+    {
+      "id": "wyr-desi-012",
+      "category": "desi",
+      "a": "Bargain at every shop",
+      "b": "Never be allowed to bargain again"
+    },
+    {
+      "id": "wyr-desi-013",
+      "category": "desi",
+      "a": "Spend Diwali in a quiet hill station",
+      "b": "Spend Diwali at a huge family get-together"
+    },
+    {
+      "id": "wyr-desi-014",
+      "category": "desi",
+      "a": "Be known for the best rangoli",
+      "b": "Be known for the best mehndi"
+    },
+    {
+      "id": "wyr-desi-015",
+      "category": "desi",
+      "a": "Have an auto-rickshaw that always says yes",
+      "b": "Have a parking spot that's always free"
+    },
+    {
+      "id": "wyr-desi-016",
+      "category": "desi",
+      "a": "Eat golgappe with no limit",
+      "b": "Eat jalebi with no limit"
+    },
+    {
+      "id": "wyr-desi-017",
+      "category": "desi",
+      "a": "Get a forward message every hour",
+      "b": "Get a call from a relative every hour"
+    },
+    {
+      "id": "wyr-desi-018",
+      "category": "desi",
+      "a": "Pack for a trip in your mother's style",
+      "b": "Pack for a trip in your father's style"
+    },
+    {
+      "id": "wyr-desi-019",
+      "category": "desi",
+      "a": "Watch every match in the stadium",
+      "b": "Play one match with your favourite cricketer"
+    },
+    {
+      "id": "wyr-desi-020",
+      "category": "desi",
+      "a": "Sing at a sangeet",
+      "b": "Give a speech at a reception"
+    },
+    {
+      "id": "wyr-time-travel-001",
+      "category": "time-travel",
+      "a": "Visit the age of dinosaurs for a day",
+      "b": "Visit the year 3000 for a day"
+    },
+    {
+      "id": "wyr-time-travel-002",
+      "category": "time-travel",
+      "a": "Meet your grandparents at your age",
+      "b": "Meet your grandchildren at your age"
+    },
+    {
+      "id": "wyr-time-travel-003",
+      "category": "time-travel",
+      "a": "Watch the building of an ancient wonder",
+      "b": "Watch the first moon landing in person"
+    },
+    {
+      "id": "wyr-time-travel-004",
+      "category": "time-travel",
+      "a": "Get a letter from your future self",
+      "b": "Send a letter to your past self"
+    },
+    {
+      "id": "wyr-time-travel-005",
+      "category": "time-travel",
+      "a": "Live 100 years in the past",
+      "b": "Live 100 years in the future"
+    },
+    {
+      "id": "wyr-time-travel-006",
+      "category": "time-travel",
+      "a": "Relive your school days with what you know now",
+      "b": "Skip ahead five years"
+    },
+    {
+      "id": "wyr-time-travel-007",
+      "category": "time-travel",
+      "a": "Fix one small embarrassing moment",
+      "b": "Witness one big historical moment"
+    },
+    {
+      "id": "wyr-time-travel-008",
+      "category": "time-travel",
+      "a": "Bring a smartphone to the 1800s",
+      "b": "Bring a 1800s inventor to today"
+    },
+    {
+      "id": "wyr-time-travel-009",
+      "category": "time-travel",
+      "a": "See your city 1,000 years ago",
+      "b": "See your city 1,000 years from now"
+    },
+    {
+      "id": "wyr-time-travel-010",
+      "category": "time-travel",
+      "a": "Know the date of the next big invention",
+      "b": "Be the person who invents it"
+    },
+    {
+      "id": "wyr-time-travel-011",
+      "category": "time-travel",
+      "a": "Take a selfie with any historical figure",
+      "b": "Have dinner with any future president"
+    },
+    {
+      "id": "wyr-time-travel-012",
+      "category": "time-travel",
+      "a": "Repeat your favourite year",
+      "b": "Erase your worst week"
+    },
+    {
+      "id": "wyr-time-travel-013",
+      "category": "time-travel",
+      "a": "Time travel but never return",
+      "b": "Never time travel at all"
+    },
+    {
+      "id": "wyr-time-travel-014",
+      "category": "time-travel",
+      "a": "Live through the invention of the internet again",
+      "b": "Live through the invention of flying cars"
+    },
+    {
+      "id": "wyr-time-travel-015",
+      "category": "time-travel",
+      "a": "Read tomorrow's news every day",
+      "b": "Remember every day of your past perfectly"
+    },
+    {
+      "id": "wyr-time-travel-016",
+      "category": "time-travel",
+      "a": "Be a famous explorer in history",
+      "b": "Be a famous scientist in the future"
+    },
+    {
+      "id": "wyr-time-travel-017",
+      "category": "time-travel",
+      "a": "Visit your parents when they were teenagers",
+      "b": "Visit yourself as a toddler"
+    },
+    {
+      "id": "wyr-time-travel-018",
+      "category": "time-travel",
+      "a": "Freeze time for one hour a day",
+      "b": "Skip one hour a day"
+    },
+    {
+      "id": "wyr-time-travel-019",
+      "category": "time-travel",
+      "a": "Hear what people in 2200 say about our time",
+      "b": "Tell people in 1900 what our time is like"
+    },
+    {
+      "id": "wyr-time-travel-020",
+      "category": "time-travel",
+      "a": "Have a time machine that only goes back",
+      "b": "Have one that only goes forward"
+    }
+  ]
+}
