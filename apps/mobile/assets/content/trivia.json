@@ -1,0 +1,1001 @@
+{
+  "$schema": "../schema/pack.schema.json",
+  "mode": "trivia",
+  "version": 1,
+  "categories": [
+    {
+      "id": "science",
+      "name": "Science",
+      "description": "Everyday science and how things work.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "geography",
+      "name": "Geography",
+      "description": "Countries, capitals, rivers and mountains.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "nature",
+      "name": "Animals & Nature",
+      "description": "Wildlife, plants and the natural world.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "india",
+      "name": "India",
+      "description": "History, culture and places across India.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "in"
+    },
+    {
+      "id": "space",
+      "name": "Space",
+      "description": "Planets, stars and missions.",
+      "tier": "premium",
+      "ageRating": "all",
+      "region": "global"
+    }
+  ],
+  "items": [
+    {
+      "id": "triv-science-001",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "Which gas do plants take in from the air to make food?",
+      "choices": [
+        "Carbon dioxide",
+        "Oxygen",
+        "Nitrogen",
+        "Helium"
+      ],
+      "answer": 0,
+      "explanation": "Plants use carbon dioxide, water and sunlight in photosynthesis.",
+      "source": "Encyclopaedia Britannica: Photosynthesis",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-002",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "At sea level, at what temperature does water boil?",
+      "choices": [
+        "100 °C",
+        "90 °C",
+        "80 °C",
+        "120 °C"
+      ],
+      "answer": 0,
+      "explanation": "At standard sea-level pressure, pure water boils at 100 °C.",
+      "source": "Encyclopaedia Britannica: Boiling point",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-003",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "What is the chemical symbol for gold?",
+      "choices": [
+        "Au",
+        "Ag",
+        "Gd",
+        "Go"
+      ],
+      "answer": 0,
+      "explanation": "Au comes from the Latin word for gold, aurum.",
+      "source": "Royal Society of Chemistry: Periodic Table — Gold",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-004",
+      "category": "science",
+      "difficulty": "medium",
+      "question": "How many bones are in a typical adult human body?",
+      "choices": [
+        "206",
+        "186",
+        "226",
+        "306"
+      ],
+      "answer": 0,
+      "explanation": "Babies have more bones; many fuse together as we grow.",
+      "source": "Encyclopaedia Britannica: Human skeleton",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-005",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "Which natural material is the hardest?",
+      "choices": [
+        "Diamond",
+        "Quartz",
+        "Iron",
+        "Granite"
+      ],
+      "answer": 0,
+      "explanation": "Diamond tops the Mohs hardness scale at 10.",
+      "source": "Encyclopaedia Britannica: Mohs hardness",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-006",
+      "category": "science",
+      "difficulty": "medium",
+      "question": "Where in a human cell is most of its DNA kept?",
+      "choices": [
+        "Nucleus",
+        "Cell membrane",
+        "Ribosome",
+        "Cytoplasm"
+      ],
+      "answer": 0,
+      "explanation": "The nucleus holds the chromosomes.",
+      "source": "Encyclopaedia Britannica: Cell nucleus",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-007",
+      "category": "science",
+      "difficulty": "medium",
+      "question": "Roughly how fast does light travel in a vacuum?",
+      "choices": [
+        "300,000 km per second",
+        "3,000 km per second",
+        "30,000 km per second",
+        "3,000,000 km per second"
+      ],
+      "answer": 0,
+      "explanation": "The speed of light is about 299,792 km per second.",
+      "source": "NIST: Fundamental physical constants",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-008",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "Which organ pumps blood around your body?",
+      "choices": [
+        "Heart",
+        "Lungs",
+        "Liver",
+        "Kidneys"
+      ],
+      "answer": 0,
+      "explanation": "The heart pumps blood through the arteries and veins.",
+      "source": "Encyclopaedia Britannica: Heart",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-009",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "What is H₂O better known as?",
+      "choices": [
+        "Water",
+        "Salt",
+        "Hydrogen peroxide",
+        "Air"
+      ],
+      "answer": 0,
+      "explanation": "Two hydrogen atoms and one oxygen atom make a water molecule.",
+      "source": "Encyclopaedia Britannica: Water",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-010",
+      "category": "science",
+      "difficulty": "easy",
+      "question": "Which vitamin does your skin make in sunlight?",
+      "choices": [
+        "Vitamin D",
+        "Vitamin C",
+        "Vitamin A",
+        "Vitamin K"
+      ],
+      "answer": 0,
+      "explanation": "UVB light helps the skin produce vitamin D.",
+      "source": "NHS: Vitamin D",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-011",
+      "category": "science",
+      "difficulty": "medium",
+      "question": "Which gas makes up most of Earth's atmosphere?",
+      "choices": [
+        "Nitrogen",
+        "Oxygen",
+        "Carbon dioxide",
+        "Argon"
+      ],
+      "answer": 0,
+      "explanation": "Nitrogen makes up about 78% of dry air.",
+      "source": "NASA Earth Fact Sheet",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-science-012",
+      "category": "science",
+      "difficulty": "medium",
+      "question": "Which unit measures electrical resistance?",
+      "choices": [
+        "Ohm",
+        "Volt",
+        "Watt",
+        "Ampere"
+      ],
+      "answer": 0,
+      "explanation": "Resistance is measured in ohms, named after Georg Ohm.",
+      "source": "NIST: SI units",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-001",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "Which is the largest ocean on Earth?",
+      "choices": [
+        "Pacific",
+        "Atlantic",
+        "Indian",
+        "Arctic"
+      ],
+      "answer": 0,
+      "explanation": "The Pacific covers about a third of Earth's surface.",
+      "source": "Encyclopaedia Britannica: Pacific Ocean",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-002",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "What is the capital of Japan?",
+      "choices": [
+        "Tokyo",
+        "Osaka",
+        "Kyoto",
+        "Seoul"
+      ],
+      "answer": 0,
+      "explanation": "Tokyo has been Japan's capital since 1868.",
+      "source": "Encyclopaedia Britannica: Tokyo",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-003",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "Which river flows through Egypt and is one of the longest in the world?",
+      "choices": [
+        "Nile",
+        "Congo",
+        "Niger",
+        "Zambezi"
+      ],
+      "answer": 0,
+      "explanation": "The Nile flows north into the Mediterranean Sea.",
+      "source": "Encyclopaedia Britannica: Nile River",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-004",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "How many continents are there, by the most common count?",
+      "choices": [
+        "7",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": 0,
+      "explanation": "Africa, Antarctica, Asia, Australia, Europe, North America and South America.",
+      "source": "National Geographic: Continent",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-005",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "Which country has the largest area?",
+      "choices": [
+        "Russia",
+        "Canada",
+        "China",
+        "United States"
+      ],
+      "answer": 0,
+      "explanation": "Russia spans about 17 million square kilometres.",
+      "source": "Encyclopaedia Britannica: Russia",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-006",
+      "category": "geography",
+      "difficulty": "medium",
+      "question": "What is the capital of Australia?",
+      "choices": [
+        "Canberra",
+        "Sydney",
+        "Melbourne",
+        "Perth"
+      ],
+      "answer": 0,
+      "explanation": "Canberra was purpose-built as the capital.",
+      "source": "Encyclopaedia Britannica: Canberra",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-007",
+      "category": "geography",
+      "difficulty": "easy",
+      "question": "Which country's flag has a red maple leaf?",
+      "choices": [
+        "Canada",
+        "Switzerland",
+        "Austria",
+        "Japan"
+      ],
+      "answer": 0,
+      "explanation": "Canada adopted the maple leaf flag in 1965.",
+      "source": "Government of Canada: National flag",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-008",
+      "category": "geography",
+      "difficulty": "medium",
+      "question": "Mount Kilimanjaro is in which country?",
+      "choices": [
+        "Tanzania",
+        "Kenya",
+        "Uganda",
+        "Ethiopia"
+      ],
+      "answer": 0,
+      "explanation": "It is in north-eastern Tanzania, near the Kenyan border.",
+      "source": "Encyclopaedia Britannica: Kilimanjaro",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-009",
+      "category": "geography",
+      "difficulty": "medium",
+      "question": "Which desert stretches across Mongolia and northern China?",
+      "choices": [
+        "Gobi",
+        "Sahara",
+        "Kalahari",
+        "Atacama"
+      ],
+      "answer": 0,
+      "explanation": "The Gobi is a cold desert in East Asia.",
+      "source": "Encyclopaedia Britannica: Gobi",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-010",
+      "category": "geography",
+      "difficulty": "medium",
+      "question": "What is the capital of Brazil?",
+      "choices": [
+        "Brasília",
+        "Rio de Janeiro",
+        "São Paulo",
+        "Salvador"
+      ],
+      "answer": 0,
+      "explanation": "Brasília became the capital in 1960.",
+      "source": "Encyclopaedia Britannica: Brasília",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-011",
+      "category": "geography",
+      "difficulty": "hard",
+      "question": "Which strait separates Spain from Morocco?",
+      "choices": [
+        "Strait of Gibraltar",
+        "Strait of Hormuz",
+        "Bosporus",
+        "Strait of Malacca"
+      ],
+      "answer": 0,
+      "explanation": "It links the Atlantic Ocean and the Mediterranean Sea.",
+      "source": "Encyclopaedia Britannica: Strait of Gibraltar",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-geography-012",
+      "category": "geography",
+      "difficulty": "medium",
+      "question": "Which is the smallest country in the world by area?",
+      "choices": [
+        "Vatican City",
+        "Monaco",
+        "San Marino",
+        "Malta"
+      ],
+      "answer": 0,
+      "explanation": "Vatican City covers less than half a square kilometre.",
+      "source": "Encyclopaedia Britannica: Vatican City",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-001",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "Which is the fastest land animal?",
+      "choices": [
+        "Cheetah",
+        "Lion",
+        "Horse",
+        "Greyhound"
+      ],
+      "answer": 0,
+      "explanation": "Cheetahs can sprint faster than 100 km/h over short distances.",
+      "source": "Encyclopaedia Britannica: Cheetah",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-002",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "How many legs does a spider have?",
+      "choices": [
+        "8",
+        "6",
+        "10",
+        "12"
+      ],
+      "answer": 0,
+      "explanation": "Spiders are arachnids, which have eight legs.",
+      "source": "Encyclopaedia Britannica: Spider",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-003",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "What is the largest animal known to have lived?",
+      "choices": [
+        "Blue whale",
+        "African elephant",
+        "Megalodon",
+        "Giraffe"
+      ],
+      "answer": 0,
+      "explanation": "Blue whales can be around 30 metres long.",
+      "source": "NOAA Fisheries: Blue whale",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-004",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "What do giant pandas mostly eat?",
+      "choices": [
+        "Bamboo",
+        "Fish",
+        "Fruit",
+        "Insects"
+      ],
+      "answer": 0,
+      "explanation": "Bamboo makes up nearly all of a giant panda's diet.",
+      "source": "WWF: Giant panda",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-005",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "What is a group of lions called?",
+      "choices": [
+        "A pride",
+        "A pack",
+        "A herd",
+        "A flock"
+      ],
+      "answer": 0,
+      "explanation": "Lions are the most social big cats and live in prides.",
+      "source": "Encyclopaedia Britannica: Lion",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-006",
+      "category": "nature",
+      "difficulty": "medium",
+      "question": "Which bird can fly backwards?",
+      "choices": [
+        "Hummingbird",
+        "Sparrow",
+        "Eagle",
+        "Pigeon"
+      ],
+      "answer": 0,
+      "explanation": "Hummingbirds can hover and fly in every direction.",
+      "source": "Encyclopaedia Britannica: Hummingbird",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-007",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "Frogs belong to which group of animals?",
+      "choices": [
+        "Amphibians",
+        "Reptiles",
+        "Mammals",
+        "Fish"
+      ],
+      "answer": 0,
+      "explanation": "Most amphibians start life in water and later live on land.",
+      "source": "Encyclopaedia Britannica: Amphibian",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-008",
+      "category": "nature",
+      "difficulty": "medium",
+      "question": "How many hearts does an octopus have?",
+      "choices": [
+        "3",
+        "1",
+        "2",
+        "8"
+      ],
+      "answer": 0,
+      "explanation": "Two hearts pump blood to the gills and one to the rest of the body.",
+      "source": "Smithsonian Ocean: Octopus",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-009",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "Which tree grows acorns?",
+      "choices": [
+        "Oak",
+        "Pine",
+        "Maple",
+        "Palm"
+      ],
+      "answer": 0,
+      "explanation": "Acorns are the nuts of oak trees.",
+      "source": "Encyclopaedia Britannica: Oak",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-010",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "Which mammal can truly fly?",
+      "choices": [
+        "Bat",
+        "Flying squirrel",
+        "Sugar glider",
+        "Colugo"
+      ],
+      "answer": 0,
+      "explanation": "The others glide; bats are the only mammals capable of powered flight.",
+      "source": "Encyclopaedia Britannica: Bat",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-011",
+      "category": "nature",
+      "difficulty": "easy",
+      "question": "What is a baby kangaroo called?",
+      "choices": [
+        "Joey",
+        "Cub",
+        "Kid",
+        "Calf"
+      ],
+      "answer": 0,
+      "explanation": "A joey grows in its mother's pouch.",
+      "source": "Encyclopaedia Britannica: Kangaroo",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-nature-012",
+      "category": "nature",
+      "difficulty": "medium",
+      "question": "Roughly how long is an African elephant's pregnancy?",
+      "choices": [
+        "About 22 months",
+        "About 9 months",
+        "About 12 months",
+        "About 36 months"
+      ],
+      "answer": 0,
+      "explanation": "It is the longest pregnancy of any land mammal.",
+      "source": "Encyclopaedia Britannica: Elephant",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-001",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "What is India's national animal?",
+      "choices": [
+        "Bengal tiger",
+        "Asiatic lion",
+        "Indian elephant",
+        "Peacock"
+      ],
+      "answer": 0,
+      "explanation": "The tiger was declared the national animal in 1973.",
+      "source": "Government of India: National symbols",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-002",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "What is the capital of India?",
+      "choices": [
+        "New Delhi",
+        "Mumbai",
+        "Kolkata",
+        "Bengaluru"
+      ],
+      "answer": 0,
+      "explanation": "New Delhi has been the capital since independence.",
+      "source": "Government of India: National portal",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-003",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "Who wrote 'Jana Gana Mana', India's national anthem?",
+      "choices": [
+        "Rabindranath Tagore",
+        "Bankim Chandra Chatterjee",
+        "Sarojini Naidu",
+        "Muhammad Iqbal"
+      ],
+      "answer": 0,
+      "explanation": "Tagore wrote it in Bengali; it was adopted as the anthem in 1950.",
+      "source": "Government of India: National anthem",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-004",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "In which year did India's Constitution come into effect?",
+      "choices": [
+        "1950",
+        "1947",
+        "1949",
+        "1952"
+      ],
+      "answer": 0,
+      "explanation": "It came into force on 26 January 1950, now celebrated as Republic Day.",
+      "source": "Government of India: Constitution of India",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-005",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "Which state's name means 'land of five rivers'?",
+      "choices": [
+        "Punjab",
+        "Haryana",
+        "Assam",
+        "Bihar"
+      ],
+      "answer": 0,
+      "explanation": "In Persian, 'panj' means five and 'ab' means water.",
+      "source": "Encyclopaedia Britannica: Punjab",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-006",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "Which classical dance from Kerala is known for its elaborate make-up and costumes?",
+      "choices": [
+        "Kathakali",
+        "Kathak",
+        "Bharatanatyam",
+        "Odissi"
+      ],
+      "answer": 0,
+      "explanation": "Kathakali dancers tell stories through expressions and gestures.",
+      "source": "Encyclopaedia Britannica: Kathakali",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-007",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "Which city is called the 'Pink City'?",
+      "choices": [
+        "Jaipur",
+        "Udaipur",
+        "Jodhpur",
+        "Agra"
+      ],
+      "answer": 0,
+      "explanation": "Many of Jaipur's old buildings are painted a terracotta pink.",
+      "source": "Encyclopaedia Britannica: Jaipur",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-008",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "Which Indian state has the longest coastline?",
+      "choices": [
+        "Gujarat",
+        "Tamil Nadu",
+        "Maharashtra",
+        "Andhra Pradesh"
+      ],
+      "answer": 0,
+      "explanation": "Gujarat's coast is roughly 1,600 km long.",
+      "source": "Encyclopaedia Britannica: Gujarat",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-009",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "Which Indian grandmaster won the world chess championship in 2000?",
+      "choices": [
+        "Viswanathan Anand",
+        "Pentala Harikrishna",
+        "Koneru Humpy",
+        "Dibyendu Barua"
+      ],
+      "answer": 0,
+      "explanation": "Anand went on to win the world title several more times.",
+      "source": "Encyclopaedia Britannica: Viswanathan Anand",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-010",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "What was the name of India's first satellite, launched in 1975?",
+      "choices": [
+        "Aryabhata",
+        "Bhaskara",
+        "Rohini",
+        "INSAT-1A"
+      ],
+      "answer": 0,
+      "explanation": "It was named after the ancient Indian mathematician and astronomer.",
+      "source": "ISRO: Aryabhata",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-011",
+      "category": "india",
+      "difficulty": "easy",
+      "question": "What is India's national flower?",
+      "choices": [
+        "Lotus",
+        "Rose",
+        "Marigold",
+        "Jasmine"
+      ],
+      "answer": 0,
+      "explanation": "The lotus is a symbol in Indian art and mythology.",
+      "source": "Government of India: National symbols",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-india-012",
+      "category": "india",
+      "difficulty": "medium",
+      "question": "Which river is the longest flowing within India?",
+      "choices": [
+        "Ganga",
+        "Godavari",
+        "Yamuna",
+        "Narmada"
+      ],
+      "answer": 0,
+      "explanation": "The Ganga flows about 2,500 km from the Himalayas to the Bay of Bengal.",
+      "source": "Encyclopaedia Britannica: Ganges River",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-001",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Which is the largest planet in our solar system?",
+      "choices": [
+        "Jupiter",
+        "Saturn",
+        "Neptune",
+        "Earth"
+      ],
+      "answer": 0,
+      "explanation": "Jupiter is more than twice as massive as all the other planets combined.",
+      "source": "NASA: Jupiter",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-002",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Which planet is known as the Red Planet?",
+      "choices": [
+        "Mars",
+        "Venus",
+        "Mercury",
+        "Jupiter"
+      ],
+      "answer": 0,
+      "explanation": "Iron oxide dust gives Mars its reddish colour.",
+      "source": "NASA: Mars",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-003",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Which star is closest to Earth?",
+      "choices": [
+        "The Sun",
+        "Proxima Centauri",
+        "Sirius",
+        "Polaris"
+      ],
+      "answer": 0,
+      "explanation": "Trick question: the Sun is a star. Proxima Centauri is the next closest.",
+      "source": "NASA: The Sun",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-004",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Who was the first person to walk on the Moon?",
+      "choices": [
+        "Neil Armstrong",
+        "Buzz Aldrin",
+        "Yuri Gagarin",
+        "Michael Collins"
+      ],
+      "answer": 0,
+      "explanation": "Armstrong stepped onto the Moon on 20 July 1969 (Apollo 11).",
+      "source": "NASA: Apollo 11",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-005",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Which planet is famous for its bright rings?",
+      "choices": [
+        "Saturn",
+        "Mars",
+        "Mercury",
+        "Venus"
+      ],
+      "answer": 0,
+      "explanation": "Saturn's rings are mostly ice and rock.",
+      "source": "NASA: Saturn",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-006",
+      "category": "space",
+      "difficulty": "medium",
+      "question": "About how long does sunlight take to reach Earth?",
+      "choices": [
+        "About 8 minutes",
+        "About 8 seconds",
+        "About 8 hours",
+        "About 8 days"
+      ],
+      "answer": 0,
+      "explanation": "Light covers the 150 million km in roughly 8 minutes 20 seconds.",
+      "source": "NASA: Sun facts",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-007",
+      "category": "space",
+      "difficulty": "medium",
+      "question": "In 2023, Chandrayaan-3 landed near which part of the Moon?",
+      "choices": [
+        "The south pole region",
+        "The north pole region",
+        "The far side's equator",
+        "The Sea of Tranquility"
+      ],
+      "answer": 0,
+      "explanation": "India became the first country to land near the lunar south pole.",
+      "source": "ISRO: Chandrayaan-3",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    },
+    {
+      "id": "triv-space-008",
+      "category": "space",
+      "difficulty": "easy",
+      "question": "Which planet is closest to the Sun?",
+      "choices": [
+        "Mercury",
+        "Venus",
+        "Earth",
+        "Mars"
+      ],
+      "answer": 0,
+      "explanation": "Mercury orbits the Sun every 88 days.",
+      "source": "NASA: Mercury",
+      "verifiedOn": "2026-10-30",
+      "reviewStatus": "self-checked"
+    }
+  ]
+}

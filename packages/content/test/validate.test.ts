@@ -111,3 +111,76 @@ describe('validatePack', () => {
     expect(validatePack([]).ok).toBe(false);
   });
 });
+
+describe('other modes', () => {
+  const cat = {
+    id: 'science',
+    name: 'Science',
+    description: 'x',
+    tier: 'free',
+    ageRating: 'all',
+    region: 'global',
+  };
+  const trivia = (over: Record<string, unknown> = {}) => ({
+    mode: 'trivia',
+    version: 1,
+    categories: [cat],
+    items: [
+      {
+        id: 'triv-science-001',
+        category: 'science',
+        difficulty: 'easy',
+        question: 'Q?',
+        choices: ['A', 'B', 'C', 'D'],
+        answer: 0,
+        explanation: 'E',
+        source: 'S',
+        verifiedOn: '2026-10-30',
+        reviewStatus: 'self-checked',
+        ...over,
+      },
+    ],
+  });
+  const guess = (clues: string[]) => ({
+    mode: 'guess',
+    version: 1,
+    categories: [cat],
+    items: [{ id: 'gta-science-001', category: 'science', answer: 'Magnet', clues }],
+  });
+
+  it('accepts valid trivia and guess packs', () => {
+    expect(errorsOf(trivia())).toEqual([]);
+    expect(errorsOf(guess(['One', 'Two', 'Three']))).toEqual([]);
+  });
+
+  it('rejects trivia with the wrong number of choices, a bad answer index or a bad date', () => {
+    expect(errorsOf(trivia({ choices: ['A', 'B', 'C'] })).length).toBeGreaterThan(0);
+    expect(errorsOf(trivia({ answer: 4 })).length).toBeGreaterThan(0);
+    expect(errorsOf(trivia({ verifiedOn: 'yesterday' })).length).toBeGreaterThan(0);
+    expect(errorsOf(trivia({ reviewStatus: 'trust-me' })).length).toBeGreaterThan(0);
+  });
+
+  it('rejects duplicate trivia choices', () => {
+    expect(errorsOf(trivia({ choices: ['A', 'a', 'C', 'D'] }))).toContain(
+      'triv-science-001: choices must be different',
+    );
+  });
+
+  it('rejects guess clues that give away the answer', () => {
+    expect(errorsOf(guess(['It sticks to fridges', 'A magnet!', 'Three']))).toContain(
+      'gta-science-001: a clue gives away the answer',
+    );
+  });
+
+  it('rejects ids with the wrong mode prefix', () => {
+    const pack = guess(['One', 'Two', 'Three']);
+    pack.items[0]!.id = 'wyr-science-001';
+    expect(errorsOf(pack).length).toBeGreaterThan(0);
+  });
+
+  it.each(['this-or-that', 'trivia', 'guess'])('%s ships free and premium categories', (mode) => {
+    const pack = JSON.parse(readFileSync(join(packsDir, `${mode}.json`), 'utf8'));
+    const tiers = new Set(pack.categories.map((c: { tier: string }) => c.tier));
+    expect(tiers).toEqual(new Set(['free', 'premium']));
+  });
+});

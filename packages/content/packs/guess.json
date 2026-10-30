@@ -1,0 +1,505 @@
+{
+  "$schema": "../schema/pack.schema.json",
+  "mode": "guess",
+  "version": 1,
+  "categories": [
+    {
+      "id": "everyday",
+      "name": "Everyday Things",
+      "description": "Objects you probably touched today.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "animals",
+      "name": "Animals",
+      "description": "Creatures great and small.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "places",
+      "name": "Places",
+      "description": "Famous spots and landscapes around the world.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "desi-food",
+      "name": "Desi Food",
+      "description": "Dishes, snacks and sweets from across India.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "in"
+    },
+    {
+      "id": "jobs",
+      "name": "Jobs",
+      "description": "Who does what, and where.",
+      "tier": "premium",
+      "ageRating": "all",
+      "region": "global"
+    }
+  ],
+  "items": [
+    {
+      "id": "gta-everyday-001",
+      "category": "everyday",
+      "answer": "Umbrella",
+      "clues": [
+        "You'll want me on a grey day, but I'm useless indoors.",
+        "I open up when the weather turns.",
+        "I keep the rain off your head."
+      ]
+    },
+    {
+      "id": "gta-everyday-002",
+      "category": "everyday",
+      "answer": "Toothbrush",
+      "clues": [
+        "You meet me twice a day, usually half asleep.",
+        "I have bristles and a long handle.",
+        "I help keep your smile clean."
+      ]
+    },
+    {
+      "id": "gta-everyday-003",
+      "category": "everyday",
+      "answer": "Mirror",
+      "clues": [
+        "I copy everything you do, but backwards.",
+        "I hang on walls and hide inside cupboards.",
+        "You check your hair in me."
+      ]
+    },
+    {
+      "id": "gta-everyday-004",
+      "category": "everyday",
+      "answer": "Pillow",
+      "clues": [
+        "I spend most of my life on a bed.",
+        "I'm soft and you can fluff me up.",
+        "Your head rests on me at night."
+      ]
+    },
+    {
+      "id": "gta-everyday-005",
+      "category": "everyday",
+      "answer": "Clock",
+      "clues": [
+        "I have a face but no eyes, and hands but no fingers.",
+        "I go round and round all day.",
+        "I tell you the time."
+      ]
+    },
+    {
+      "id": "gta-everyday-006",
+      "category": "everyday",
+      "answer": "Key",
+      "clues": [
+        "I'm small, I jingle, and I'm always lost when you're late.",
+        "I live on a ring with my friends.",
+        "I open locks."
+      ]
+    },
+    {
+      "id": "gta-everyday-007",
+      "category": "everyday",
+      "answer": "Candle",
+      "clues": [
+        "I get shorter the longer I work.",
+        "I need a match to start my day.",
+        "I'm made of wax and give off light."
+      ]
+    },
+    {
+      "id": "gta-everyday-008",
+      "category": "everyday",
+      "answer": "Ladder",
+      "clues": [
+        "I help you reach new heights, one step at a time.",
+        "I lean against walls.",
+        "I have rungs you climb."
+      ]
+    },
+    {
+      "id": "gta-everyday-009",
+      "category": "everyday",
+      "answer": "Remote control",
+      "clues": [
+        "Everyone fights over me in the evening.",
+        "I'm always lost between sofa cushions.",
+        "I change the TV channel."
+      ]
+    },
+    {
+      "id": "gta-everyday-010",
+      "category": "everyday",
+      "answer": "Backpack",
+      "clues": [
+        "I go to school and on hikes, but I never learn anything.",
+        "I have straps and lots of zips.",
+        "You carry me on your back."
+      ]
+    },
+    {
+      "id": "gta-animals-001",
+      "category": "animals",
+      "answer": "Elephant",
+      "clues": [
+        "I never forget, or so people say.",
+        "I'm the largest animal living on land.",
+        "I have a trunk and big ears."
+      ]
+    },
+    {
+      "id": "gta-animals-002",
+      "category": "animals",
+      "answer": "Penguin",
+      "clues": [
+        "I wear a tuxedo every day.",
+        "I'm a bird, but I swim instead of flying.",
+        "I waddle on ice in the far south."
+      ]
+    },
+    {
+      "id": "gta-animals-003",
+      "category": "animals",
+      "answer": "Giraffe",
+      "clues": [
+        "My heart is huge, and so is my neck.",
+        "I eat leaves from the tops of trees.",
+        "I'm the tallest animal in the world."
+      ]
+    },
+    {
+      "id": "gta-animals-004",
+      "category": "animals",
+      "answer": "Octopus",
+      "clues": [
+        "I have three hearts and blue blood.",
+        "I can squirt ink to escape.",
+        "I have eight arms."
+      ]
+    },
+    {
+      "id": "gta-animals-005",
+      "category": "animals",
+      "answer": "Kangaroo",
+      "clues": [
+        "I can't walk backwards easily.",
+        "I carry my baby in a pouch.",
+        "I hop across Australia."
+      ]
+    },
+    {
+      "id": "gta-animals-006",
+      "category": "animals",
+      "answer": "Owl",
+      "clues": [
+        "I can turn my head a very long way round.",
+        "I hunt at night in silence.",
+        "I'm a wise-looking bird that hoots."
+      ]
+    },
+    {
+      "id": "gta-animals-007",
+      "category": "animals",
+      "answer": "Peacock",
+      "clues": [
+        "I'm India's national bird.",
+        "I dance when it's about to rain.",
+        "I show off a huge fan of colourful feathers."
+      ]
+    },
+    {
+      "id": "gta-animals-008",
+      "category": "animals",
+      "answer": "Bee",
+      "clues": [
+        "I dance to give my friends directions.",
+        "I live in a busy colony with a queen.",
+        "I make honey."
+      ]
+    },
+    {
+      "id": "gta-animals-009",
+      "category": "animals",
+      "answer": "Snail",
+      "clues": [
+        "I carry my house wherever I go.",
+        "I leave a shiny trail behind me.",
+        "I'm famous for being very slow."
+      ]
+    },
+    {
+      "id": "gta-animals-010",
+      "category": "animals",
+      "answer": "Dolphin",
+      "clues": [
+        "I sleep with half my brain at a time.",
+        "I'm a clever mammal that lives in the sea.",
+        "I jump and click and whistle."
+      ]
+    },
+    {
+      "id": "gta-places-001",
+      "category": "places",
+      "answer": "Taj Mahal",
+      "clues": [
+        "I was built as a promise of love.",
+        "I stand on the bank of the Yamuna.",
+        "I'm a white marble mausoleum in Agra."
+      ]
+    },
+    {
+      "id": "gta-places-002",
+      "category": "places",
+      "answer": "Eiffel Tower",
+      "clues": [
+        "I was meant to be temporary.",
+        "I'm made of iron and stand by the Seine.",
+        "I'm the most famous landmark in Paris."
+      ]
+    },
+    {
+      "id": "gta-places-003",
+      "category": "places",
+      "answer": "Mount Everest",
+      "clues": [
+        "Climbers queue to stand on top of me.",
+        "I sit on the border of Nepal and China.",
+        "I'm the highest mountain on Earth."
+      ]
+    },
+    {
+      "id": "gta-places-004",
+      "category": "places",
+      "answer": "The Sahara",
+      "clues": [
+        "I'm about the size of the United States.",
+        "Camels cross me in caravans.",
+        "I'm the biggest hot desert in the world."
+      ]
+    },
+    {
+      "id": "gta-places-005",
+      "category": "places",
+      "answer": "Great Wall of China",
+      "clues": [
+        "I was built over many centuries to keep out invaders.",
+        "I snake across hills and mountains in northern China.",
+        "I'm an incredibly long ancient wall."
+      ]
+    },
+    {
+      "id": "gta-places-006",
+      "category": "places",
+      "answer": "Antarctica",
+      "clues": [
+        "No country owns me.",
+        "I'm the coldest, windiest continent.",
+        "Penguins live on me at the bottom of the world."
+      ]
+    },
+    {
+      "id": "gta-places-007",
+      "category": "places",
+      "answer": "Venice",
+      "clues": [
+        "My streets are made of water.",
+        "I'm an Italian city built on lagoon islands.",
+        "You get around me by gondola."
+      ]
+    },
+    {
+      "id": "gta-places-008",
+      "category": "places",
+      "answer": "The Amazon",
+      "clues": [
+        "I flow through several countries in South America.",
+        "The world's largest rainforest surrounds me.",
+        "I'm one of the longest rivers on Earth."
+      ]
+    },
+    {
+      "id": "gta-places-009",
+      "category": "places",
+      "answer": "Goa",
+      "clues": [
+        "I'm India's smallest state by area.",
+        "I'm famous for beaches and Portuguese-era churches.",
+        "Tourists flock to me for sun and sand."
+      ]
+    },
+    {
+      "id": "gta-places-010",
+      "category": "places",
+      "answer": "Pyramids of Giza",
+      "clues": [
+        "I've watched over a desert for more than 4,000 years.",
+        "A Sphinx guards me.",
+        "I'm a set of ancient tombs in Egypt."
+      ]
+    },
+    {
+      "id": "gta-desi-food-001",
+      "category": "desi-food",
+      "answer": "Dosa",
+      "clues": [
+        "I'm thin, crispy and bigger than your plate.",
+        "I'm made from a fermented rice and lentil batter.",
+        "I'm a South Indian pancake served with sambar."
+      ]
+    },
+    {
+      "id": "gta-desi-food-002",
+      "category": "desi-food",
+      "answer": "Jalebi",
+      "clues": [
+        "I'm a tangle with no beginning or end.",
+        "I'm fried and then soaked in syrup.",
+        "I'm a bright orange, sticky spiral sweet."
+      ]
+    },
+    {
+      "id": "gta-desi-food-003",
+      "category": "desi-food",
+      "answer": "Samosa",
+      "clues": [
+        "I'm a snack with three corners.",
+        "I'm stuffed with spiced potato and peas.",
+        "I'm fried and served with chutney."
+      ]
+    },
+    {
+      "id": "gta-desi-food-004",
+      "category": "desi-food",
+      "answer": "Biryani",
+      "clues": [
+        "Families argue about which city makes me best.",
+        "I'm cooked in layers, often sealed in a pot.",
+        "I'm a fragrant rice dish with meat or vegetables."
+      ]
+    },
+    {
+      "id": "gta-desi-food-005",
+      "category": "desi-food",
+      "answer": "Pani puri",
+      "clues": [
+        "You need to eat me in one bite or regret it.",
+        "I'm a hollow, crispy ball.",
+        "I'm filled with spicy, tangy water."
+      ]
+    },
+    {
+      "id": "gta-desi-food-006",
+      "category": "desi-food",
+      "answer": "Idli",
+      "clues": [
+        "I'm round, white and very fluffy.",
+        "I'm steamed, not fried.",
+        "I'm a South Indian rice cake eaten with chutney."
+      ]
+    },
+    {
+      "id": "gta-desi-food-007",
+      "category": "desi-food",
+      "answer": "Gulab jamun",
+      "clues": [
+        "My name mentions roses, but I don't look like one.",
+        "I'm a soft ball made from milk solids.",
+        "I'm fried and soaked in sugar syrup."
+      ]
+    },
+    {
+      "id": "gta-desi-food-008",
+      "category": "desi-food",
+      "answer": "Pav bhaji",
+      "clues": [
+        "I was born as a quick meal for Mumbai's mill workers.",
+        "I come with buttered bread rolls.",
+        "I'm a spicy mashed vegetable curry."
+      ]
+    },
+    {
+      "id": "gta-desi-food-009",
+      "category": "desi-food",
+      "answer": "Masala chai",
+      "clues": [
+        "I'm boiled, not brewed.",
+        "I'm full of ginger, cardamom and milk.",
+        "I'm India's favourite spiced tea."
+      ]
+    },
+    {
+      "id": "gta-desi-food-010",
+      "category": "desi-food",
+      "answer": "Lassi",
+      "clues": [
+        "Punjab is proud of me.",
+        "I'm made by churning yoghurt.",
+        "I'm a cool drink, sweet or salty."
+      ]
+    },
+    {
+      "id": "gta-jobs-001",
+      "category": "jobs",
+      "answer": "Firefighter",
+      "clues": [
+        "I slide down a pole at work.",
+        "I wear a helmet and heavy boots.",
+        "I put out fires."
+      ]
+    },
+    {
+      "id": "gta-jobs-002",
+      "category": "jobs",
+      "answer": "Pilot",
+      "clues": ["My office is above the clouds.", "I talk to air traffic control.", "I fly planes."]
+    },
+    {
+      "id": "gta-jobs-003",
+      "category": "jobs",
+      "answer": "Chef",
+      "clues": [
+        "My workplace is hot, loud and smells amazing.",
+        "I wear a tall white hat.",
+        "I cook food in a restaurant."
+      ]
+    },
+    {
+      "id": "gta-jobs-004",
+      "category": "jobs",
+      "answer": "Astronaut",
+      "clues": [
+        "I've seen sunrise many times in one day.",
+        "I train underwater to prepare for work.",
+        "I travel to space."
+      ]
+    },
+    {
+      "id": "gta-jobs-005",
+      "category": "jobs",
+      "answer": "Librarian",
+      "clues": [
+        "I'm surrounded by stories but I keep things quiet.",
+        "I know where everything is on the shelves.",
+        "I look after books people borrow."
+      ]
+    },
+    {
+      "id": "gta-jobs-006",
+      "category": "jobs",
+      "answer": "Dentist",
+      "clues": [
+        "I tell you to open wide.",
+        "I use a tiny mirror and a drill.",
+        "I look after your teeth."
+      ]
+    }
+  ]
+}

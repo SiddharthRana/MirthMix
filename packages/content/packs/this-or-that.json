@@ -1,0 +1,469 @@
+{
+  "$schema": "../schema/pack.schema.json",
+  "mode": "this-or-that",
+  "version": 1,
+  "categories": [
+    {
+      "id": "food",
+      "name": "Food Fight",
+      "description": "Snacks, meals and midnight cravings.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "lifestyle",
+      "name": "Lifestyle",
+      "description": "Habits, hobbies and how you spend a Sunday.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "travel",
+      "name": "Travel",
+      "description": "Trips, transport and dream destinations.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "global"
+    },
+    {
+      "id": "desi",
+      "name": "Desi Picks",
+      "description": "Chai or coffee, and many more Indian classics.",
+      "tier": "free",
+      "ageRating": "all",
+      "region": "in"
+    },
+    {
+      "id": "pop",
+      "name": "Pop Culture",
+      "description": "Screens, songs and stories.",
+      "tier": "premium",
+      "ageRating": "all",
+      "region": "global"
+    }
+  ],
+  "items": [
+    {
+      "id": "tot-food-001",
+      "category": "food",
+      "a": "Pizza",
+      "b": "Burgers"
+    },
+    {
+      "id": "tot-food-002",
+      "category": "food",
+      "a": "Sweet",
+      "b": "Salty"
+    },
+    {
+      "id": "tot-food-003",
+      "category": "food",
+      "a": "Pancakes",
+      "b": "Waffles"
+    },
+    {
+      "id": "tot-food-004",
+      "category": "food",
+      "a": "Ice cream",
+      "b": "Cake"
+    },
+    {
+      "id": "tot-food-005",
+      "category": "food",
+      "a": "Spicy",
+      "b": "Mild"
+    },
+    {
+      "id": "tot-food-006",
+      "category": "food",
+      "a": "Breakfast",
+      "b": "Dinner"
+    },
+    {
+      "id": "tot-food-007",
+      "category": "food",
+      "a": "Chocolate",
+      "b": "Fruit"
+    },
+    {
+      "id": "tot-food-008",
+      "category": "food",
+      "a": "Cook at home",
+      "b": "Eat out"
+    },
+    {
+      "id": "tot-food-009",
+      "category": "food",
+      "a": "Popcorn",
+      "b": "Chips"
+    },
+    {
+      "id": "tot-food-010",
+      "category": "food",
+      "a": "Soup",
+      "b": "Salad"
+    },
+    {
+      "id": "tot-food-011",
+      "category": "food",
+      "a": "Cheese",
+      "b": "Butter"
+    },
+    {
+      "id": "tot-food-012",
+      "category": "food",
+      "a": "Noodles",
+      "b": "Rice"
+    },
+    {
+      "id": "tot-food-013",
+      "category": "food",
+      "a": "Hot drinks",
+      "b": "Cold drinks"
+    },
+    {
+      "id": "tot-food-014",
+      "category": "food",
+      "a": "Crunchy",
+      "b": "Chewy"
+    },
+    {
+      "id": "tot-food-015",
+      "category": "food",
+      "a": "Snack all day",
+      "b": "Three big meals"
+    },
+    {
+      "id": "tot-lifestyle-001",
+      "category": "lifestyle",
+      "a": "Early bird",
+      "b": "Night owl"
+    },
+    {
+      "id": "tot-lifestyle-002",
+      "category": "lifestyle",
+      "a": "Texting",
+      "b": "Calling"
+    },
+    {
+      "id": "tot-lifestyle-003",
+      "category": "lifestyle",
+      "a": "Books",
+      "b": "Podcasts"
+    },
+    {
+      "id": "tot-lifestyle-004",
+      "category": "lifestyle",
+      "a": "Cats",
+      "b": "Dogs"
+    },
+    {
+      "id": "tot-lifestyle-005",
+      "category": "lifestyle",
+      "a": "Beach",
+      "b": "Mountains"
+    },
+    {
+      "id": "tot-lifestyle-006",
+      "category": "lifestyle",
+      "a": "Gym",
+      "b": "Yoga"
+    },
+    {
+      "id": "tot-lifestyle-007",
+      "category": "lifestyle",
+      "a": "Plan everything",
+      "b": "Go with the flow"
+    },
+    {
+      "id": "tot-lifestyle-008",
+      "category": "lifestyle",
+      "a": "Big party",
+      "b": "Small hangout"
+    },
+    {
+      "id": "tot-lifestyle-009",
+      "category": "lifestyle",
+      "a": "Sneakers",
+      "b": "Sandals"
+    },
+    {
+      "id": "tot-lifestyle-010",
+      "category": "lifestyle",
+      "a": "Summer",
+      "b": "Winter"
+    },
+    {
+      "id": "tot-lifestyle-011",
+      "category": "lifestyle",
+      "a": "Rain",
+      "b": "Sunshine"
+    },
+    {
+      "id": "tot-lifestyle-012",
+      "category": "lifestyle",
+      "a": "Messy desk",
+      "b": "Tidy desk"
+    },
+    {
+      "id": "tot-lifestyle-013",
+      "category": "lifestyle",
+      "a": "Board games",
+      "b": "Video games"
+    },
+    {
+      "id": "tot-lifestyle-014",
+      "category": "lifestyle",
+      "a": "Shower in the morning",
+      "b": "Shower at night"
+    },
+    {
+      "id": "tot-lifestyle-015",
+      "category": "lifestyle",
+      "a": "Window seat",
+      "b": "Aisle seat"
+    },
+    {
+      "id": "tot-travel-001",
+      "category": "travel",
+      "a": "Road trip",
+      "b": "Flight"
+    },
+    {
+      "id": "tot-travel-002",
+      "category": "travel",
+      "a": "Hotel",
+      "b": "Camping"
+    },
+    {
+      "id": "tot-travel-003",
+      "category": "travel",
+      "a": "City break",
+      "b": "Countryside"
+    },
+    {
+      "id": "tot-travel-004",
+      "category": "travel",
+      "a": "Pack light",
+      "b": "Pack everything"
+    },
+    {
+      "id": "tot-travel-005",
+      "category": "travel",
+      "a": "Museums",
+      "b": "Markets"
+    },
+    {
+      "id": "tot-travel-006",
+      "category": "travel",
+      "a": "Sunrise hike",
+      "b": "Sunset cruise"
+    },
+    {
+      "id": "tot-travel-007",
+      "category": "travel",
+      "a": "Plan an itinerary",
+      "b": "Wander freely"
+    },
+    {
+      "id": "tot-travel-008",
+      "category": "travel",
+      "a": "Train",
+      "b": "Bus"
+    },
+    {
+      "id": "tot-travel-009",
+      "category": "travel",
+      "a": "Travel solo",
+      "b": "Travel with friends"
+    },
+    {
+      "id": "tot-travel-010",
+      "category": "travel",
+      "a": "Souvenirs",
+      "b": "Photos"
+    },
+    {
+      "id": "tot-travel-011",
+      "category": "travel",
+      "a": "Hot destination",
+      "b": "Cold destination"
+    },
+    {
+      "id": "tot-travel-012",
+      "category": "travel",
+      "a": "Street food",
+      "b": "Fancy restaurant"
+    },
+    {
+      "id": "tot-travel-013",
+      "category": "travel",
+      "a": "Weekend away",
+      "b": "Two-week holiday"
+    },
+    {
+      "id": "tot-travel-014",
+      "category": "travel",
+      "a": "Backpack",
+      "b": "Suitcase"
+    },
+    {
+      "id": "tot-travel-015",
+      "category": "travel",
+      "a": "Island",
+      "b": "Desert"
+    },
+    {
+      "id": "tot-desi-001",
+      "category": "desi",
+      "a": "Chai",
+      "b": "Coffee"
+    },
+    {
+      "id": "tot-desi-002",
+      "category": "desi",
+      "a": "Samosa",
+      "b": "Kachori"
+    },
+    {
+      "id": "tot-desi-003",
+      "category": "desi",
+      "a": "Idli",
+      "b": "Dosa"
+    },
+    {
+      "id": "tot-desi-004",
+      "category": "desi",
+      "a": "Cricket",
+      "b": "Football"
+    },
+    {
+      "id": "tot-desi-005",
+      "category": "desi",
+      "a": "Rajma chawal",
+      "b": "Chole bhature"
+    },
+    {
+      "id": "tot-desi-006",
+      "category": "desi",
+      "a": "Diwali",
+      "b": "Holi"
+    },
+    {
+      "id": "tot-desi-007",
+      "category": "desi",
+      "a": "Paratha",
+      "b": "Poha"
+    },
+    {
+      "id": "tot-desi-008",
+      "category": "desi",
+      "a": "Gulab jamun",
+      "b": "Rasgulla"
+    },
+    {
+      "id": "tot-desi-009",
+      "category": "desi",
+      "a": "Auto-rickshaw",
+      "b": "Metro"
+    },
+    {
+      "id": "tot-desi-010",
+      "category": "desi",
+      "a": "Mango",
+      "b": "Lychee"
+    },
+    {
+      "id": "tot-desi-011",
+      "category": "desi",
+      "a": "Pani puri",
+      "b": "Bhel puri"
+    },
+    {
+      "id": "tot-desi-012",
+      "category": "desi",
+      "a": "Lassi",
+      "b": "Nimbu pani"
+    },
+    {
+      "id": "tot-desi-013",
+      "category": "desi",
+      "a": "Hill station",
+      "b": "Beach town"
+    },
+    {
+      "id": "tot-desi-014",
+      "category": "desi",
+      "a": "Biryani",
+      "b": "Pulao"
+    },
+    {
+      "id": "tot-desi-015",
+      "category": "desi",
+      "a": "Antakshari",
+      "b": "Dumb charades"
+    },
+    {
+      "id": "tot-pop-001",
+      "category": "pop",
+      "a": "Movies",
+      "b": "Series"
+    },
+    {
+      "id": "tot-pop-002",
+      "category": "pop",
+      "a": "Comedy",
+      "b": "Thriller"
+    },
+    {
+      "id": "tot-pop-003",
+      "category": "pop",
+      "a": "Superheroes",
+      "b": "Wizards"
+    },
+    {
+      "id": "tot-pop-004",
+      "category": "pop",
+      "a": "Spoilers",
+      "b": "Surprises"
+    },
+    {
+      "id": "tot-pop-005",
+      "category": "pop",
+      "a": "Binge it",
+      "b": "One episode a week"
+    },
+    {
+      "id": "tot-pop-006",
+      "category": "pop",
+      "a": "Subtitles on",
+      "b": "Subtitles off"
+    },
+    {
+      "id": "tot-pop-007",
+      "category": "pop",
+      "a": "Concert",
+      "b": "Theatre"
+    },
+    {
+      "id": "tot-pop-008",
+      "category": "pop",
+      "a": "Old songs",
+      "b": "New songs"
+    },
+    {
+      "id": "tot-pop-009",
+      "category": "pop",
+      "a": "Animated",
+      "b": "Live action"
+    },
+    {
+      "id": "tot-pop-010",
+      "category": "pop",
+      "a": "Book first",
+      "b": "Film first"
+    }
+  ]
+}

@@ -13,6 +13,30 @@ const norm = (s: string) =>
  * unique ids, ids matching their category, known categories, no empty categories and no
  * duplicate questions.
  */
+type AnyItem = Pack['items'][number];
+
+/** Checks within one item and returns the text used to detect duplicate questions. */
+function itemKey(item: AnyItem, errors: string[]): string {
+  if ('a' in item) {
+    if (norm(item.a) === norm(item.b)) errors.push(`${item.id}: both options are the same`);
+    return [norm(item.a), norm(item.b)].sort().join(' | ');
+  }
+  if ('question' in item) {
+    if (new Set(item.choices.map(norm)).size !== item.choices.length) {
+      errors.push(`${item.id}: choices must be different`);
+    }
+    return norm(item.question);
+  }
+  if (new Set(item.clues.map(norm)).size !== item.clues.length) {
+    errors.push(`${item.id}: clues must be different`);
+  }
+  for (const clue of item.clues) {
+    if (norm(clue).includes(norm(item.answer)))
+      errors.push(`${item.id}: a clue gives away the answer`);
+  }
+  return norm(item.answer);
+}
+
 export function validatePack(input: unknown): ValidationResult {
   const parsed = packSchema.safeParse(input);
   if (!parsed.success) {
@@ -44,8 +68,7 @@ export function validatePack(input: unknown): ValidationResult {
     }
     perCategory.set(item.category, (perCategory.get(item.category) ?? 0) + 1);
 
-    if (norm(item.a) === norm(item.b)) errors.push(`${item.id}: both options are the same`);
-    const key = [norm(item.a), norm(item.b)].sort().join(' | ');
+    const key = itemKey(item, errors);
     const dupe = questions.get(key);
     if (dupe) errors.push(`${item.id}: duplicate of ${dupe}`);
     else questions.set(key, item.id);
