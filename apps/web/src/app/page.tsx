@@ -78,7 +78,8 @@ export default function HomePage() {
           The games
         </h2>
         <p className="mt-2 text-muted">
-          Would You Rather is ready with {wyrCount()} original questions. More modes are on the way.
+          Five ways to play, all on one phone. Would You Rather alone has {wyrCount()} original
+          questions.
         </p>
         <ul className="mt-8 grid gap-4 md:grid-cols-2">
           {modes.map((m) => (

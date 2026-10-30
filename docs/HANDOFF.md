@@ -4,6 +4,10 @@ Paste this into a new Claude Code session on the `siddharthrana/mirthmix` reposi
 
 > Continue building MirthMix. Read `docs/HANDOFF.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md` and `docs/BUILD_PROMPT.md` first, then carry on from "Next steps" in PROGRESS.md. Work on branch `claude/upbeat-feynman-o2ywiv`. Payments must match the Weblume repo (`siddharthrana/weblume`, `apps/api/src/billing`): Google Play Billing verified by NestJS + Paddle/Dodo on the web. Commit and push after each step.
 
+## Status
+
+Phases 1 and 2 are complete and pushed. Next is Phase 3 (web player and share links); see `docs/PROGRESS.md`.
+
 ## Where things are
 
 - **Branch:** `claude/upbeat-feynman-o2ywiv` (all work pushed). No PR yet.
@@ -39,4 +43,5 @@ cd apps/mobile && dart format lib test && flutter analyze && flutter test
 - Game rules exist twice: TypeScript (`packages/game-engine`) is the reference, Dart (`apps/mobile/lib/game`) is a port. After changing rules, run `pnpm --filter @mirthmix/game-engine vectors` and make `flutter test` pass.
 - UI strings go in `apps/mobile/lib/l10n/app_en.arb`.
 - Never trust a client-side premium flag; `premiumProvider` stays `false` until Phase 4.
-- Commit trailer used so far: `Co-Authored-By: Claude <noreply@anthropic.com>` plus the session link.
+- Commit after each step and push to the branch; keep `docs/PROGRESS.md` accurate.
+- Widget tests: use the scroll-aware `tapText`/`reveal` helpers; on screens with a running countdown use `tester.pump(...)` instead of `pumpAndSettle()`.

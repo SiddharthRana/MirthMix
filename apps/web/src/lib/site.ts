@@ -28,25 +28,25 @@ export const modes: ModeInfo[] = [
     id: 'this-or-that',
     name: 'This or That',
     blurb: 'Rapid-fire picks with big buttons, made for passing the phone.',
-    status: 'in-development',
+    status: 'available',
   },
   {
     id: 'trivia',
     name: 'Trivia Blitz',
     blurb: 'Multiple choice against the clock, played in teams.',
-    status: 'in-development',
+    status: 'available',
   },
   {
     id: 'guess',
     name: 'Guess the Answer',
     blurb: 'Reveal clues one at a time. Fewer clues, more points.',
-    status: 'in-development',
+    status: 'available',
   },
   {
     id: 'custom',
     name: 'Custom Party Pack',
     blurb: 'Mix modes and categories into one party session.',
-    status: 'in-development',
+    status: 'available',
   },
 ];
 

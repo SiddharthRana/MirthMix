@@ -1,7 +1,34 @@
 # Progress
 
-**Current phase:** 2 of 5 — Core modes (in progress). Phase 1 complete and approved.
+**Current phase:** 2 of 5 — Core modes ✅ complete. **Checkpoint: waiting for the owner's go-ahead before Phase 3.**
 **Last updated:** 2026-10-30
+
+## Phase 2 — Core modes
+
+### Done (verified in this environment)
+
+| Area                  | What                                                                                                                                                                                                                                                             | Verified by                                                                                 |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Content               | Schemas for This or That, Trivia and Guess; validator also rejects duplicate trivia choices and Guess clues that contain the answer. **70 This or That pairs, 56 trivia questions, 46 Guess cards**, each mode with free, premium and India-flavoured categories | 25 content tests; `pnpm content:validate`                                                   |
+| Engines (TS + Dart)   | Per-round votes and "most in sync" pair for pass-the-phone; Trivia (seeded per-question choice order, team turns, timer/timeout, speed bonus 100 + up to 50, skip, standings); Guess (clues one at a time, 3/2/1 points, team turns, skip)                       | 40 TS tests; Dart replays every shared vector (rng, shuffle, WYR, agreement, trivia, guess) |
+| App: modes            | This or That (room pick or pass the phone, 5-second timer, discussion prompts), Trivia Blitz (team turns, pausable countdown, explanations), Guess the Answer (reader-only answer card, clues, scoring); scoreboard and choice results                           | Widget flow tests for each mode                                                             |
+| App: around the games | Players & teams screen (max 12, stored on the phone); generic setup screen for every mode; favourites (named, from setup or party); recent games ("Play again" chips); custom party packs played back to back; Home resumes whichever game is in progress        | Widget tests: players, favourites, recents, party, relaunch, premium locked in every mode   |
+| Lifecycle             | Every mode's session persisted on each action; countdowns pause while the app is hidden (tick-based, not wall-clock)                                                                                                                                             | Relaunch tests; lifecycle test (timer frozen for 30 s in background)                        |
+| Website               | Library and landing page now list every mode as available in the app                                                                                                                                                                                             | 39 Playwright tests                                                                         |
+
+**Test totals:** TypeScript 104 (tokens 39, content 25, engine 40), Flutter 54, web Playwright 39. `flutter analyze`, lint, typecheck, format and content validation are clean.
+
+### Bugs found and fixed
+
+- The favourite-name dialog disposed its text controller while the dialog was still animating closed (crash). The dialog now owns its controller.
+- Prettier reformatted content packs, making the app's copy stale; packs are now excluded from Prettier.
+
+### Not verified / limitations
+
+- **Trivia is `self-checked`, not `verified`.** Facts were written from general knowledge with a named reference to check, but no second person has checked them against the source. Before launch, review each question and set `reviewStatus: "verified"`; consider shipping only verified questions.
+- Countdown progress is not persisted: after the app is killed mid-question, the timer restarts for that question.
+- Still no device/emulator run or Android build in this environment (see Phase 1). Check the CI APK build.
+- Content counts are below the launch targets in BUILD_PROMPT §6 (WYR 150, ToT 150, Trivia 200, Guess 80); expanding content is Phase 5.
 
 ## Phase 1 — Foundation
 
@@ -27,6 +54,8 @@
 - **Placeholder brand** (geometric mark), and legal pages are unreviewed drafts.
 - **No analytics or crash reporting** (by design until Phase 5).
 
-## Next: Phase 2 — Core modes
+## Next: Phase 3 — Web player and sharing
 
-This or That, Trivia Blitz (timer, per-team scoring, verified-trivia fields), Guess the Answer (clues, 3/2/1 scoring), player/team setup, custom party packs, favourites and recent games, timer pause on backgrounding; matching TypeScript engine code and test vectors for each mode; content for each mode.
+1. Web player for the four modes in `apps/web`, using `@mirthmix/game-engine` (already passes the shared vectors) and the same content packs.
+2. Share links: encode a `GameSetup` plus seed (e.g. `/play?c=<base64url JSON>`), open in the web player; Android App Links to open the app when installed (needs `assetlinks.json` on the domain).
+3. Web pages per mode, How to play, FAQ, Contact; keep axe/Playwright coverage.

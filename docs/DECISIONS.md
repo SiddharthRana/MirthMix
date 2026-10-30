@@ -2,6 +2,24 @@
 
 Short, dated records of non-trivial choices. Newest first.
 
+## 2026-10-30 — Phase 2 core modes
+
+**This or That reuses the two-choice engine.** It is Would You Rather with a different pack and UI: one tap reveals for the room, or the vote cap equals the number of players when passing the phone, so vote _i_ is player _i_'s pick. Rounds now store their votes so "most in sync" can be computed. _Rejected:_ a separate engine (duplicate logic in two languages).
+
+**Trivia choices are shuffled per question with `seed + dealIndex + 1`.** Every pack lists the correct answer first; the engine never shows that order. The seed keeps the order reproducible for vectors and share links.
+
+**Scoring:** Trivia gives 100 for a correct answer plus `floor(50 × timeLeft / limit)`; Guess gives 3/2/1 by clues used. Integer maths only, so Dart and TypeScript agree.
+
+**Players and teams are one list of names.** Trivia and Guess treat each name as a team taking turns; with no names, the group plays together. Names are snapshotted with the session so editing the list mid-game can't relabel scores.
+
+**Countdowns count ticks, not wall-clock time,** and stop while the app is hidden, so a phone call never costs a turn. The countdown isn't persisted; after a process kill the question's timer restarts.
+
+**Favourites, recents and party packs share one model** (`SavedGame` = a name plus a list of `GameSetup`s). A favourite is one setup, a party pack is several. Party packs use each mode's free categories.
+
+**Trivia review status has three levels** (`draft`, `self-checked`, `verified`). Drafts never ship. The starter questions are `self-checked`; a human must verify them before launch.
+
+**Guess the Answer shows the answer to the reader.** The reader must know it to judge guesses; the card is labelled "Reader only".
+
 ## 2026-10-30 — Phase 1 foundation
 
 **Same stack and payment design as Weblume.** The owner asked for the latest tech and for payments to match the Weblume app. MirthMix copies Weblume's monorepo layout, tooling (pnpm 10, Node 22, ESLint 10 flat config, Prettier, Vitest 5, Playwright + axe), design-token pipeline and CI shape. Phase 4 will port Weblume's billing module: Google Play Billing verified by a NestJS API (subscriptionsv2, server-side acknowledge, RTDN) plus a Merchant of Record on the web (Paddle or Dodo, chosen by `WEB_PAYMENT_PROVIDER`). _Rejected:_ RevenueCat, which v2 of the prompt had considered; consistency with Weblume wins and that code is already written and tested.

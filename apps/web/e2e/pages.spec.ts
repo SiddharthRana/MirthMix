@@ -55,10 +55,10 @@ test('the landing page demo plays real questions', async ({ page }) => {
   await expect(demo.getByRole('button', { pressed: false }).first()).not.toHaveText(first);
 });
 
-test('modes that are not built yet are not linked and say so', async ({ page }) => {
+test('every mode is listed as available in the app', async ({ page }) => {
   await page.goto('/games');
-  await expect(page.getByText('In development')).toHaveCount(4);
-  await expect(page.getByRole('link', { name: /Trivia Blitz/ })).toHaveCount(0);
+  await expect(page.getByText('In the Android app')).toHaveCount(5);
+  await expect(page.getByText('In development')).toHaveCount(0);
 });
 
 test('category counts come from the real content pack', async ({ page }) => {

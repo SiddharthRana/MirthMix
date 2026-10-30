@@ -2,7 +2,7 @@
 
 Party games for one shared phone: Would You Rather, This or That, Trivia Blitz, Guess the Answer and custom party packs, for friends, couples and families playing together in person. No sign-up needed.
 
-> **Status: Phase 1 of 5 (foundation) is complete.** Would You Rather is playable end to end on Android; the other modes are listed as "coming soon". Nothing is deployed. See [`docs/PROGRESS.md`](docs/PROGRESS.md) for exactly what works and what doesn't, and [`docs/BUILD_PROMPT.md`](docs/BUILD_PROMPT.md) for the full plan.
+> **Status: Phases 1–2 of 5 are complete.** All four modes (Would You Rather, This or That, Trivia Blitz, Guess the Answer) plus custom party packs are playable on Android. Nothing is deployed. See [`docs/PROGRESS.md`](docs/PROGRESS.md) for exactly what works and what doesn't, and [`docs/BUILD_PROMPT.md`](docs/BUILD_PROMPT.md) for the full plan.
 
 ## Architecture
 

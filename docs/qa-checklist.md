@@ -38,6 +38,31 @@ Run on a real Android phone (ideally a small, low-end one) before each release. 
 - [ ] Rotate the phone (if rotation is on): nothing is lost.
 - [ ] Receive a call mid-game: the game is unchanged afterwards.
 
+## This or That
+
+- [ ] Room mode: one tap reveals, shows a discussion prompt; Next works.
+- [ ] Pass the phone (3+ names): each player's name shows in turn; the reveal lists who picked each side; results show the most in-sync pair.
+- [ ] 5-second timer: running out reveals "Time's up!"; leaving the app pauses it.
+
+## Trivia Blitz
+
+- [ ] With team names, turns alternate; scores and the winner are right.
+- [ ] Choices appear in a different order each game; the explanation shows after answering.
+- [ ] Timer 10/20/30 s counts down, pauses during a phone call or when the app is hidden, and "Time's up!" scores 0.
+- [ ] Timer Off: no bar, no bonus.
+
+## Guess the Answer
+
+- [ ] The answer card is visible to the reader; clues reveal one at a time; points drop 3 → 2 → 1.
+- [ ] Got it / Give up / Skip behave as labelled; the scoreboard is right.
+
+## Players, favourites and party packs
+
+- [ ] Players screen: add, remove, clear; the 13th name is refused.
+- [ ] Save a favourite from any setup screen; it starts from Home; remove works.
+- [ ] Recent games show on Home and start the same setup.
+- [ ] Custom party pack: games play in order, "Next: …" moves on, "Finish party" returns home; quitting mid-party ends it.
+
 ## Accessibility and display
 
 - [ ] TalkBack: options read as "Add a vote for: …" with the current count; reveal reads percentages.
