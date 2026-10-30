@@ -27,7 +27,7 @@
 
 - **Trivia is `self-checked`, not `verified`.** Facts were written from general knowledge with a named reference to check, but no second person has checked them against the source. Before launch, review each question and set `reviewStatus: "verified"`; consider shipping only verified questions.
 - Countdown progress is not persisted: after the app is killed mid-question, the timer restarts for that question.
-- Still no device/emulator run or Android build in this environment (see Phase 1). Check the CI APK build.
+- Still no device/emulator run. The Android release APK builds on GitHub Actions (CI run 1 passed for Phase 1: [run 41031435640](https://github.com/SiddharthRana/MirthMix/actions/runs/41031435640)); check the latest run for Phase 2.
 - Content counts are below the launch targets in BUILD_PROMPT §6 (WYR 150, ToT 150, Trivia 200, Guess 80); expanding content is Phase 5.
 
 ## Phase 1 — Foundation
