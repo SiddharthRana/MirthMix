@@ -13,6 +13,7 @@ import '../features/players_screen.dart';
 import '../features/results/choice_results_screen.dart';
 import '../features/results/score_results_screen.dart';
 import '../features/setup_screen.dart';
+import '../features/shared_link_screen.dart';
 import '../features/tot_play_screen.dart';
 import '../features/trivia_play_screen.dart';
 import '../features/wyr_play_screen.dart';
@@ -35,6 +36,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/players', builder: (_, _) => const PlayersScreen()),
       GoRoute(path: '/party', builder: (_, _) => const PartyScreen()),
+      // Shared links from the website: https://<domain>/play?c=…
+      GoRoute(
+        path: '/play',
+        builder: (_, state) => SharedLinkScreen(code: state.uri.queryParameters['c']),
+      ),
       for (final mode in GameMode.values) ...[
         GoRoute(
           path: '/play/${mode.id}/setup',

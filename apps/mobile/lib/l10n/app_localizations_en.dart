@@ -649,4 +649,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeAllModes => 'Choose a game';
+
+  @override
+  String get shareBroken => 'This game link is broken or out of date.';
 }

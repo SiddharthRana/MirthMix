@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mirthmix/router/router.dart';
 import 'package:mirthmix/state/games.dart';
 import 'package:mirthmix/state/sessions.dart';
 
@@ -46,6 +47,7 @@ Future<Harness> withPlayers(WidgetTester tester, List<String> names) async {
 }
 
 void main() {
+  sharedLinkTests();
   testWidgets('players screen adds, removes and caps names', (tester) async {
     final h = await pumpApp(tester);
     await tester.tap(find.byTooltip('Players and teams'));
@@ -293,5 +295,22 @@ void main() {
       await goBack(tester);
       await goBack(tester);
     }
+  });
+}
+
+void sharedLinkTests() {
+  testWidgets('a shared website link opens the same game in the app', (tester) async {
+    final h = await pumpApp(tester);
+    h.container.read(routerProvider).go('/play?c=eyJtIjozLCJjIjpbImNhc3VhbCJdLCJyIjozLCJzIjo0Mn0');
+    await tester.pumpAndSettle();
+    expect(find.text('Card 1 of 3'), findsOneWidget);
+    expect(h.container.read(guessSessionProvider)!.config.seed, 42);
+  });
+
+  testWidgets('a broken shared link explains itself', (tester) async {
+    final h = await pumpApp(tester);
+    h.container.read(routerProvider).go('/play?c=broken');
+    await tester.pumpAndSettle();
+    expect(find.text('This game link is broken or out of date.'), findsOneWidget);
   });
 }

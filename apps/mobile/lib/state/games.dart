@@ -104,7 +104,8 @@ class GameStarter {
 
   /// Starts a game and returns the route to open. Throws [EmptyPoolException] when the chosen
   /// categories have no playable questions.
-  String start(GameSetup setup) {
+  String start(GameSetup setup, {int? seed}) {
+    final gameSeed = seed ?? newSeed();
     final names = ref.read(lineupProvider);
     final teams = names.isEmpty ? 1 : names.length;
     switch (setup.mode) {
@@ -115,7 +116,7 @@ class GameStarter {
               WyrConfig(
                 categoryIds: setup.categoryIds,
                 rounds: setup.rounds,
-                seed: newSeed(),
+                seed: gameSeed,
                 playerCount: setup.playerCount,
               ),
             );
@@ -127,7 +128,7 @@ class GameStarter {
               WyrConfig(
                 categoryIds: setup.categoryIds,
                 rounds: setup.rounds,
-                seed: newSeed(),
+                seed: gameSeed,
                 playerCount: pass ? names.length : null,
               ),
               names: pass ? names : const [],
@@ -140,7 +141,7 @@ class GameStarter {
               TriviaConfig(
                 categoryIds: setup.categoryIds,
                 rounds: setup.rounds,
-                seed: newSeed(),
+                seed: gameSeed,
                 teams: teams,
                 timeLimitMs: setup.timeLimitMs,
               ),
@@ -150,7 +151,7 @@ class GameStarter {
         ref
             .read(guessSessionProvider.notifier)
             .start(
-              GuessConfig(categoryIds: setup.categoryIds, rounds: setup.rounds, seed: newSeed(), teams: teams),
+              GuessConfig(categoryIds: setup.categoryIds, rounds: setup.rounds, seed: gameSeed, teams: teams),
               names: names,
             );
     }

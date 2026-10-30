@@ -1182,6 +1182,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose a game'**
   String get homeAllModes;
+
+  /// No description provided for @shareBroken.
+  ///
+  /// In en, this message translates to:
+  /// **'This game link is broken or out of date.'**
+  String get shareBroken;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
