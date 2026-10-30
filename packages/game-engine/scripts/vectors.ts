@@ -4,23 +4,36 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { WyrItem } from '@mirthmix/content';
 import { createRng, seededShuffle } from '../src/random.ts';
 import {
+  createGuessSession,
+  guessResults,
+  reduceGuess,
+  type GuessAction,
+  type GuessConfig,
+} from '../src/guess.ts';
+import {
+  createTriviaSession,
+  reduceTrivia,
+  triviaResults,
+  type TriviaAction,
+  type TriviaConfig,
+  type TriviaPoolItem,
+} from '../src/trivia.ts';
+import {
+  bestAgreement,
   buildPool,
   createWyrSession,
   reduceWyr,
   wyrResults,
   type WyrAction,
   type WyrConfig,
+  type WyrRound,
 } from '../src/would-you-rather.ts';
 
-const outPath = join(
-  dirname(fileURLToPath(import.meta.url)),
-  '../test-vectors/would-you-rather.json',
-);
+const outDir = join(dirname(fileURLToPath(import.meta.url)), '../test-vectors');
 
-const items: WyrItem[] = [
+const items = [
   ...['01', '02', '03', '04', '05'].map((n) => ({
     id: `wyr-casual-0${n}`,
     category: 'casual',
@@ -124,14 +137,146 @@ const vectors = {
   }),
 };
 
-const json = JSON.stringify(vectors, null, 2) + '\n';
-if (process.argv.includes('--check')) {
-  if (!existsSync(outPath) || readFileSync(outPath, 'utf8') !== json) {
-    console.error('test-vectors are stale. Run `pnpm --filter @mirthmix/game-engine vectors`.');
-    process.exit(1);
+const triviaItems: TriviaPoolItem[] = [
+  ...[0, 1, 2, 3, 0, 1].map((answer, n) => ({
+    id: `triv-science-00${n + 1}`,
+    category: 'science',
+    answer,
+  })),
+  ...[2, 3, 1].map((answer, n) => ({ id: `triv-space-00${n + 1}`, category: 'space', answer })),
+];
+const A = (choice: number, elapsedMs: number): TriviaAction => ({
+  type: 'answer',
+  choice,
+  elapsedMs,
+});
+const T = (type: 'timeout' | 'next' | 'skip'): TriviaAction => ({ type });
+const triviaScenarios: { name: string; config: TriviaConfig; actions: TriviaAction[] }[] = [
+  {
+    name: 'two teams take turns with speed bonus',
+    config: { categoryIds: ['science'], rounds: 4, seed: 11, teams: 2, timeLimitMs: 20000 },
+    actions: [
+      A(0, 1000),
+      T('next'),
+      A(1, 5000),
+      T('next'),
+      A(2, 19999),
+      T('next'),
+      A(3, 25000),
+      T('next'),
+    ],
+  },
+  {
+    name: 'timeouts, skips and ignored actions',
+    config: { categoryIds: ['science', 'space'], rounds: 3, seed: 5, teams: 3, timeLimitMs: 10000 },
+    actions: [
+      T('next'),
+      T('timeout'),
+      A(0, 1),
+      T('next'),
+      T('skip'),
+      A(1, 0),
+      A(2, 0),
+      T('skip'),
+      T('next'),
+      T('skip'),
+    ],
+  },
+  {
+    name: 'no timer means no bonus and no timeout',
+    config: { categoryIds: ['space'], rounds: 5, seed: 99, teams: 1, timeLimitMs: 0 },
+    actions: [
+      T('timeout'),
+      A(0, 50),
+      T('next'),
+      A(1, 50),
+      T('next'),
+      T('skip'),
+      A(3, 0),
+      T('next'),
+    ],
+  },
+];
+
+const G = (type: GuessAction['type']): GuessAction => ({ type });
+const guessScenarios: { name: string; config: GuessConfig; actions: GuessAction[] }[] = [
+  {
+    name: 'points by clues used across two teams',
+    config: { categoryIds: ['casual', 'funny'], rounds: 4, seed: 3, teams: 2 },
+    actions: [
+      G('got'),
+      G('next'),
+      G('clue'),
+      G('got'),
+      G('next'),
+      G('clue'),
+      G('clue'),
+      G('clue'),
+      G('got'),
+      G('next'),
+      G('reveal'),
+      G('got'),
+      G('next'),
+    ],
+  },
+  {
+    name: 'skips replace cards, then spend the round',
+    config: { categoryIds: ['funny'], rounds: 3, seed: 8, teams: 1 },
+    actions: [G('skip'), G('clue'), G('got'), G('next'), G('next'), G('skip'), G('next')],
+  },
+];
+
+const files: Record<string, unknown> = {
+  'would-you-rather.json': {
+    ...vectors,
+    agreement: [
+      {
+        name: 'three players, pass the phone',
+        playerCount: 3,
+        rounds: [
+          { questionId: 'q1', a: 2, b: 1, votes: ['a', 'a', 'b'], skipped: false },
+          { questionId: 'q2', a: 1, b: 2, votes: ['b', 'a', 'b'], skipped: false },
+          { questionId: 'q3', a: 0, b: 0, votes: [], skipped: true },
+          { questionId: 'q4', a: 1, b: 1, votes: ['a', 'b'], skipped: false },
+        ],
+      },
+    ].map((v) => ({ ...v, expected: bestAgreement(v.rounds as WyrRound[], v.playerCount) })),
+  },
+  'trivia.json': {
+    $comment: vectors.$comment,
+    items: triviaItems,
+    scenarios: triviaScenarios.map(({ name, config, actions }) => {
+      let state = createTriviaSession(buildPool(triviaItems, config.categoryIds), config);
+      for (const a of actions) state = reduceTrivia(state, a);
+      const { config: _c, ...expected } = state;
+      return { name, config, actions, expected: { ...expected, results: triviaResults(state) } };
+    }),
+  },
+  'guess.json': {
+    $comment: vectors.$comment,
+    items,
+    scenarios: guessScenarios.map(({ name, config, actions }) => {
+      let state = createGuessSession(buildPool(items, config.categoryIds), config);
+      for (const a of actions) state = reduceGuess(state, a);
+      const { config: _c, ...expected } = state;
+      return { name, config, actions, expected: { ...expected, results: guessResults(state) } };
+    }),
+  },
+};
+
+let stale = false;
+for (const [name, data] of Object.entries(files)) {
+  const path = join(outDir, name);
+  const json = JSON.stringify(data, null, 2) + '\n';
+  if (process.argv.includes('--check')) {
+    if (!existsSync(path) || readFileSync(path, 'utf8') !== json) stale = true;
+  } else {
+    writeFileSync(path, json);
+    console.log(`Wrote ${path}`);
   }
-  console.log('Engine test vectors are up to date.');
-} else {
-  writeFileSync(outPath, json);
-  console.log(`Wrote ${outPath}`);
 }
+if (stale) {
+  console.error('test-vectors are stale. Run `pnpm --filter @mirthmix/game-engine vectors`.');
+  process.exit(1);
+}
+if (process.argv.includes('--check')) console.log('Engine test vectors are up to date.');

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { WyrItem } from '@mirthmix/content';
+type WyrItem = { id: string; category: string; a: string; b: string };
 import { describe, expect, it } from 'vitest';
 import { createRng, seededShuffle } from '../src/random.ts';
 import {

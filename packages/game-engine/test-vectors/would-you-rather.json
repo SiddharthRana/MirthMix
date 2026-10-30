@@ -257,18 +257,31 @@
             "questionId": "wyr-casual-002",
             "a": 2,
             "b": 1,
+            "votes": [
+              "a",
+              "a",
+              "b"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-casual-004",
             "a": 0,
             "b": 2,
+            "votes": [
+              "b",
+              "b"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-funny-003",
             "a": 1,
             "b": 1,
+            "votes": [
+              "a",
+              "b"
+            ],
             "skipped": false
           }
         ],
@@ -333,12 +346,18 @@
             "questionId": "wyr-casual-002",
             "a": 1,
             "b": 0,
+            "votes": [
+              "a"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-casual-001",
             "a": 0,
             "b": 1,
+            "votes": [
+              "b"
+            ],
             "skipped": false
           }
         ],
@@ -403,6 +422,11 @@
             "questionId": "wyr-casual-003",
             "a": 2,
             "b": 1,
+            "votes": [
+              "a",
+              "a",
+              "b"
+            ],
             "skipped": false
           }
         ],
@@ -458,12 +482,17 @@
             "questionId": "wyr-funny-001",
             "a": 2,
             "b": 0,
+            "votes": [
+              "a",
+              "a"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-funny-003",
             "a": 0,
             "b": 0,
+            "votes": [],
             "skipped": true
           }
         ],
@@ -541,18 +570,28 @@
             "questionId": "wyr-funny-001",
             "a": 1,
             "b": 1,
+            "votes": [
+              "a",
+              "b"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-funny-003",
             "a": 3,
             "b": 0,
+            "votes": [
+              "a",
+              "a",
+              "a"
+            ],
             "skipped": false
           },
           {
             "questionId": "wyr-funny-002",
             "a": 0,
             "b": 0,
+            "votes": [],
             "skipped": false
           }
         ],
@@ -615,6 +654,9 @@
             "questionId": "wyr-casual-001",
             "a": 0,
             "b": 1,
+            "votes": [
+              "b"
+            ],
             "skipped": false
           }
         ],
@@ -633,6 +675,61 @@
           "mostDivisive": null,
           "mostUnanimous": null
         }
+      }
+    }
+  ],
+  "agreement": [
+    {
+      "name": "three players, pass the phone",
+      "playerCount": 3,
+      "rounds": [
+        {
+          "questionId": "q1",
+          "a": 2,
+          "b": 1,
+          "votes": [
+            "a",
+            "a",
+            "b"
+          ],
+          "skipped": false
+        },
+        {
+          "questionId": "q2",
+          "a": 1,
+          "b": 2,
+          "votes": [
+            "b",
+            "a",
+            "b"
+          ],
+          "skipped": false
+        },
+        {
+          "questionId": "q3",
+          "a": 0,
+          "b": 0,
+          "votes": [],
+          "skipped": true
+        },
+        {
+          "questionId": "q4",
+          "a": 1,
+          "b": 1,
+          "votes": [
+            "a",
+            "b"
+          ],
+          "skipped": false
+        }
+      ],
+      "expected": {
+        "players": [
+          0,
+          2
+        ],
+        "matches": 1,
+        "rounds": 2
       }
     }
   ]

@@ -1,4 +1,3 @@
-import type { WyrItem } from '@mirthmix/content';
 import { seededShuffle } from './random.ts';
 
 export type Side = 'a' | 'b';
@@ -15,7 +14,15 @@ export interface WyrRound {
   questionId: string;
   a: number;
   b: number;
+  /** Votes in the order cast. In pass-the-phone play, index i is player i's pick. */
+  votes: Side[];
   skipped: boolean;
+}
+
+/** Anything dealt from a pack: only the id and category matter to the engine. */
+export interface PoolItem {
+  id: string;
+  category: string;
 }
 
 export interface WyrCurrent {
@@ -52,12 +59,15 @@ export class EmptyPoolError extends Error {
 }
 
 /** Items in the chosen categories, in a stable (id) order so shuffles are reproducible. */
-export function buildPool(items: readonly WyrItem[], categoryIds: readonly string[]): WyrItem[] {
+export function buildPool<T extends PoolItem>(
+  items: readonly T[],
+  categoryIds: readonly string[],
+): T[] {
   const wanted = new Set(categoryIds);
   return items.filter((i) => wanted.has(i.category)).sort((x, y) => (x.id < y.id ? -1 : 1));
 }
 
-export function createWyrSession(pool: readonly WyrItem[], config: WyrConfig): WyrState {
+export function createWyrSession(pool: readonly PoolItem[], config: WyrConfig): WyrState {
   if (pool.length === 0) throw new EmptyPoolError();
   if (!Number.isInteger(config.rounds) || config.rounds < 1) {
     throw new RangeError('rounds must be a positive integer');
@@ -102,6 +112,7 @@ export function reduceWyr(state: WyrState, action: WyrAction): WyrState {
         questionId: cur.questionId,
         a: count(cur.votes, 'a'),
         b: count(cur.votes, 'b'),
+        votes: cur.votes,
         skipped: false,
       });
     case 'skip': {
@@ -116,7 +127,7 @@ export function reduceWyr(state: WyrState, action: WyrAction): WyrState {
       }
       return advance(
         { ...state, skips: state.skips + 1 },
-        { questionId: cur.questionId, a: 0, b: 0, skipped: true },
+        { questionId: cur.questionId, a: 0, b: 0, votes: [], skipped: true },
       );
     }
   }
@@ -162,4 +173,36 @@ export function wyrResults(state: WyrState): WyrResults {
     // With a single voted round both highlights would be the same question; show only one.
     mostUnanimous: unanimous && unanimous !== divisive ? unanimous.questionId : null,
   };
+}
+
+export interface Agreement {
+  /** Player indexes, lowest first. */
+  players: [number, number];
+  matches: number;
+  rounds: number;
+}
+
+/**
+ * For pass-the-phone play: the pair of players who picked the same side most often, over rounds
+ * where both voted. Ties go to the lowest player indexes. Null with fewer than two players.
+ */
+export function bestAgreement(rounds: readonly WyrRound[], playerCount: number): Agreement | null {
+  let best: Agreement | null = null;
+  for (let i = 0; i < playerCount; i++) {
+    for (let j = i + 1; j < playerCount; j++) {
+      let matches = 0;
+      let both = 0;
+      for (const r of rounds) {
+        const vi = r.votes[i];
+        const vj = r.votes[j];
+        if (vi === undefined || vj === undefined) continue;
+        both++;
+        if (vi === vj) matches++;
+      }
+      if (both > 0 && (!best || matches * best.rounds > best.matches * both)) {
+        best = { players: [i, j], matches, rounds: both };
+      }
+    }
+  }
+  return best;
 }
