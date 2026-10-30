@@ -1,0 +1,41 @@
+# Decisions
+
+Short, dated records of non-trivial choices. Newest first.
+
+## 2026-10-30 — Phase 1 foundation
+
+**Same stack and payment design as Weblume.** The owner asked for the latest tech and for payments to match the Weblume app. MirthMix copies Weblume's monorepo layout, tooling (pnpm 10, Node 22, ESLint 10 flat config, Prettier, Vitest 5, Playwright + axe), design-token pipeline and CI shape. Phase 4 will port Weblume's billing module: Google Play Billing verified by a NestJS API (subscriptionsv2, server-side acknowledge, RTDN) plus a Merchant of Record on the web (Paddle or Dodo, chosen by `WEB_PAYMENT_PROVIDER`). _Rejected:_ RevenueCat, which v2 of the prompt had considered; consistency with Weblume wins and that code is already written and tested.
+
+**TypeScript 6.0, not 7.0.** TypeScript 7.0.2 is out, but typescript-eslint 8.72 supports `<6.1.0`. Move up when typescript-eslint does.
+
+**No backend in Phase 1.** Everything runs on the device; the NestJS API and Supabase arrive with billing in Phase 4. Nothing in Phase 1 needs a server.
+
+**Content tier lives on the category, not on each question.** A category is free or premium as a whole, which is how players will see it. Game logic never reads the tier; only setup (through `premiumProvider`) does.
+
+**Premium is locked, not hidden, in Phase 1.** The premium "Time Travel" category is visible with a lock and "coming soon", so the separation is tested now. `premiumProvider` returns false until Phase 4, when it will come from server-verified entitlements only.
+
+**Single source for content, copied into the app.** `pnpm content:sync` copies packs to `apps/mobile/assets/content/`; `pnpm content:validate` fails if the copy is stale. _Rejected:_ a Flutter asset path outside the app folder (Flutter doesn't allow it) and a symlink (breaks on Windows and in some CI caches).
+
+**Zod 4 schema, JSON Schema generated from it.** One definition drives runtime validation and editor autocompletion (`schema/pack.schema.json` via `z.toJSONSchema`). The Dart app re-checks only what it needs to avoid crashing; a damaged pack shows an error screen.
+
+**Deterministic engine with integer-only shuffling.** mulberry32 plus Fisher–Yates using `next() % (i + 1)` (no floating point), so the Dart port produces exactly the same order. The slight modulo bias is irrelevant for shuffling a few hundred questions. This also lets a future share link carry a seed.
+
+**Test vectors instead of a shared runtime.** The TypeScript engine is the reference and writes `packages/game-engine/test-vectors/*.json`; Flutter tests replay them. _Rejected:_ running JS in Flutter or compiling Dart to JS for the web; both add weight for little gain.
+
+**Would You Rather as a host-tallied vote.** One phone, many people: the host taps once per raised hand, with undo, an optional group-size cap, reveal and a split. Skip swaps in a spare question without using up a round; when none are left it spends the round as skipped. Results highlight the most divisive and most unanimous questions (only with at least two votes, and never the same question twice).
+
+**Session persisted on every action** (shared_preferences, JSON). A killed app offers Resume on Home. Saved sessions that reference questions no longer in the content are discarded rather than crashing.
+
+**Reducer is pure and returns the identical object for no-ops**, so the controller skips needless writes and rebuilds.
+
+**`SkipQuestion`, not `Skip`.** `flutter_test` exports a `Skip` class; the action was renamed to avoid the clash.
+
+**Fonts bundled, not fetched.** Fredoka and Nunito (OFL) are bundled in the app (≈650 KB) so it works offline at parties and doesn't depend on Google at runtime. The website uses `next/font`, which self-hosts them at build time.
+
+**Screen-awake behind an interface** (`ScreenAwake`) so widget tests run without the platform plugin.
+
+**Big text multiplies the system text scale** (× 1.25) rather than replacing it, so it stacks with accessibility settings.
+
+**Placeholder brand.** An original geometric mark (two overlapping answer circles and a spark) drawn in code; launcher icons generated from it. Replace with a designed logo before launch.
+
+**Website says "Android app coming soon"** rather than linking to a store listing that doesn't exist, and lists unbuilt modes as "In development" without links. Question counts on the site are computed from the real pack.

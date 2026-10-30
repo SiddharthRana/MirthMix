@@ -15,7 +15,10 @@ import {
   type WyrConfig,
 } from '../src/would-you-rather.ts';
 
-const outPath = join(dirname(fileURLToPath(import.meta.url)), '../test-vectors/would-you-rather.json');
+const outPath = join(
+  dirname(fileURLToPath(import.meta.url)),
+  '../test-vectors/would-you-rather.json',
+);
 
 const items: WyrItem[] = [
   ...['01', '02', '03', '04', '05'].map((n) => ({
@@ -42,7 +45,21 @@ const scenarios: { name: string; config: WyrConfig; actions: WyrAction[] }[] = [
   {
     name: 'three rounds with votes, reveal and undo',
     config: { categoryIds: ['casual', 'funny'], rounds: 3, seed: 42 },
-    actions: [V('a'), V('a'), V('b'), REVEAL, NEXT, V('b'), V('b'), V('a'), UNDO, NEXT, V('a'), V('b'), NEXT],
+    actions: [
+      V('a'),
+      V('a'),
+      V('b'),
+      REVEAL,
+      NEXT,
+      V('b'),
+      V('b'),
+      V('a'),
+      UNDO,
+      NEXT,
+      V('a'),
+      V('b'),
+      NEXT,
+    ],
   },
   {
     name: 'votes after reveal are ignored',

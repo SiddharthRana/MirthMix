@@ -4,7 +4,8 @@
     "outDir": "dist",
     "rootDir": "src",
     "rewriteRelativeImportExtensions": true,
-    "types": []
+    "types": [],
+    "lib": ["ES2023", "DOM"]
   },
   "include": ["src/**/*.ts"]
 }

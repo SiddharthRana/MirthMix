@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@import '@mirthmix/design-tokens/tokens.css';
+
+@theme inline {
+  --color-bg: var(--mm-background);
+  --color-surface: var(--mm-surface);
+  --color-surface-muted: var(--mm-surface-muted);
+  --color-border: var(--mm-border);
+  --color-text: var(--mm-text);
+  --color-muted: var(--mm-text-muted);
+  --color-primary: var(--mm-primary);
+  --color-primary-hover: var(--mm-primary-hover);
+  --color-on-primary: var(--mm-on-primary);
+  --color-accent: var(--mm-accent);
+  --color-on-accent: var(--mm-on-accent);
+  --color-option-a: var(--mm-option-a);
+  --color-option-b: var(--mm-option-b);
+  --color-on-option: var(--mm-on-option);
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --radius-card: var(--mm-radius-lg);
+  --radius-panel: var(--mm-radius-xl);
+}
+
+html {
+  background: var(--mm-background);
+  color: var(--mm-text);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--mm-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mm-focus);
+  outline-offset: 2px;
+}
+
+.brand-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--mm-gradient-start),
+    var(--mm-gradient-mid),
+    var(--mm-gradient-end)
+  );
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.5s ease-out both;
+  }
+  .pop {
+    animation: pop 0.25s ease-out both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.96);
+  }
+}

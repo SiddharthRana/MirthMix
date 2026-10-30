@@ -8,3 +8,4 @@ packages/design-tokens/dist
 docs/BUILD_PROMPT.md
 apps/mobile/assets/content
 packages/game-engine/test-vectors
+packages/content/schema

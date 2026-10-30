@@ -49,13 +49,18 @@ describe('random', () => {
 describe('buildPool', () => {
   it('keeps only the chosen categories in id order regardless of input order', () => {
     const mixed = [item('funny', 2), item('casual', 2), item('funny', 1), item('casual', 1)];
-    expect(buildPool(mixed, ['funny']).map((i) => i.id)).toEqual(['wyr-funny-001', 'wyr-funny-002']);
+    expect(buildPool(mixed, ['funny']).map((i) => i.id)).toEqual([
+      'wyr-funny-001',
+      'wyr-funny-002',
+    ]);
   });
 });
 
 describe('Would You Rather session', () => {
   it('rejects an empty pool and invalid round counts', () => {
-    expect(() => createWyrSession([], { categoryIds: [], rounds: 5, seed: 1 })).toThrow(EmptyPoolError);
+    expect(() => createWyrSession([], { categoryIds: [], rounds: 5, seed: 1 })).toThrow(
+      EmptyPoolError,
+    );
     expect(() => createWyrSession(pool, { categoryIds: ['casual'], rounds: 0, seed: 1 })).toThrow(
       RangeError,
     );
@@ -96,9 +101,13 @@ describe('Would You Rather session', () => {
   });
 
   it('locks votes after reveal', () => {
-    const s = play(createWyrSession(pool, { categoryIds: ['casual'], rounds: 1, seed: 1 }), vote('a'), {
-      type: 'reveal',
-    });
+    const s = play(
+      createWyrSession(pool, { categoryIds: ['casual'], rounds: 1, seed: 1 }),
+      vote('a'),
+      {
+        type: 'reveal',
+      },
+    );
     expect(play(s, vote('b'))).toBe(s);
     expect(play(s, { type: 'undo' })).toBe(s);
     expect(play(s, { type: 'reveal' })).toBe(s);

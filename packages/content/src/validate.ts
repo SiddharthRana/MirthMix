@@ -2,7 +2,11 @@ import { MODE_PREFIX, packSchema, type Pack } from './schema.ts';
 
 export type ValidationResult = { ok: true; pack: Pack } | { ok: false; errors: string[] };
 
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
 
 /**
  * Validates a pack's shape (JSON Schema-equivalent) and the rules a schema can't express:

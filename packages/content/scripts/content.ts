@@ -2,7 +2,14 @@
 //   validate  validate every pack, regenerate schema/pack.schema.json (for editor autocompletion)
 //             and fail if the schema or the mobile copy of the packs is stale (`--check` in CI)
 //   sync      copy packs into apps/mobile/assets/content/
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
@@ -14,7 +21,9 @@ const packsDir = join(root, 'packs');
 const schemaPath = join(root, 'schema/pack.schema.json');
 const mobileDir = join(root, '../../apps/mobile/assets/content');
 const [command] = process.argv.slice(2);
-const packFiles = readdirSync(packsDir).filter((f) => f.endsWith('.json')).sort();
+const packFiles = readdirSync(packsDir)
+  .filter((f) => f.endsWith('.json'))
+  .sort();
 
 function validate(): boolean {
   let ok = true;
@@ -35,12 +44,16 @@ function validate(): boolean {
   if (current !== schema) {
     mkdirSync(dirname(schemaPath), { recursive: true });
     writeFileSync(schemaPath, schema);
-    console.log('Updated schema/pack.schema.json');
+    ok = false;
+    console.error('schema/pack.schema.json was stale and has been regenerated. Commit it.');
   }
 
   for (const file of packFiles) {
     const copy = join(mobileDir, file);
-    if (!existsSync(copy) || readFileSync(copy, 'utf8') !== readFileSync(join(packsDir, file), 'utf8')) {
+    if (
+      !existsSync(copy) ||
+      readFileSync(copy, 'utf8') !== readFileSync(join(packsDir, file), 'utf8')
+    ) {
       ok = false;
       console.error(`apps/mobile/assets/content/${file} is stale. Run \`pnpm content:sync\`.`);
     }
