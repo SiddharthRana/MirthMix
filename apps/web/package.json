@@ -17,7 +17,8 @@
     "@mirthmix/design-tokens": "workspace:*",
     "next": "^16.4.3",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "@mirthmix/game-engine": "workspace:*"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

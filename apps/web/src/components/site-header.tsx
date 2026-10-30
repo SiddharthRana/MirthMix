@@ -25,6 +25,14 @@ export function SiteHeader() {
             </li>
             <li>
               <Link
+                href="/play"
+                className="inline-flex min-h-12 items-center whitespace-nowrap rounded-full px-3 hover:bg-surface-muted sm:px-4"
+              >
+                Play
+              </Link>
+            </li>
+            <li className="hidden sm:block">
+              <Link
                 href="/#how-it-works"
                 className="inline-flex min-h-12 items-center whitespace-nowrap rounded-full px-3 hover:bg-surface-muted sm:px-4"
               >
