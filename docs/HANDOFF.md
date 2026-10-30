@@ -6,7 +6,15 @@ Paste this into a new Claude Code session on the `siddharthrana/mirthmix` reposi
 
 ## Status
 
-Phases 1 and 2 are complete and pushed. Next is Phase 3 (web player and share links); see `docs/PROGRESS.md`.
+Phases 1 and 2 are complete and pushed. **Phase 3 (web player and share links) is in progress** — check `git log` and `docs/PROGRESS.md` for what landed.
+
+Phase 3 plan, in order (each step committed separately):
+
+1. `packages/game-engine/src/share.ts`: encode/decode a game setup + seed as a URL-safe string (`/play?c=...`), with tests.
+2. `apps/web/src/app/play/`: client-side web player using `@mirthmix/game-engine` and the content packs — Would You Rather first, then This or That, Trivia, Guess. No accounts.
+3. Share button in the web player (copies the `/play?c=` link); Playwright tests for playing each mode.
+4. Android App Links (`assetlinks.json` placeholder + intent filter) so links open the app; document the manual domain step.
+5. Update PROGRESS, DECISIONS and this file; stop at the Phase 3 checkpoint.
 
 ## Where things are
 
