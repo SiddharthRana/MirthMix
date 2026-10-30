@@ -31,7 +31,7 @@ void main() {
   });
 
   test('parses a minimal valid pack', () {
-    final p = WyrPack.parse(pack());
+    final p = parseWyrPack(pack());
     expect(p.item('wyr-casual-001')?.a, 'A');
     expect(p.category('casual')?.tier, Tier.free);
   });
@@ -71,7 +71,7 @@ void main() {
       ),
     ];
     for (final source in bad) {
-      expect(() => WyrPack.parse(source), throwsFormatException, reason: source);
+      expect(() => parseWyrPack(source), throwsFormatException, reason: source);
     }
   });
 }

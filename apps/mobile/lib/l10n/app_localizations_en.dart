@@ -374,4 +374,279 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get goHome => 'Go home';
+
+  @override
+  String get modeTotRules =>
+      'Two quick options. Tap the room\'s pick, or pass the phone so everyone picks in turn. Add the timer for real rapid fire.';
+
+  @override
+  String get modeTriviaRules =>
+      'Teams take turns answering. Faster correct answers score bonus points. Every question has a short explanation.';
+
+  @override
+  String get modeGuessRules =>
+      'Only the reader looks at the screen. Read clue 1 aloud; if nobody gets it, read the next. Fewer clues, more points.';
+
+  @override
+  String get modeCustomRules => 'Pick the games to play in order. When one ends, the next starts with a tap.';
+
+  @override
+  String get setupPlayers => 'Players and teams';
+
+  @override
+  String get setupPlayersNone => 'Playing as one group';
+
+  @override
+  String get setupPlayersEdit => 'Edit';
+
+  @override
+  String get setupPassPhone => 'Pass the phone';
+
+  @override
+  String get setupPassPhoneBody => 'Each player picks in turn. Needs at least 2 players.';
+
+  @override
+  String get setupTimer => '5-second timer';
+
+  @override
+  String get setupTimerBody => 'Pick before time runs out.';
+
+  @override
+  String get setupTriviaTimer => 'Time per question';
+
+  @override
+  String get setupTimerOff => 'Off';
+
+  @override
+  String setupSeconds(int seconds) {
+    return '${seconds}s';
+  }
+
+  @override
+  String get setupSaveFavourite => 'Save as favourite';
+
+  @override
+  String get favouriteName => 'Name';
+
+  @override
+  String get favouriteSaved => 'Saved to favourites';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get playersTitle => 'Players and teams';
+
+  @override
+  String get playersBody =>
+      'Add names to take turns and keep score. Names stay on this phone. Leave it empty to play as one group.';
+
+  @override
+  String get playersAdd => 'Add';
+
+  @override
+  String get playersName => 'Player or team name';
+
+  @override
+  String playersRemove(String name) {
+    return 'Remove $name';
+  }
+
+  @override
+  String get playersClear => 'Clear all';
+
+  @override
+  String playersFull(int max) {
+    return 'That\'s the maximum of $max.';
+  }
+
+  @override
+  String get totPrompt => 'This or that?';
+
+  @override
+  String totPickFor(String name) {
+    return '$name\'s pick';
+  }
+
+  @override
+  String get totGroupPick => 'Tap the room\'s pick';
+
+  @override
+  String get totTimeUp => 'Time\'s up!';
+
+  @override
+  String get totDiscuss1 => 'Defend your pick in 10 seconds.';
+
+  @override
+  String get totDiscuss2 => 'Anyone want to switch sides?';
+
+  @override
+  String get totDiscuss3 => 'Who surprised you?';
+
+  @override
+  String totInSync(String a, String b) {
+    return 'Most in sync: $a & $b';
+  }
+
+  @override
+  String totInSyncBody(int matches, int rounds) {
+    return 'Same pick $matches of $rounds times';
+  }
+
+  @override
+  String secondsLeft(int seconds) {
+    return '$seconds seconds left';
+  }
+
+  @override
+  String turnOf(String name) {
+    return '$name\'s turn';
+  }
+
+  @override
+  String get everyone => 'Everyone';
+
+  @override
+  String questionOf(int round, int total) {
+    return 'Question $round of $total';
+  }
+
+  @override
+  String triviaCorrect(int points) {
+    return 'Correct! +$points';
+  }
+
+  @override
+  String get triviaWrong => 'Not quite.';
+
+  @override
+  String get triviaTimeUp => 'Time\'s up!';
+
+  @override
+  String triviaAnswerWas(String answer) {
+    return 'Answer: $answer';
+  }
+
+  @override
+  String triviaChoice(String letter, String text) {
+    return 'Answer $letter: $text';
+  }
+
+  @override
+  String get guessReaderOnly => 'Reader only — the answer is';
+
+  @override
+  String guessClue(int n) {
+    return 'Clue $n';
+  }
+
+  @override
+  String get guessNextClue => 'Next clue';
+
+  @override
+  String get guessGotIt => 'Got it!';
+
+  @override
+  String get guessGiveUp => 'Give up';
+
+  @override
+  String guessWorth(int points) {
+    return 'Worth $points points';
+  }
+
+  @override
+  String guessGuessing(String name) {
+    return '$name guesses';
+  }
+
+  @override
+  String guessScored(int points, String name) {
+    return '+$points for $name';
+  }
+
+  @override
+  String get guessNoPoints => 'No points this time.';
+
+  @override
+  String cardOf(int round, int total) {
+    return 'Card $round of $total';
+  }
+
+  @override
+  String resultsWinner(String name) {
+    return '$name wins!';
+  }
+
+  @override
+  String resultsTie(String names) {
+    return 'It\'s a tie: $names';
+  }
+
+  @override
+  String get resultsNoWinner => 'No points this time';
+
+  @override
+  String resultsPoints(int points) {
+    return '$points pts';
+  }
+
+  @override
+  String resultsCorrectOf(int correct, int answered) {
+    return '$correct of $answered correct';
+  }
+
+  @override
+  String resultsSolvedOf(int solved, int played) {
+    return '$solved of $played guessed';
+  }
+
+  @override
+  String get partyTitle => 'Custom Party Pack';
+
+  @override
+  String get partyGames => 'Games';
+
+  @override
+  String get partyRounds => 'Rounds per game';
+
+  @override
+  String get partyStart => 'Start party';
+
+  @override
+  String partyNext(String mode) {
+    return 'Next: $mode';
+  }
+
+  @override
+  String get partyFinish => 'Finish party';
+
+  @override
+  String partyProgress(int n, int total) {
+    return 'Party game $n of $total';
+  }
+
+  @override
+  String get partyNeedTwo => 'Pick at least two games.';
+
+  @override
+  String partyLabel(int count) {
+    return 'Party pack · $count games';
+  }
+
+  @override
+  String get homeFavourites => 'Favourites';
+
+  @override
+  String get homeRecent => 'Play again';
+
+  @override
+  String homeRemove(String name) {
+    return 'Remove $name';
+  }
+
+  @override
+  String get homeAllModes => 'Choose a game';
 }

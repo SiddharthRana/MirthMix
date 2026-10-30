@@ -744,6 +744,444 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go home'**
   String get goHome;
+
+  /// No description provided for @modeTotRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Two quick options. Tap the room\'s pick, or pass the phone so everyone picks in turn. Add the timer for real rapid fire.'**
+  String get modeTotRules;
+
+  /// No description provided for @modeTriviaRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Teams take turns answering. Faster correct answers score bonus points. Every question has a short explanation.'**
+  String get modeTriviaRules;
+
+  /// No description provided for @modeGuessRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Only the reader looks at the screen. Read clue 1 aloud; if nobody gets it, read the next. Fewer clues, more points.'**
+  String get modeGuessRules;
+
+  /// No description provided for @modeCustomRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the games to play in order. When one ends, the next starts with a tap.'**
+  String get modeCustomRules;
+
+  /// No description provided for @setupPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Players and teams'**
+  String get setupPlayers;
+
+  /// No description provided for @setupPlayersNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing as one group'**
+  String get setupPlayersNone;
+
+  /// No description provided for @setupPlayersEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get setupPlayersEdit;
+
+  /// No description provided for @setupPassPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass the phone'**
+  String get setupPassPhone;
+
+  /// No description provided for @setupPassPhoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Each player picks in turn. Needs at least 2 players.'**
+  String get setupPassPhoneBody;
+
+  /// No description provided for @setupTimer.
+  ///
+  /// In en, this message translates to:
+  /// **'5-second timer'**
+  String get setupTimer;
+
+  /// No description provided for @setupTimerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick before time runs out.'**
+  String get setupTimerBody;
+
+  /// No description provided for @setupTriviaTimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Time per question'**
+  String get setupTriviaTimer;
+
+  /// No description provided for @setupTimerOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get setupTimerOff;
+
+  /// No description provided for @setupSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String setupSeconds(int seconds);
+
+  /// No description provided for @setupSaveFavourite.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as favourite'**
+  String get setupSaveFavourite;
+
+  /// No description provided for @favouriteName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get favouriteName;
+
+  /// No description provided for @favouriteSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to favourites'**
+  String get favouriteSaved;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @playersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Players and teams'**
+  String get playersTitle;
+
+  /// No description provided for @playersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add names to take turns and keep score. Names stay on this phone. Leave it empty to play as one group.'**
+  String get playersBody;
+
+  /// No description provided for @playersAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get playersAdd;
+
+  /// No description provided for @playersName.
+  ///
+  /// In en, this message translates to:
+  /// **'Player or team name'**
+  String get playersName;
+
+  /// No description provided for @playersRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}'**
+  String playersRemove(String name);
+
+  /// No description provided for @playersClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get playersClear;
+
+  /// No description provided for @playersFull.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s the maximum of {max}.'**
+  String playersFull(int max);
+
+  /// No description provided for @totPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'This or that?'**
+  String get totPrompt;
+
+  /// No description provided for @totPickFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s pick'**
+  String totPickFor(String name);
+
+  /// No description provided for @totGroupPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the room\'s pick'**
+  String get totGroupPick;
+
+  /// No description provided for @totTimeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s up!'**
+  String get totTimeUp;
+
+  /// No description provided for @totDiscuss1.
+  ///
+  /// In en, this message translates to:
+  /// **'Defend your pick in 10 seconds.'**
+  String get totDiscuss1;
+
+  /// No description provided for @totDiscuss2.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone want to switch sides?'**
+  String get totDiscuss2;
+
+  /// No description provided for @totDiscuss3.
+  ///
+  /// In en, this message translates to:
+  /// **'Who surprised you?'**
+  String get totDiscuss3;
+
+  /// No description provided for @totInSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Most in sync: {a} & {b}'**
+  String totInSync(String a, String b);
+
+  /// No description provided for @totInSyncBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Same pick {matches} of {rounds} times'**
+  String totInSyncBody(int matches, int rounds);
+
+  /// No description provided for @secondsLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds} seconds left'**
+  String secondsLeft(int seconds);
+
+  /// No description provided for @turnOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s turn'**
+  String turnOf(String name);
+
+  /// No description provided for @everyone.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get everyone;
+
+  /// No description provided for @questionOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {round} of {total}'**
+  String questionOf(int round, int total);
+
+  /// No description provided for @triviaCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct! +{points}'**
+  String triviaCorrect(int points);
+
+  /// No description provided for @triviaWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Not quite.'**
+  String get triviaWrong;
+
+  /// No description provided for @triviaTimeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s up!'**
+  String get triviaTimeUp;
+
+  /// No description provided for @triviaAnswerWas.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer: {answer}'**
+  String triviaAnswerWas(String answer);
+
+  /// No description provided for @triviaChoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer {letter}: {text}'**
+  String triviaChoice(String letter, String text);
+
+  /// No description provided for @guessReaderOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader only — the answer is'**
+  String get guessReaderOnly;
+
+  /// No description provided for @guessClue.
+  ///
+  /// In en, this message translates to:
+  /// **'Clue {n}'**
+  String guessClue(int n);
+
+  /// No description provided for @guessNextClue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next clue'**
+  String get guessNextClue;
+
+  /// No description provided for @guessGotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it!'**
+  String get guessGotIt;
+
+  /// No description provided for @guessGiveUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Give up'**
+  String get guessGiveUp;
+
+  /// No description provided for @guessWorth.
+  ///
+  /// In en, this message translates to:
+  /// **'Worth {points} points'**
+  String guessWorth(int points);
+
+  /// No description provided for @guessGuessing.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} guesses'**
+  String guessGuessing(String name);
+
+  /// No description provided for @guessScored.
+  ///
+  /// In en, this message translates to:
+  /// **'+{points} for {name}'**
+  String guessScored(int points, String name);
+
+  /// No description provided for @guessNoPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'No points this time.'**
+  String get guessNoPoints;
+
+  /// No description provided for @cardOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Card {round} of {total}'**
+  String cardOf(int round, int total);
+
+  /// No description provided for @resultsWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wins!'**
+  String resultsWinner(String name);
+
+  /// No description provided for @resultsTie.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s a tie: {names}'**
+  String resultsTie(String names);
+
+  /// No description provided for @resultsNoWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'No points this time'**
+  String get resultsNoWinner;
+
+  /// No description provided for @resultsPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} pts'**
+  String resultsPoints(int points);
+
+  /// No description provided for @resultsCorrectOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{correct} of {answered} correct'**
+  String resultsCorrectOf(int correct, int answered);
+
+  /// No description provided for @resultsSolvedOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{solved} of {played} guessed'**
+  String resultsSolvedOf(int solved, int played);
+
+  /// No description provided for @partyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Party Pack'**
+  String get partyTitle;
+
+  /// No description provided for @partyGames.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get partyGames;
+
+  /// No description provided for @partyRounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounds per game'**
+  String get partyRounds;
+
+  /// No description provided for @partyStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start party'**
+  String get partyStart;
+
+  /// No description provided for @partyNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {mode}'**
+  String partyNext(String mode);
+
+  /// No description provided for @partyFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish party'**
+  String get partyFinish;
+
+  /// No description provided for @partyProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Party game {n} of {total}'**
+  String partyProgress(int n, int total);
+
+  /// No description provided for @partyNeedTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least two games.'**
+  String get partyNeedTwo;
+
+  /// No description provided for @partyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Party pack · {count} games'**
+  String partyLabel(int count);
+
+  /// No description provided for @homeFavourites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourites'**
+  String get homeFavourites;
+
+  /// No description provided for @homeRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Play again'**
+  String get homeRecent;
+
+  /// No description provided for @homeRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}'**
+  String homeRemove(String name);
+
+  /// No description provided for @homeAllModes.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a game'**
+  String get homeAllModes;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -16,11 +16,58 @@ class FakeScreenAwake implements ScreenAwake {
   Future<void> disable() async => on = false;
 }
 
-ContentLibrary realContent() =>
-    ContentLibrary(wyr: WyrPack.parse(File('assets/content/would-you-rather.json').readAsStringSync()));
+String _asset(String mode) => File('assets/content/$mode.json').readAsStringSync();
+
+ContentLibrary realContent() => ContentLibrary(
+  wyr: parseWyrPack(_asset('would-you-rather')),
+  tot: parseTotPack(_asset('this-or-that')),
+  trivia: parseTriviaPack(_asset('trivia')),
+  guess: parseGuessPack(_asset('guess')),
+);
+
+const _free = Category(
+  id: 'casual',
+  name: 'Casual',
+  description: 'Easy ones',
+  tier: Tier.free,
+  ageRating: AgeRating.all,
+  region: 'global',
+);
 
 /// A small, predictable pack for flow tests.
 ContentLibrary tinyContent({int casual = 3}) => ContentLibrary(
+  tot: TotPack(
+    categories: const [_free],
+    items: [
+      for (var i = 1; i <= 3; i++) WyrItem(id: 'tot-casual-00$i', category: 'casual', a: 'Tea $i', b: 'Coffee $i'),
+    ],
+  ),
+  trivia: TriviaPack(
+    categories: const [_free],
+    items: [
+      for (var i = 1; i <= 3; i++)
+        TriviaItem(
+          id: 'triv-casual-00$i',
+          category: 'casual',
+          question: 'Question $i?',
+          choices: ['Right $i', 'Wrong A$i', 'Wrong B$i', 'Wrong C$i'],
+          answer: 0,
+          explanation: 'Because $i.',
+        ),
+    ],
+  ),
+  guess: GuessPack(
+    categories: const [_free],
+    items: [
+      for (var i = 1; i <= 3; i++)
+        GuessItem(
+          id: 'gta-casual-00$i',
+          category: 'casual',
+          answer: 'Thing $i',
+          clues: ['Hard $i', 'Medium $i', 'Easy $i'],
+        ),
+    ],
+  ),
   wyr: WyrPack(
     categories: const [
       Category(

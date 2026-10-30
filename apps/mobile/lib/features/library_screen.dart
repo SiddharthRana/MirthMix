@@ -14,9 +14,9 @@ class LibraryScreen extends StatelessWidget {
       appBar: AppBar(title: Text(AppLocalizations.of(context).libraryTitle)),
       body: ListView.separated(
         padding: const EdgeInsets.all(MmSpace.s4),
-        itemCount: GameMode.values.length,
+        itemCount: LibraryEntry.values.length,
         separatorBuilder: (_, _) => const SizedBox(height: MmSpace.s3),
-        itemBuilder: (_, i) => ModeTile(mode: GameMode.values[i]),
+        itemBuilder: (_, i) => ModeTile(entry: LibraryEntry.values[i]),
       ),
     );
   }

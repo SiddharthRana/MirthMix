@@ -6,9 +6,16 @@ import '../features/home_screen.dart';
 import '../features/library_screen.dart';
 import '../features/onboarding_screen.dart';
 import '../features/settings_screen.dart';
-import '../features/wyr/wyr_play_screen.dart';
-import '../features/wyr/wyr_results_screen.dart';
-import '../features/wyr/wyr_setup_screen.dart';
+import '../content/content.dart';
+import '../features/guess_play_screen.dart';
+import '../features/party_screen.dart';
+import '../features/players_screen.dart';
+import '../features/results/choice_results_screen.dart';
+import '../features/results/score_results_screen.dart';
+import '../features/setup_screen.dart';
+import '../features/tot_play_screen.dart';
+import '../features/trivia_play_screen.dart';
+import '../features/wyr_play_screen.dart';
 import '../l10n/app_localizations.dart';
 import '../state/settings.dart';
 
@@ -26,9 +33,30 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/games', builder: (_, _) => const LibraryScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
-      GoRoute(path: '/play/would-you-rather/setup', builder: (_, _) => const WyrSetupScreen()),
-      GoRoute(path: '/play/would-you-rather', builder: (_, _) => const WyrPlayScreen()),
-      GoRoute(path: '/play/would-you-rather/results', builder: (_, _) => const WyrResultsScreen()),
+      GoRoute(path: '/players', builder: (_, _) => const PlayersScreen()),
+      GoRoute(path: '/party', builder: (_, _) => const PartyScreen()),
+      for (final mode in GameMode.values) ...[
+        GoRoute(
+          path: '/play/${mode.id}/setup',
+          builder: (_, _) => SetupScreen(mode: mode),
+        ),
+        GoRoute(
+          path: '/play/${mode.id}',
+          builder: (_, _) => switch (mode) {
+            GameMode.wouldYouRather => const WyrPlayScreen(),
+            GameMode.thisOrThat => const TotPlayScreen(),
+            GameMode.trivia => const TriviaPlayScreen(),
+            GameMode.guess => const GuessPlayScreen(),
+          },
+        ),
+        GoRoute(
+          path: '/play/${mode.id}/results',
+          builder: (_, _) => switch (mode) {
+            GameMode.wouldYouRather || GameMode.thisOrThat => ChoiceResultsScreen(mode: mode),
+            GameMode.trivia || GameMode.guess => ScoreResultsScreen(mode: mode),
+          },
+        ),
+      ],
     ],
     errorBuilder: (context, state) => Scaffold(
       appBar: AppBar(),

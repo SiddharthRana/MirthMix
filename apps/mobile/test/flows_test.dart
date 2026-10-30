@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mirthmix/app.dart';
-import 'package:mirthmix/state/wyr_session.dart';
+import 'package:mirthmix/state/sessions.dart';
 
 import 'support/harness.dart';
 
 /// Scrolls the first scrollable until [finder] is on screen (lists build lazily).
 Future<void> reveal(WidgetTester tester, Finder finder) async {
+  if (finder.evaluate().isEmpty) {
+    await tester.scrollUntilVisible(finder, 150, scrollable: find.byType(Scrollable).first);
+  }
   if (finder.hitTestable().evaluate().isNotEmpty) return;
-  await tester.scrollUntilVisible(finder, 120, scrollable: find.byType(Scrollable).first);
+  final scrollable = find.ancestor(of: finder.first, matching: find.byType(Scrollable)).first;
+  await tester.dragUntilVisible(finder.hitTestable(), scrollable, const Offset(0, -150));
   await tester.pumpAndSettle();
 }
 
 Future<void> tapText(WidgetTester tester, String text) async {
-  await reveal(tester, find.text(text).first);
-  await tester.tap(find.text(text).first);
+  await reveal(tester, find.text(text));
+  await tester.tap(find.text(text).hitTestable().first);
   await tester.pumpAndSettle();
 }
 
@@ -191,23 +195,6 @@ void main() {
     await tapText(tester, 'Would You Rather');
     final rounds = tester.widget<SegmentedButton<int>>(find.byType(SegmentedButton<int>));
     expect(rounds.selected, {5});
-  });
-
-  testWidgets('modes that are not built yet are marked coming soon and not tappable', (tester) async {
-    await pumpApp(tester);
-    await tapText(tester, 'See all');
-    for (final name in ['This or That', 'Trivia Blitz', 'Guess the Answer', 'Custom Party Pack']) {
-      await reveal(tester, find.text(name));
-      final tile = find.ancestor(of: find.text(name), matching: find.byType(Card));
-      expect(
-        find.descendant(of: tile, matching: find.text('Coming soon')),
-        findsOneWidget,
-        reason: name,
-      );
-    }
-    await tester.tap(find.text('Custom Party Pack'));
-    await tester.pumpAndSettle();
-    expect(find.text('Games'), findsOneWidget);
   });
 
   testWidgets('settings persist and big text scales the app', (tester) async {

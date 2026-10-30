@@ -3,16 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../content/content.dart';
-import '../game/random.dart';
-import '../game/wyr_engine.dart';
+import '../game/wyr_engine.dart' show EmptyPoolException;
 import '../l10n/app_localizations.dart';
+import '../state/games.dart';
 import '../state/providers.dart';
-import '../state/wyr_session.dart';
+import '../state/sessions.dart';
 import '../theme/app_theme.dart';
 import '../theme/tokens.g.dart';
 import '../widgets/brand.dart';
 import '../widgets/mode_tile.dart';
 import 'modes.dart';
+
+/// A game in progress that Home can offer to resume.
+typedef _InProgress = ({GameMode mode, int round, int total, VoidCallback discard});
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -20,8 +23,36 @@ class HomeScreen extends ConsumerWidget {
   void _quickPlay(BuildContext context, WidgetRef ref) {
     final pack = ref.read(contentProvider).wyr;
     final free = pack.categories.where((c) => c.tier == Tier.free && c.region == 'global').map((c) => c.id).toList();
-    ref.read(wyrSessionProvider.notifier).start(WyrConfig(categoryIds: free, rounds: 10, seed: newSeed()));
-    context.push('/play/would-you-rather');
+    final route = ref
+        .read(gameStarterProvider)
+        .start(GameSetup(mode: GameMode.wouldYouRather, categoryIds: free, rounds: 10));
+    context.push(route);
+  }
+
+  void _play(BuildContext context, WidgetRef ref, SavedGame game) {
+    try {
+      final route = game.isParty
+          ? ref.read(partyProvider.notifier).start(game.setups)
+          : ref.read(gameStarterProvider).start(game.setups.first);
+      context.push(route);
+    } on EmptyPoolException {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).errorEmptyCategories)));
+    }
+  }
+
+  _InProgress? _inProgress(WidgetRef ref) {
+    _InProgress? check<S>(NotifierProvider<PersistedSession<S>, S?> p) {
+      final s = ref.watch(p);
+      final c = ref.read(p.notifier);
+      if (s == null || !c.isPlaying(s)) return null;
+      return (mode: c.mode, round: c.roundNumber(s), total: c.totalRounds(s), discard: c.clear);
+    }
+
+    return check(wyrSessionProvider) ??
+        check(totSessionProvider) ??
+        check(triviaSessionProvider) ??
+        check(guessSessionProvider);
   }
 
   @override
@@ -29,13 +60,21 @@ class HomeScreen extends ConsumerWidget {
     final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final palette = MmPalette.of(context);
-    final session = ref.watch(wyrSessionProvider);
-    final inProgress = session != null && session.status == WyrStatus.playing;
+    final game = _inProgress(ref);
+    final favourites = ref.watch(favouritesProvider);
+    final recents = ref.watch(recentsProvider);
+
+    String describe(SavedGame g) => g.isParty ? l.partyLabel(g.setups.length) : modeName(l, g.setups.first.mode);
 
     return Scaffold(
       appBar: AppBar(
         title: const MirthMixWordmark(size: 22),
         actions: [
+          IconButton(
+            tooltip: l.playersTitle,
+            icon: const Icon(Icons.groups_outlined),
+            onPressed: () => context.push('/players'),
+          ),
           IconButton(
             tooltip: l.settings,
             icon: const Icon(Icons.settings_outlined),
@@ -48,7 +87,7 @@ class HomeScreen extends ConsumerWidget {
         children: [
           Text(l.homeGreeting, style: theme.textTheme.headlineMedium),
           const SizedBox(height: MmSpace.s4),
-          if (inProgress) ...[
+          if (game != null) ...[
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(MmSpace.s4),
@@ -58,19 +97,19 @@ class HomeScreen extends ConsumerWidget {
                     Text(l.homeResumeTitle, style: theme.textTheme.titleMedium),
                     const SizedBox(height: MmSpace.s1),
                     Text(
-                      l.homeResumeBody(l.modeWyrName, session.roundNumber, session.totalRounds),
+                      l.homeResumeBody(modeName(l, game.mode), game.round, game.total),
                       style: theme.textTheme.bodyMedium?.copyWith(color: palette.textMuted),
                     ),
                     const SizedBox(height: MmSpace.s3),
                     Row(
                       children: [
-                        FilledButton(
-                          onPressed: () => context.push('/play/would-you-rather'),
-                          child: Text(l.homeResume),
-                        ),
+                        FilledButton(onPressed: () => context.push(playRoute(game.mode)), child: Text(l.homeResume)),
                         const SizedBox(width: MmSpace.s2),
                         TextButton(
-                          onPressed: () => ref.read(wyrSessionProvider.notifier).clear(),
+                          onPressed: () {
+                            game.discard();
+                            ref.read(partyProvider.notifier).stop();
+                          },
                           child: Text(l.homeDiscard),
                         ),
                       ],
@@ -100,6 +139,43 @@ class HomeScreen extends ConsumerWidget {
               ],
             ),
           ),
+          if (favourites.isNotEmpty) ...[
+            const SizedBox(height: MmSpace.s8),
+            Semantics(header: true, child: Text(l.homeFavourites, style: theme.textTheme.titleLarge)),
+            const SizedBox(height: MmSpace.s2),
+            for (final f in favourites)
+              Card(
+                margin: const EdgeInsets.only(bottom: MmSpace.s2),
+                child: ListTile(
+                  leading: Icon(Icons.star_rounded, color: palette.accent),
+                  title: Text(f.name),
+                  subtitle: Text(describe(f)),
+                  onTap: () => _play(context, ref, f),
+                  trailing: IconButton(
+                    tooltip: l.homeRemove(f.name),
+                    icon: const Icon(Icons.close_rounded),
+                    onPressed: () => ref.read(favouritesProvider.notifier).remove(f),
+                  ),
+                ),
+              ),
+          ],
+          if (recents.isNotEmpty) ...[
+            const SizedBox(height: MmSpace.s6),
+            Semantics(header: true, child: Text(l.homeRecent, style: theme.textTheme.titleLarge)),
+            const SizedBox(height: MmSpace.s2),
+            Wrap(
+              spacing: MmSpace.s2,
+              runSpacing: MmSpace.s2,
+              children: [
+                for (final r in recents)
+                  ActionChip(
+                    avatar: const Icon(Icons.replay_rounded, size: 18),
+                    label: Text(describe(r)),
+                    onPressed: () => _play(context, ref, r),
+                  ),
+              ],
+            ),
+          ],
           const SizedBox(height: MmSpace.s8),
           Row(
             children: [
@@ -108,7 +184,10 @@ class HomeScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: MmSpace.s2),
-          for (final mode in GameMode.values.take(3)) ...[ModeTile(mode: mode), const SizedBox(height: MmSpace.s3)],
+          for (final entry in LibraryEntry.values.take(3)) ...[
+            ModeTile(entry: entry),
+            const SizedBox(height: MmSpace.s3),
+          ],
         ],
       ),
     );

@@ -6,20 +6,28 @@ import '../../content/content.dart';
 import '../../game/wyr_engine.dart';
 import '../../l10n/app_localizations.dart';
 import '../../state/providers.dart';
-import '../../state/wyr_session.dart';
+import '../../state/games.dart';
+import '../../state/sessions.dart';
+import '../../widgets/results_actions.dart';
+import '../modes.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/tokens.g.dart';
 import '../../widgets/brand.dart';
 
-class WyrResultsScreen extends ConsumerWidget {
-  const WyrResultsScreen({super.key});
+/// Results for the two-choice modes (Would You Rather and This or That).
+class ChoiceResultsScreen extends ConsumerWidget {
+  const ChoiceResultsScreen({super.key, required this.mode});
+
+  final GameMode mode;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final session = ref.watch(wyrSessionProvider);
-    final pack = ref.watch(contentProvider).wyr;
+    final provider = mode == GameMode.wouldYouRather ? wyrSessionProvider : totSessionProvider;
+    final session = ref.watch(provider);
+    final controller = ref.read(provider.notifier);
+    final pack = ref.watch(contentProvider).packFor(mode) as Pack<WyrItem>;
 
     if (session == null || session.status != WyrStatus.finished) {
       return Scaffold(
@@ -31,6 +39,8 @@ class WyrResultsScreen extends ConsumerWidget {
     }
 
     final results = wyrResults(session);
+    final names = controller.names;
+    final sync = names.length >= 2 ? bestAgreement(session.rounds, names.length) : null;
     WyrRound? roundFor(String? id) => id == null ? null : session.rounds.firstWhere((r) => r.questionId == id);
 
     return Scaffold(
@@ -42,7 +52,8 @@ class WyrResultsScreen extends ConsumerWidget {
             tooltip: l.resultsHome,
             icon: const Icon(Icons.home_outlined),
             onPressed: () {
-              ref.read(wyrSessionProvider.notifier).clear();
+              controller.clear();
+              ref.read(partyProvider.notifier).stop();
               context.go('/');
             },
           ),
@@ -55,7 +66,7 @@ class WyrResultsScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(l.modeWyrName, style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
+                Text(modeName(l, mode), style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
                 const SizedBox(height: MmSpace.s1),
                 Text(
                   l.resultsSummary(results.roundsPlayed, results.totalVotes),
@@ -64,6 +75,16 @@ class WyrResultsScreen extends ConsumerWidget {
               ],
             ),
           ),
+          if (sync != null) ...[
+            const SizedBox(height: MmSpace.s4),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.favorite_rounded, color: theme.colorScheme.primary),
+                title: Text(l.totInSync(names[sync.players.$1], names[sync.players.$2])),
+                subtitle: Text(l.totInSyncBody(sync.matches, sync.rounds)),
+              ),
+            ),
+          ],
           if (results.mostDivisive case final id?) ...[
             const SizedBox(height: MmSpace.s4),
             _Highlight(
@@ -89,31 +110,7 @@ class WyrResultsScreen extends ConsumerWidget {
             if (pack.item(r.questionId) case final item?) _RoundRow(index: i + 1, item: item, round: r),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(MmSpace.s4, MmSpace.s2, MmSpace.s4, MmSpace.s4),
-          child: Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () => context.pushReplacement('/play/would-you-rather/setup'),
-                  child: Text(l.resultsChangeSetup),
-                ),
-              ),
-              const SizedBox(width: MmSpace.s3),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () {
-                    ref.read(wyrSessionProvider.notifier).restart();
-                    context.pushReplacement('/play/would-you-rather');
-                  },
-                  child: Text(l.resultsPlayAgain),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: ResultsActions(mode: mode, onPlayAgain: controller.restart, onClear: controller.clear),
     );
   }
 }

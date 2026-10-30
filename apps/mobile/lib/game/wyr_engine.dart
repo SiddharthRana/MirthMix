@@ -38,21 +38,37 @@ class WyrConfig {
 
 @immutable
 class WyrRound {
-  const WyrRound({required this.questionId, required this.a, required this.b, required this.skipped});
+  const WyrRound({
+    required this.questionId,
+    required this.a,
+    required this.b,
+    this.votes = const [],
+    required this.skipped,
+  });
 
   final String questionId;
   final int a;
   final int b;
+
+  /// Votes in the order cast. In pass-the-phone play, index i is player i's pick.
+  final List<Side> votes;
   final bool skipped;
 
   int get total => a + b;
 
-  Map<String, Object?> toJson() => {'questionId': questionId, 'a': a, 'b': b, 'skipped': skipped};
+  Map<String, Object?> toJson() => {
+    'questionId': questionId,
+    'a': a,
+    'b': b,
+    'votes': votes.map((v) => v.name).toList(),
+    'skipped': skipped,
+  };
 
   factory WyrRound.fromJson(Map<String, dynamic> j) => WyrRound(
     questionId: j['questionId'] as String,
     a: j['a'] as int,
     b: j['b'] as int,
+    votes: ((j['votes'] as List<dynamic>?) ?? const []).map((v) => Side.values.byName(v as String)).toList(),
     skipped: j['skipped'] as bool,
   );
 }
@@ -194,12 +210,12 @@ class EmptyPoolException implements Exception {
 }
 
 /// Items in the chosen categories, in a stable (id) order so shuffles are reproducible.
-List<WyrItem> buildPool(List<WyrItem> items, List<String> categoryIds) {
+List<T> buildPool<T extends PoolItem>(List<T> items, List<String> categoryIds) {
   final wanted = categoryIds.toSet();
   return items.where((i) => wanted.contains(i.category)).toList()..sort((x, y) => x.id.compareTo(y.id));
 }
 
-WyrState createWyrSession(List<WyrItem> pool, WyrConfig config) {
+WyrState createWyrSession(List<PoolItem> pool, WyrConfig config) {
   if (pool.isEmpty) throw const EmptyPoolException();
   if (config.rounds < 1) throw RangeError.value(config.rounds, 'rounds', 'must be positive');
   final order = seededShuffle(pool.map((i) => i.id).toList(), config.seed);
@@ -234,7 +250,13 @@ WyrState reduceWyr(WyrState state, WyrAction action) {
     case Next():
       return _advance(
         state,
-        WyrRound(questionId: cur.questionId, a: cur.count(Side.a), b: cur.count(Side.b), skipped: false),
+        WyrRound(
+          questionId: cur.questionId,
+          a: cur.count(Side.a),
+          b: cur.count(Side.b),
+          votes: cur.votes,
+          skipped: false,
+        ),
       );
     case SkipQuestion():
       // Swap in an unused question when one is left; otherwise the round is spent as skipped.
@@ -307,4 +329,41 @@ WyrResults wyrResults(WyrState state) {
     // With a single voted round both highlights would be the same question; show only one.
     mostUnanimous: unanimous != null && !identical(unanimous, divisive) ? unanimous.questionId : null,
   );
+}
+
+@immutable
+class Agreement {
+  const Agreement({required this.players, required this.matches, required this.rounds});
+
+  /// Player indexes, lowest first.
+  final (int, int) players;
+  final int matches;
+  final int rounds;
+
+  Map<String, Object?> toJson() => {
+    'players': [players.$1, players.$2],
+    'matches': matches,
+    'rounds': rounds,
+  };
+}
+
+/// For pass-the-phone play: the pair of players who picked the same side most often, over rounds
+/// where both voted. Ties go to the lowest player indexes. Null with fewer than two players.
+Agreement? bestAgreement(List<WyrRound> rounds, int playerCount) {
+  Agreement? best;
+  for (var i = 0; i < playerCount; i++) {
+    for (var j = i + 1; j < playerCount; j++) {
+      var matches = 0;
+      var both = 0;
+      for (final r in rounds) {
+        if (i >= r.votes.length || j >= r.votes.length) continue;
+        both++;
+        if (r.votes[i] == r.votes[j]) matches++;
+      }
+      if (both > 0 && (best == null || matches * best.rounds > best.matches * both)) {
+        best = Agreement(players: (i, j), matches: matches, rounds: both);
+      }
+    }
+  }
+  return best;
 }

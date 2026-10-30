@@ -2,7 +2,6 @@
   "@@locale": "en",
   "appTitle": "MirthMix",
   "tagline": "Party games for one phone",
-
   "onboardingSkip": "Skip",
   "onboardingNext": "Next",
   "onboardingStart": "Let's play",
@@ -13,19 +12,29 @@
   "onboarding3Title": "No sign-up. Just play.",
   "onboarding3Body": "Start a game in seconds. Nothing you play leaves your phone.",
   "onboardingAge": "MirthMix is made for ages 13 and up.",
-
   "homeGreeting": "Ready to play?",
   "homeQuickPlay": "Quick play",
   "homeQuickPlayBody": "10 rounds of Would You Rather, mixed free categories.",
   "homeResumeTitle": "Game in progress",
   "homeResumeBody": "{mode} · round {round} of {total}",
-  "@homeResumeBody": { "placeholders": { "mode": { "type": "String" }, "round": { "type": "int" }, "total": { "type": "int" } } },
+  "@homeResumeBody": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      },
+      "round": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "homeResume": "Resume",
   "homeDiscard": "Discard",
   "homeAllGames": "All games",
   "homeSeeAll": "See all",
   "settings": "Settings",
-
   "libraryTitle": "Games",
   "comingSoon": "Coming soon",
   "modeWyrName": "Would You Rather",
@@ -39,7 +48,6 @@
   "modeGuessBlurb": "Fewer clues, more points.",
   "modeCustomName": "Custom Party Pack",
   "modeCustomBlurb": "Mix modes into one session.",
-
   "setupTitle": "Set up the game",
   "setupHowToPlay": "How to play",
   "setupCategories": "Categories",
@@ -49,30 +57,77 @@
   "setupGroupSizeHint": "Optional. Limits votes per round to the number of players.",
   "setupGroupSizeAny": "Any",
   "setupGroupSizeValue": "{count} players",
-  "@setupGroupSizeValue": { "placeholders": { "count": { "type": "int" } } },
+  "@setupGroupSizeValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "setupPlayersDecrease": "Fewer players",
   "setupPlayersIncrease": "More players",
   "setupStart": "Start game",
   "setupQuestionsAvailable": "{count, plural, =1{1 question} other{{count} questions}}",
-  "@setupQuestionsAvailable": { "placeholders": { "count": { "type": "int" } } },
+  "@setupQuestionsAvailable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "setupFewerQuestions": "Only {count} questions in these categories, so you'll play {count} rounds.",
-  "@setupFewerQuestions": { "placeholders": { "count": { "type": "int" } } },
+  "@setupFewerQuestions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "premiumLabel": "Premium",
   "premiumLocked": "Premium packs are coming soon.",
   "regionIndia": "India",
   "ageTeen": "13+",
-
   "playRound": "Round {round} of {total}",
-  "@playRound": { "placeholders": { "round": { "type": "int" }, "total": { "type": "int" } } },
+  "@playRound": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "playPrompt": "Would you rather…",
   "playOr": "or",
   "playHint": "Raise hands, then tap a side once for each vote.",
   "playVotes": "{count, plural, =0{No votes} =1{1 vote} other{{count} votes}}",
-  "@playVotes": { "placeholders": { "count": { "type": "int" } } },
+  "@playVotes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "playVotesOfPlayers": "{count} of {players} votes",
-  "@playVotesOfPlayers": { "placeholders": { "count": { "type": "int" }, "players": { "type": "int" } } },
+  "@playVotesOfPlayers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "players": {
+        "type": "int"
+      }
+    }
+  },
   "playVoteFor": "Add a vote for: {option}",
-  "@playVoteFor": { "placeholders": { "option": { "type": "String" } } },
+  "@playVoteFor": {
+    "placeholders": {
+      "option": {
+        "type": "String"
+      }
+    }
+  },
   "playUndo": "Undo",
   "playSkip": "Skip",
   "playSkipTooltip": "Skip this question",
@@ -85,14 +140,28 @@
   "playQuitConfirm": "Quit",
   "playKeepPlaying": "Keep playing",
   "playSplit": "{percent}%",
-  "@playSplit": { "placeholders": { "percent": { "type": "int" } } },
+  "@playSplit": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "playTie": "Perfect split!",
   "playUnanimous": "Everyone agrees!",
   "playNoVotes": "No votes this round.",
-
   "resultsTitle": "Results",
   "resultsSummary": "{rounds, plural, =1{1 round} other{{rounds} rounds}} · {votes, plural, =1{1 vote} other{{votes} votes}}",
-  "@resultsSummary": { "placeholders": { "rounds": { "type": "int" }, "votes": { "type": "int" } } },
+  "@resultsSummary": {
+    "placeholders": {
+      "rounds": {
+        "type": "int"
+      },
+      "votes": {
+        "type": "int"
+      }
+    }
+  },
   "resultsDivisive": "Most divisive",
   "resultsUnanimous": "Most unanimous",
   "resultsAllRounds": "Every round",
@@ -101,8 +170,16 @@
   "resultsChangeSetup": "Change setup",
   "resultsHome": "Home",
   "resultsSplit": "{a} – {b}",
-  "@resultsSplit": { "placeholders": { "a": { "type": "int" }, "b": { "type": "int" } } },
-
+  "@resultsSplit": {
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  },
   "settingsTheme": "Theme",
   "settingsThemeSystem": "System",
   "settingsThemeLight": "Light",
@@ -122,11 +199,298 @@
   "settingsAbout": "About",
   "settingsLicenses": "Open-source licences",
   "settingsVersion": "Version {version}",
-  "@settingsVersion": { "placeholders": { "version": { "type": "String" } } },
-
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "errorContentTitle": "Games couldn't load",
   "errorContentBody": "The game content on this phone looks damaged. Reinstalling the app usually fixes this.",
   "errorEmptyCategories": "No questions are available for the selected categories.",
   "errorNotFound": "That page doesn't exist.",
-  "goHome": "Go home"
+  "goHome": "Go home",
+  "modeTotRules": "Two quick options. Tap the room's pick, or pass the phone so everyone picks in turn. Add the timer for real rapid fire.",
+  "modeTriviaRules": "Teams take turns answering. Faster correct answers score bonus points. Every question has a short explanation.",
+  "modeGuessRules": "Only the reader looks at the screen. Read clue 1 aloud; if nobody gets it, read the next. Fewer clues, more points.",
+  "modeCustomRules": "Pick the games to play in order. When one ends, the next starts with a tap.",
+  "setupPlayers": "Players and teams",
+  "setupPlayersNone": "Playing as one group",
+  "setupPlayersEdit": "Edit",
+  "setupPassPhone": "Pass the phone",
+  "setupPassPhoneBody": "Each player picks in turn. Needs at least 2 players.",
+  "setupTimer": "5-second timer",
+  "setupTimerBody": "Pick before time runs out.",
+  "setupTriviaTimer": "Time per question",
+  "setupTimerOff": "Off",
+  "setupSeconds": "{seconds}s",
+  "@setupSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "setupSaveFavourite": "Save as favourite",
+  "favouriteName": "Name",
+  "favouriteSaved": "Saved to favourites",
+  "save": "Save",
+  "cancel": "Cancel",
+  "playersTitle": "Players and teams",
+  "playersBody": "Add names to take turns and keep score. Names stay on this phone. Leave it empty to play as one group.",
+  "playersAdd": "Add",
+  "playersName": "Player or team name",
+  "playersRemove": "Remove {name}",
+  "@playersRemove": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playersClear": "Clear all",
+  "playersFull": "That's the maximum of {max}.",
+  "@playersFull": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "totPrompt": "This or that?",
+  "totPickFor": "{name}'s pick",
+  "@totPickFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "totGroupPick": "Tap the room's pick",
+  "totTimeUp": "Time's up!",
+  "totDiscuss1": "Defend your pick in 10 seconds.",
+  "totDiscuss2": "Anyone want to switch sides?",
+  "totDiscuss3": "Who surprised you?",
+  "totInSync": "Most in sync: {a} & {b}",
+  "@totInSync": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      },
+      "b": {
+        "type": "String"
+      }
+    }
+  },
+  "totInSyncBody": "Same pick {matches} of {rounds} times",
+  "@totInSyncBody": {
+    "placeholders": {
+      "matches": {
+        "type": "int"
+      },
+      "rounds": {
+        "type": "int"
+      }
+    }
+  },
+  "secondsLeft": "{seconds} seconds left",
+  "@secondsLeft": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "turnOf": "{name}'s turn",
+  "@turnOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "everyone": "Everyone",
+  "questionOf": "Question {round} of {total}",
+  "@questionOf": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "triviaCorrect": "Correct! +{points}",
+  "@triviaCorrect": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "triviaWrong": "Not quite.",
+  "triviaTimeUp": "Time's up!",
+  "triviaAnswerWas": "Answer: {answer}",
+  "@triviaAnswerWas": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "triviaChoice": "Answer {letter}: {text}",
+  "@triviaChoice": {
+    "placeholders": {
+      "letter": {
+        "type": "String"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "guessReaderOnly": "Reader only — the answer is",
+  "guessClue": "Clue {n}",
+  "@guessClue": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "guessNextClue": "Next clue",
+  "guessGotIt": "Got it!",
+  "guessGiveUp": "Give up",
+  "guessWorth": "Worth {points} points",
+  "@guessWorth": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "guessGuessing": "{name} guesses",
+  "@guessGuessing": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "guessScored": "+{points} for {name}",
+  "@guessScored": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "guessNoPoints": "No points this time.",
+  "cardOf": "Card {round} of {total}",
+  "@cardOf": {
+    "placeholders": {
+      "round": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "resultsWinner": "{name} wins!",
+  "@resultsWinner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "resultsTie": "It's a tie: {names}",
+  "@resultsTie": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "resultsNoWinner": "No points this time",
+  "resultsPoints": "{points} pts",
+  "@resultsPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "resultsCorrectOf": "{correct} of {answered} correct",
+  "@resultsCorrectOf": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "answered": {
+        "type": "int"
+      }
+    }
+  },
+  "resultsSolvedOf": "{solved} of {played} guessed",
+  "@resultsSolvedOf": {
+    "placeholders": {
+      "solved": {
+        "type": "int"
+      },
+      "played": {
+        "type": "int"
+      }
+    }
+  },
+  "partyTitle": "Custom Party Pack",
+  "partyGames": "Games",
+  "partyRounds": "Rounds per game",
+  "partyStart": "Start party",
+  "partyNext": "Next: {mode}",
+  "@partyNext": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "partyFinish": "Finish party",
+  "partyProgress": "Party game {n} of {total}",
+  "@partyProgress": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "partyNeedTwo": "Pick at least two games.",
+  "partyLabel": "Party pack · {count} games",
+  "@partyLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeFavourites": "Favourites",
+  "homeRecent": "Play again",
+  "homeRemove": "Remove {name}",
+  "@homeRemove": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeAllModes": "Choose a game"
 }
