@@ -1,6 +1,6 @@
 # Progress
 
-**Current phase:** 1 of 5 — Foundation ✅ complete. **Checkpoint: waiting for the owner's go-ahead before Phase 2.**
+**Current phase:** 2 of 5 — Core modes (in progress). Phase 1 complete and approved.
 **Last updated:** 2026-10-30
 
 ## Phase 1 — Foundation
