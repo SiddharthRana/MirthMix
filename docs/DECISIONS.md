@@ -2,6 +2,14 @@
 
 Short, dated records of non-trivial choices. Newest first.
 
+## 2026-10-30 — Phase 3 web player and sharing
+
+**A share link carries the setup and the seed, nothing else** (base64url JSON, validated strictly on decode). No server, no rooms, no personal data; two devices opening the same link get the same deal. _Rejected:_ short links stored server-side (needs a backend and storage).
+
+**The web player is one client component using the shared engine and packs.** Pages stay static; only `/play` hydrates. Web play is single-group for now (no names or timers).
+
+**App Links open `/play?c=` in the app** via an `autoVerify` intent filter; the domain and signing fingerprint are placeholders until the domain exists.
+
 ## 2026-10-30 — Phase 2 core modes
 
 **This or That reuses the two-choice engine.** It is Would You Rather with a different pack and UI: one tap reveals for the room, or the vote cap equals the number of players when passing the phone, so vote _i_ is player _i_'s pick. Rounds now store their votes so "most in sync" can be computed. _Rejected:_ a separate engine (duplicate logic in two languages).
