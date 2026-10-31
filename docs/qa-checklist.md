@@ -72,8 +72,24 @@ Run on a real Android phone (ideally a small, low-end one) before each release. 
 - [ ] Dark theme and light theme both look right; theme setting follows the system when set to System.
 - [ ] Every tappable control is comfortable to hit with a thumb.
 
+## Premium and accounts (Phase 4; needs a build with `--dart-define`s and a license tester)
+
+- [ ] Without the dart-defines, Premium says it isn't available and every free game still works.
+- [ ] A locked premium category shows "See Premium"; Premium lists the premium categories.
+- [ ] Sign-in: an email code arrives, a wrong code is refused, the right one signs in.
+- [ ] Monthly and annual prices come from Google Play in local currency.
+- [ ] Buying as a license tester: Play sheet → "Confirming your purchase…" → "Premium is on"; the purchase shows as acknowledged in Play Console; premium categories unlock in setup.
+- [ ] Kill the app right after paying; on relaunch Premium turns on without paying again.
+- [ ] Airplane mode: Premium stays on; after the paid period plus 3 days offline it locks.
+- [ ] Restore purchases on a second phone signed in with the same email unlocks Premium.
+- [ ] Cancel in Google Play: Premium shows "Ends on …" and stays on until then.
+- [ ] Refund in Play Console: Premium turns off at the next app launch.
+- [ ] Delete account (type DELETE): signed out, Premium off; signing in again creates a fresh free account.
+- [ ] Website: sign in with the same email shows the Play subscription with "Manage in Google Play".
+- [ ] Website (sandbox provider): subscribe → provider checkout → Account shows Premium; "Manage subscription" opens the portal; the app shows "manage it on the website" for this account.
+
 ## Website
 
-- [ ] Home, Games, Would You Rather, Privacy and Terms load on a phone and a desktop.
+- [ ] Home, Games, Would You Rather, Premium, Account, Privacy and Terms load on a phone and a desktop.
 - [ ] The landing-page demo works and "Another one" shows a different question.
 - [ ] Privacy and Terms clearly say they are drafts awaiting legal review.

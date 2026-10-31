@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   poweredByHeader: false,
-  transpilePackages: ['@mirthmix/content', '@mirthmix/design-tokens', '@mirthmix/game-engine'],
+  transpilePackages: [
+    '@mirthmix/content',
+    '@mirthmix/design-tokens',
+    '@mirthmix/game-engine',
+    '@mirthmix/plans',
+  ],
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

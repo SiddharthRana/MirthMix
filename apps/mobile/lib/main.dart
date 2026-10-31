@@ -1,8 +1,20 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'account/api_client.dart';
+import 'account/auth_repository.dart';
+import 'account/entitlement.dart';
+import 'billing/billing_controller.dart';
+import 'billing/billing_gateway.dart';
+import 'config/app_config.dart';
 
 import 'app.dart';
 import 'content/content.dart';
@@ -25,10 +37,31 @@ Future<void> main() async {
     return;
   }
 
-  runApp(
-    ProviderScope(
-      overrides: [sharedPreferencesProvider.overrideWithValue(prefs), contentProvider.overrideWithValue(content)],
-      child: const MirthMixApp(),
-    ),
-  );
+  // Accounts and billing are optional: without configuration everything free still works.
+  final overrides = [sharedPreferencesProvider.overrideWithValue(prefs), contentProvider.overrideWithValue(content)];
+  if (AppConfig.accountsConfigured) {
+    await Supabase.initialize(url: AppConfig.supabaseUrl, publishableKey: AppConfig.supabasePublishableKey);
+    final auth = SupabaseAuthRepository(Supabase.instance.client.auth);
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: AppConfig.apiBaseUrl,
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 15),
+      ),
+    );
+    overrides.addAll([
+      authRepositoryProvider.overrideWithValue(auth),
+      accountApiProvider.overrideWithValue(HttpAccountApi(dio, () => auth.accessToken)),
+      if (defaultTargetPlatform == TargetPlatform.android)
+        billingGatewayProvider.overrideWithValue(PlayBillingGateway(InAppPurchase.instance)),
+    ]);
+  }
+
+  final container = ProviderContainer(overrides: overrides);
+  if (AppConfig.accountsConfigured) {
+    // Listen for purchases Play redelivers (interrupted flows) and refresh the entitlement.
+    container.read(billingControllerProvider);
+    unawaited(container.read(entitlementProvider.notifier).refresh());
+  }
+  runApp(UncontrolledProviderScope(container: container, child: const MirthMixApp()));
 }

@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Only used to verify Premium with the MirthMix API; games work offline. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="MirthMix"
         android:name="${applicationName}"

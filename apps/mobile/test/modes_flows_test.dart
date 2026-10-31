@@ -290,8 +290,8 @@ void main() {
     await pumpApp(tester, content: realContent());
     for (final mode in ['This or That', 'Trivia Blitz', 'Guess the Answer']) {
       await openSetup(tester, mode);
-      await reveal(tester, find.textContaining('Premium packs are coming soon.'));
-      expect(find.textContaining('Premium packs are coming soon.'), findsOneWidget, reason: mode);
+      await reveal(tester, find.textContaining('Unlock with Premium.'));
+      expect(find.textContaining('Unlock with Premium.'), findsOneWidget, reason: mode);
       await goBack(tester);
       await goBack(tester);
     }

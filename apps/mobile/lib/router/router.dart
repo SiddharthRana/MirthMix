@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/account/account_screen.dart';
+import '../features/account/premium_screen.dart';
+import '../features/account/sign_in_screen.dart';
 import '../features/home_screen.dart';
 import '../features/library_screen.dart';
 import '../features/onboarding_screen.dart';
@@ -36,6 +39,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/players', builder: (_, _) => const PlayersScreen()),
       GoRoute(path: '/party', builder: (_, _) => const PartyScreen()),
+      GoRoute(path: '/premium', builder: (_, _) => const PremiumScreen()),
+      GoRoute(path: '/account', builder: (_, _) => const AccountScreen()),
+      GoRoute(path: '/account/sign-in', builder: (_, _) => const SignInScreen()),
       // Shared links from the website: https://<domain>/play?c=…
       GoRoute(
         path: '/play',

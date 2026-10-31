@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../account/entitlement.dart';
 import '../content/content.dart';
 
 /// Overridden in main() (and tests) with the instance loaded at startup.
@@ -10,9 +11,15 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) => throw Uni
 /// Overridden in main() (and tests) with the content loaded and checked at startup.
 final contentProvider = Provider<ContentLibrary>((ref) => throw UnimplementedError());
 
-/// Whether premium content is unlocked. Always false until billing lands in Phase 4, where it
-/// will come from server-verified entitlements, never from a client-side flag.
-final premiumProvider = Provider<bool>((ref) => false);
+/// Current time; overridden in tests.
+final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);
+
+/// Whether premium content is unlocked: only from the server-verified entitlement (or its cached
+/// copy within the offline grace window), never from a client-side flag.
+final premiumProvider = Provider<bool>((ref) {
+  final snapshot = ref.watch(entitlementProvider.select((s) => s.snapshot));
+  return snapshot?.grantsPremiumAt(ref.watch(clockProvider)()) ?? false;
+});
 
 /// Keeps the screen on during play. Behind an interface so tests don't need the platform plugin.
 abstract interface class ScreenAwake {

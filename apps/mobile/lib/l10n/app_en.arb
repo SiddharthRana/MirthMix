@@ -84,7 +84,7 @@
     }
   },
   "premiumLabel": "Premium",
-  "premiumLocked": "Premium packs are coming soon.",
+  "premiumLocked": "Unlock with Premium.",
   "regionIndia": "India",
   "ageTeen": "13+",
   "playRound": "Round {round} of {total}",
@@ -193,7 +193,7 @@
   "settingsHapticsBody": "A small buzz when you tap a vote.",
   "settingsShowOnboarding": "Show the introduction again",
   "settingsPrivacy": "Privacy",
-  "settingsPrivacyBody": "MirthMix has no accounts and no analytics in this version. Games, settings and player counts are stored only on this phone.",
+  "settingsPrivacyBody": "You can play without an account. An account is only for buying Premium: it stores your email and subscription status on the MirthMix server. There are no analytics in this version. Games, settings and players are stored only on this phone.",
   "settingsAge": "Age guidance",
   "settingsAgeBody": "MirthMix is made for ages 13 and up. Categories marked 13+ include more mature themes, never explicit content.",
   "settingsAbout": "About",
@@ -493,5 +493,101 @@
     }
   },
   "homeAllModes": "Choose a game",
-  "shareBroken": "This game link is broken or out of date."
+  "shareBroken": "This game link is broken or out of date.",
+  "premiumTitle": "MirthMix Premium",
+  "premiumPitch": "Unlock every premium category in every game. Free play never needs a subscription.",
+  "premiumIncludes": "Premium categories",
+  "premiumActive": "Premium is on",
+  "premiumPaidThrough": "Paid through {date}.",
+  "@premiumPaidThrough": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumEndsOn": "Ends on {date}. You won’t be charged again.",
+  "@premiumEndsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumOffline": "You’re offline. Premium stays on until {date}.",
+  "@premiumOffline": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumUnavailableBuild": "Premium isn’t available in this version of the app yet.",
+  "premiumUnavailableNow": "Premium purchases aren’t available right now. Please try again later.",
+  "premiumSignInPrompt": "Sign in with your email to buy Premium or restore it on this phone. Guests never need an account.",
+  "premiumSignIn": "Sign in to continue",
+  "premiumPerMonth": "{price} per month",
+  "@premiumPerMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumPerYear": "{price} per year",
+  "@premiumPerYear": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumRestore": "Restore purchases",
+  "premiumManagePlay": "Manage in Google Play",
+  "premiumManageWeb": "You subscribed on the website. Manage your subscription there.",
+  "premiumPending": "Waiting for Google Play to confirm the payment…",
+  "premiumVerifying": "Confirming your purchase…",
+  "premiumSuccess": "Premium is unlocked. Enjoy!",
+  "premiumDuplicate": "You also have a subscription on the website. Cancel one so you aren’t charged twice.",
+  "premiumErrorStore": "Google Play billing isn’t available on this device.",
+  "premiumErrorPurchase": "The purchase didn’t go through. You haven’t been charged.",
+  "premiumErrorMismatch": "This purchase belongs to a different MirthMix account. Sign in with that account to use it.",
+  "premiumErrorVerify": "We couldn’t confirm the purchase yet. We’ll try again the next time you open the app.",
+  "premiumErrorNetwork": "We couldn’t reach the server. Check your connection and try again.",
+  "premiumSee": "See Premium",
+  "signInTitle": "Sign in",
+  "signInBody": "We’ll email you a 6-digit code. No password needed.",
+  "signInEmail": "Email",
+  "signInSendCode": "Send code",
+  "signInCode": "6-digit code",
+  "signInVerify": "Sign in",
+  "signInCodeSent": "We sent a code to {email}.",
+  "@signInCodeSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "signInChangeEmail": "Use a different email",
+  "signInBadEmail": "Enter a valid email address.",
+  "signInErrorCode": "That code is wrong or has expired.",
+  "signInErrorRate": "Too many attempts. Please wait a few minutes.",
+  "signInErrorUnknown": "Something went wrong. Please try again.",
+  "accountTitle": "Account",
+  "accountSignedInAs": "Signed in as {email}",
+  "@accountSignedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountSignOut": "Sign out",
+  "accountDelete": "Delete account",
+  "accountDeleteBody": "This permanently deletes your MirthMix account. It doesn’t cancel a Google Play subscription, so cancel that in Google Play first. Type DELETE to confirm.",
+  "accountDeleteConfirm": "Delete",
+  "accountDeleted": "Your account was deleted.",
+  "accountDeleteFailed": "We couldn’t delete your account. Please try again.",
+  "settingsPremium": "Premium"
 }

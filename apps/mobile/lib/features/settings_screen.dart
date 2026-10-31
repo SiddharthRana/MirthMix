@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../account/entitlement.dart';
 import '../l10n/app_localizations.dart';
+import '../state/providers.dart';
 import '../state/settings.dart';
 import '../theme/app_theme.dart';
 import '../theme/tokens.g.dart';
@@ -51,6 +53,20 @@ class SettingsScreen extends ConsumerWidget {
               onSelectionChanged: (v) => c.update(s.copyWith(themeMode: v.first)),
             ),
           ),
+          section(l.settingsPremium),
+          ListTile(
+            leading: Icon(ref.watch(premiumProvider) ? Icons.verified_rounded : Icons.lock_outline_rounded),
+            title: Text(l.premiumTitle),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => context.push('/premium'),
+          ),
+          if (ref.watch(entitlementProvider).signedIn)
+            ListTile(
+              leading: const Icon(Icons.person_outline_rounded),
+              title: Text(l.accountTitle),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => context.push('/account'),
+            ),
           section(l.settingsPlay),
           SwitchListTile(
             title: Text(l.settingsBigText),

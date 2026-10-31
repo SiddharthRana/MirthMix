@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mirthmix/app.dart';
 import 'package:mirthmix/content/content.dart';
@@ -109,9 +110,15 @@ Future<Harness> pumpApp(
   ContentLibrary? content,
   bool onboarded = true,
   SharedPreferences? prefs,
+  Map<String, Object> initialPrefs = const {},
+  List<Override> overrides = const [],
 }) async {
   if (prefs == null) {
-    SharedPreferences.setMockInitialValues({'settings.onboarded': onboarded, 'settings.haptics': false});
+    SharedPreferences.setMockInitialValues({
+      'settings.onboarded': onboarded,
+      'settings.haptics': false,
+      ...initialPrefs,
+    });
     prefs = await SharedPreferences.getInstance();
   }
   tester.view.physicalSize = const Size(1080, 2280);
@@ -124,6 +131,7 @@ Future<Harness> pumpApp(
       sharedPreferencesProvider.overrideWithValue(prefs),
       contentProvider.overrideWithValue(content ?? tinyContent()),
       screenAwakeProvider.overrideWithValue(awake),
+      ...overrides,
     ],
   );
   addTearDown(container.dispose);

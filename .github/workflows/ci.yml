@@ -14,9 +14,21 @@ permissions:
 
 jobs:
   typescript:
-    name: TypeScript (web, packages, content)
+    name: TypeScript (web, api, packages, content)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_ADMIN_URL: postgres://postgres:postgres@localhost:5432/postgres
+      # Enables the database-backed API e2e tests (apps/api/test/billing/billing.e2e.test.ts).
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/mirthmix_test
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
@@ -32,15 +44,36 @@ jobs:
         run: pnpm content:validate
       - run: pnpm lint
       - run: pnpm typecheck
+      - name: Create test database
+        run: bash scripts/db-test-setup.sh
       - run: pnpm test
-      - name: Build web
-        run: pnpm --filter @mirthmix/web run build
+      - name: Build API and web
+        run: pnpm --filter @mirthmix/api --filter @mirthmix/web run build
       - name: Install Playwright browser
         run: pnpm --filter @mirthmix/web exec playwright install --with-deps chromium
       - name: Web end-to-end and accessibility tests
         run: pnpm --filter @mirthmix/web run test:e2e
       - name: Dependency audit (high and critical)
         run: pnpm audit --prod --audit-level high
+
+  database:
+    name: Database migrations + RLS
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Apply migrations and run RLS tests
+        env:
+          DB_ADMIN_URL: postgres://postgres:postgres@localhost:5432/postgres
+        run: bash scripts/db-verify.sh
 
   flutter:
     name: Flutter (mobile)

@@ -13,6 +13,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/account" className="inline-flex min-h-12 items-center hover:text-text">
+                Account
+              </Link>
+            </li>
+            <li>
               <Link href="/privacy" className="inline-flex min-h-12 items-center hover:text-text">
                 Privacy
               </Link>

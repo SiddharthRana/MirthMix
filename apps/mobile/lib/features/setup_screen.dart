@@ -38,12 +38,13 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
   @override
   void initState() {
     super.initState();
-    final playable = _pack.categories.where(_playable).map((c) => c.id).toSet();
+    final premium = ref.read(premiumProvider);
+    final playable = _pack.categories.where((c) => _playable(c, premium)).map((c) => c.id).toSet();
     final last = ref.read(gameStarterProvider).lastSetup(widget.mode);
     final remembered = last?.categoryIds.where(playable.contains).toSet() ?? {};
     _selected = remembered.isNotEmpty
         ? remembered
-        : _pack.categories.where((c) => _playable(c) && c.region == 'global').map((c) => c.id).toSet();
+        : _pack.categories.where((c) => _playable(c, premium) && c.region == 'global').map((c) => c.id).toSet();
     _rounds = roundOptions.contains(last?.rounds) ? last!.rounds : 10;
     _players = last?.playerCount;
     _timer = last?.timer ?? false;
@@ -51,7 +52,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     _timeLimitMs = triviaTimers.contains(last?.timeLimitMs) ? last!.timeLimitMs : 20000;
   }
 
-  bool _playable(Category c) => c.tier == Tier.free || ref.read(premiumProvider);
+  bool _playable(Category c, bool premium) => c.tier == Tier.free || premium;
 
   GameSetup get _setup => GameSetup(
     mode: widget.mode,
@@ -89,6 +90,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     final theme = Theme.of(context);
     final palette = MmPalette.of(context);
     final pack = _pack;
+    final premium = ref.watch(premiumProvider);
     final available = pack.countIn(_selected);
     final entry = LibraryEntry.of(widget.mode);
     final names = ref.watch(lineupProvider);
@@ -133,9 +135,10 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
             CategoryTile(
               category: c,
               count: pack.countIn([c.id]),
-              locked: !_playable(c),
+              locked: !_playable(c, premium),
               selected: _selected.contains(c.id),
               onChanged: (on) => setState(() => on ? _selected.add(c.id) : _selected.remove(c.id)),
+              onUnlock: () => context.push('/premium'),
             ),
             const SizedBox(height: MmSpace.s2),
           ],

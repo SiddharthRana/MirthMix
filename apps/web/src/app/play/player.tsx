@@ -24,11 +24,7 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { freeCategories, modeNames, packs } from '@/lib/packs';
-
-const btn =
-  'min-h-12 rounded-full px-6 font-bold disabled:opacity-50 focus-visible:outline-3 focus-visible:outline-offset-2';
-const primary = `${btn} bg-primary text-on-primary hover:bg-primary-hover`;
-const secondary = `${btn} border-2 border-border hover:bg-surface-muted`;
+import { primary, secondary } from '@/lib/ui';
 
 /** Setup when there's no `?c=`, otherwise the game the link describes. */
 export function Player() {

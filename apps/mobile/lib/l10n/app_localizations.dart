@@ -394,7 +394,7 @@ abstract class AppLocalizations {
   /// No description provided for @premiumLocked.
   ///
   /// In en, this message translates to:
-  /// **'Premium packs are coming soon.'**
+  /// **'Unlock with Premium.'**
   String get premiumLocked;
 
   /// No description provided for @regionIndia.
@@ -682,7 +682,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsPrivacyBody.
   ///
   /// In en, this message translates to:
-  /// **'MirthMix has no accounts and no analytics in this version. Games, settings and player counts are stored only on this phone.'**
+  /// **'You can play without an account. An account is only for buying Premium: it stores your email and subscription status on the MirthMix server. There are no analytics in this version. Games, settings and players are stored only on this phone.'**
   String get settingsPrivacyBody;
 
   /// No description provided for @settingsAge.
@@ -1188,6 +1188,288 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This game link is broken or out of date.'**
   String get shareBroken;
+
+  /// No description provided for @premiumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'MirthMix Premium'**
+  String get premiumTitle;
+
+  /// No description provided for @premiumPitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock every premium category in every game. Free play never needs a subscription.'**
+  String get premiumPitch;
+
+  /// No description provided for @premiumIncludes.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium categories'**
+  String get premiumIncludes;
+
+  /// No description provided for @premiumActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium is on'**
+  String get premiumActive;
+
+  /// No description provided for @premiumPaidThrough.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid through {date}.'**
+  String premiumPaidThrough(String date);
+
+  /// No description provided for @premiumEndsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on {date}. You won’t be charged again.'**
+  String premiumEndsOn(String date);
+
+  /// No description provided for @premiumOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'You’re offline. Premium stays on until {date}.'**
+  String premiumOffline(String date);
+
+  /// No description provided for @premiumUnavailableBuild.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium isn’t available in this version of the app yet.'**
+  String get premiumUnavailableBuild;
+
+  /// No description provided for @premiumUnavailableNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium purchases aren’t available right now. Please try again later.'**
+  String get premiumUnavailableNow;
+
+  /// No description provided for @premiumSignInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your email to buy Premium or restore it on this phone. Guests never need an account.'**
+  String get premiumSignInPrompt;
+
+  /// No description provided for @premiumSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue'**
+  String get premiumSignIn;
+
+  /// No description provided for @premiumPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} per month'**
+  String premiumPerMonth(String price);
+
+  /// No description provided for @premiumPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} per year'**
+  String premiumPerYear(String price);
+
+  /// No description provided for @premiumRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get premiumRestore;
+
+  /// No description provided for @premiumManagePlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage in Google Play'**
+  String get premiumManagePlay;
+
+  /// No description provided for @premiumManageWeb.
+  ///
+  /// In en, this message translates to:
+  /// **'You subscribed on the website. Manage your subscription there.'**
+  String get premiumManageWeb;
+
+  /// No description provided for @premiumPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for Google Play to confirm the payment…'**
+  String get premiumPending;
+
+  /// No description provided for @premiumVerifying.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirming your purchase…'**
+  String get premiumVerifying;
+
+  /// No description provided for @premiumSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium is unlocked. Enjoy!'**
+  String get premiumSuccess;
+
+  /// No description provided for @premiumDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'You also have a subscription on the website. Cancel one so you aren’t charged twice.'**
+  String get premiumDuplicate;
+
+  /// No description provided for @premiumErrorStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Play billing isn’t available on this device.'**
+  String get premiumErrorStore;
+
+  /// No description provided for @premiumErrorPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase didn’t go through. You haven’t been charged.'**
+  String get premiumErrorPurchase;
+
+  /// No description provided for @premiumErrorMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'This purchase belongs to a different MirthMix account. Sign in with that account to use it.'**
+  String get premiumErrorMismatch;
+
+  /// No description provided for @premiumErrorVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t confirm the purchase yet. We’ll try again the next time you open the app.'**
+  String get premiumErrorVerify;
+
+  /// No description provided for @premiumErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t reach the server. Check your connection and try again.'**
+  String get premiumErrorNetwork;
+
+  /// No description provided for @premiumSee.
+  ///
+  /// In en, this message translates to:
+  /// **'See Premium'**
+  String get premiumSee;
+
+  /// No description provided for @signInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signInTitle;
+
+  /// No description provided for @signInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll email you a 6-digit code. No password needed.'**
+  String get signInBody;
+
+  /// No description provided for @signInEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get signInEmail;
+
+  /// No description provided for @signInSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get signInSendCode;
+
+  /// No description provided for @signInCode.
+  ///
+  /// In en, this message translates to:
+  /// **'6-digit code'**
+  String get signInCode;
+
+  /// No description provided for @signInVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signInVerify;
+
+  /// No description provided for @signInCodeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a code to {email}.'**
+  String signInCodeSent(String email);
+
+  /// No description provided for @signInChangeEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a different email'**
+  String get signInChangeEmail;
+
+  /// No description provided for @signInBadEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address.'**
+  String get signInBadEmail;
+
+  /// No description provided for @signInErrorCode.
+  ///
+  /// In en, this message translates to:
+  /// **'That code is wrong or has expired.'**
+  String get signInErrorCode;
+
+  /// No description provided for @signInErrorRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Please wait a few minutes.'**
+  String get signInErrorRate;
+
+  /// No description provided for @signInErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get signInErrorUnknown;
+
+  /// No description provided for @accountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get accountTitle;
+
+  /// No description provided for @accountSignedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String accountSignedInAs(String email);
+
+  /// No description provided for @accountSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get accountSignOut;
+
+  /// No description provided for @accountDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get accountDelete;
+
+  /// No description provided for @accountDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently deletes your MirthMix account. It doesn’t cancel a Google Play subscription, so cancel that in Google Play first. Type DELETE to confirm.'**
+  String get accountDeleteBody;
+
+  /// No description provided for @accountDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get accountDeleteConfirm;
+
+  /// No description provided for @accountDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account was deleted.'**
+  String get accountDeleted;
+
+  /// No description provided for @accountDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t delete your account. Please try again.'**
+  String get accountDeleteFailed;
+
+  /// No description provided for @settingsPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium'**
+  String get settingsPremium;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

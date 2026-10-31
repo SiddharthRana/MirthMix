@@ -1,0 +1,53 @@
+import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
+import { useEffect, useState } from 'react';
+
+const URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+const KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
+
+/** True when purchaser accounts are configured for this deployment. Playing never needs one. */
+export const authConfigured = Boolean(URL && KEY);
+
+let client: SupabaseClient | null = null;
+
+/** Browser Supabase client. Null when accounts aren't configured. */
+export function getSupabase(): SupabaseClient | null {
+  if (!authConfigured || typeof window === 'undefined') return null;
+  client ??= createClient(URL, KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
+  });
+  return client;
+}
+
+export async function currentAccessToken(): Promise<string | null> {
+  const sb = getSupabase();
+  if (!sb) return null;
+  const { data } = await sb.auth.getSession();
+  return data.session?.access_token ?? null;
+}
+
+/** The signed-in purchaser's session; `undefined` while loading, `null` when signed out. */
+export function useSession(): Session | null | undefined {
+  const [session, setSession] = useState<Session | null | undefined>(
+    authConfigured ? undefined : null,
+  );
+  useEffect(() => {
+    const sb = getSupabase();
+    if (!sb) return;
+    sb.auth.getSession().then(({ data }) => setSession(data.session));
+    const { data } = sb.auth.onAuthStateChange((_event, s) => setSession(s));
+    return () => data.subscription.unsubscribe();
+  }, []);
+  return session;
+}
+
+/** Friendly messages that never reveal whether an account exists. Mirrors the app's sign-in. */
+export function authErrorMessage(
+  err: { code?: string; status?: number } | null | undefined,
+): string {
+  const code = err?.code ?? '';
+  if (code === 'otp_expired' || code === 'invalid_credentials')
+    return 'That code is wrong or has expired.';
+  if (code.startsWith('over_') || err?.status === 429)
+    return 'Too many attempts. Please wait a few minutes.';
+  return 'Something went wrong. Please try again.';
+}

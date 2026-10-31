@@ -16,7 +16,10 @@ lib/
   game/
     random.dart           mulberry32 + seeded shuffle (port of packages/game-engine)
     wyr_engine.dart       Would You Rather reducer (port of packages/game-engine)
-  state/                  Riverpod providers: prefs, content, settings, session (persisted)
+  state/                  Riverpod providers: prefs, content, settings, session (persisted), premium
+  config/app_config.dart  --dart-define values (API, Supabase)
+  account/                Purchaser sign-in (email code), API client, cached verified entitlement
+  billing/                Google Play Billing gateway + purchase controller (verify before complete)
   router/router.dart      Routes + first-launch onboarding redirect
   features/               Screens: onboarding, home, library, settings, wyr/{setup,play,results}
   widgets/                Brand mark, gradient panel, mode tile
@@ -34,7 +37,16 @@ flutter pub get
 flutter run
 ```
 
-No configuration is needed: the app has no backend in Phase 1.
+No configuration is needed to play. Premium and purchaser sign-in need the billing API and Supabase, passed at build time:
+
+```bash
+flutter run \
+  --dart-define=API_BASE_URL=http://10.0.2.2:4000 \
+  --dart-define=SUPABASE_URL=http://10.0.2.2:54321 \
+  --dart-define=SUPABASE_PUBLISHABLE_KEY=<local publishable key>
+```
+
+Without them, Premium says it isn't available in this build. Google Play purchases only work in a build installed from a Play testing track; see `docs/payments-setup.md`.
 
 ## Check
 
