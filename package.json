@@ -16,6 +16,9 @@
     "content:validate": "pnpm --filter @mirthmix/content run validate",
     "content:sync": "pnpm --filter @mirthmix/content run sync",
     "dev:web": "pnpm --filter @mirthmix/web dev",
+    "dev:api": "pnpm --filter @mirthmix/api dev",
+    "db:verify": "bash scripts/db-verify.sh",
+    "db:test-setup": "bash scripts/db-test-setup.sh",
     "mobile:analyze": "cd apps/mobile && flutter analyze",
     "mobile:test": "cd apps/mobile && flutter test"
   },
