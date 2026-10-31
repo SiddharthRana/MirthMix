@@ -1,11 +1,23 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-const pages = ['/', '/play', '/games', '/games/would-you-rather', '/privacy', '/terms'];
+const pages = [
+  '/',
+  '/play',
+  '/games',
+  '/games/would-you-rather',
+  '/pricing',
+  '/account',
+  '/checkout/paddle',
+  '/privacy',
+  '/terms',
+];
 
 for (const path of pages) {
   test(`${path} has no WCAG A/AA violations`, async ({ page }) => {
     await page.goto(path);
+    // Let entrance animations finish so colour contrast isn't sampled mid-fade.
+    await page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished)));
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();
@@ -64,7 +76,7 @@ test('every mode is listed as available in the app', async ({ page }) => {
 test('category counts come from the real content pack', async ({ page }) => {
   await page.goto('/games/would-you-rather');
   await expect(page.getByText('140 original questions in the starter pack.')).toBeVisible();
-  await expect(page.getByText('Premium', { exact: true })).toBeVisible();
+  await expect(page.getByRole('main').getByText('Premium', { exact: true })).toBeVisible();
 });
 
 test('unknown pages return 404 with a way home', async ({ page }) => {

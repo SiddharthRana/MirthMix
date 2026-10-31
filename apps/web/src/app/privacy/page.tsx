@@ -18,13 +18,33 @@ export default function PrivacyPage() {
         <li>The game you are playing, so it survives the app closing, and your last game setup.</li>
       </ul>
       <p className="mt-3">
-        All of this stays on your phone. There are no accounts, no analytics and no advertising in
-        the current version, and nothing you play is sent to us.
+        All of this stays on your phone. There are no analytics and no advertising, and nothing you
+        play is sent to us.
+      </p>
+      <h2 className="mt-10 font-display text-3xl font-semibold">Accounts and Premium</h2>
+      <p className="mt-3">
+        You never need an account to play. If you buy Premium, you sign in with your email so the
+        purchase works on your other devices. For that we store:
+      </p>
+      <ul className="mt-3 list-disc space-y-2 pl-6">
+        <li>Your email address and when the account was created (with our sign-in provider).</li>
+        <li>
+          Your subscription: which store or payment partner you used, its status and renewal date.
+          Card and payment details are handled by Google Play or our payment partner, never by us.
+        </li>
+        <li>
+          Messages from the store about your subscription, kept for 30 days for troubleshooting.
+        </li>
+      </ul>
+      <p className="mt-3">
+        You can delete your account at any time from the Account page on this website or in the app.
+        Deleting the account does not cancel a store subscription, so cancel that first.
       </p>
       <h2 className="mt-10 font-display text-3xl font-semibold">This website</h2>
       <p className="mt-3">
-        This website sets no cookies and uses no analytics. Our hosting provider may keep standard
-        server logs (such as IP address and pages requested) for security.
+        This website uses no analytics. If you sign in, your browser keeps your session in local
+        storage so you stay signed in. Our hosting provider may keep standard server logs (such as
+        IP address and pages requested) for security.
       </p>
       <h2 className="mt-10 font-display text-3xl font-semibold">Age</h2>
       <p className="mt-3">
@@ -33,8 +53,8 @@ export default function PrivacyPage() {
       </p>
       <h2 className="mt-10 font-display text-3xl font-semibold">Changes</h2>
       <p className="mt-3">
-        If we add optional accounts, purchases or analytics later, this page will be updated before
-        they launch, and analytics will ask for consent where the law requires it.
+        If we add analytics later, this page will be updated before they launch, and analytics will
+        ask for consent where the law requires it.
       </p>
     </article>
   );

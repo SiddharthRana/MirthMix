@@ -15,10 +15,12 @@
   "dependencies": {
     "@mirthmix/content": "workspace:*",
     "@mirthmix/design-tokens": "workspace:*",
+    "@mirthmix/game-engine": "workspace:*",
+    "@mirthmix/plans": "workspace:*",
+    "@supabase/supabase-js": "^2.118.0",
     "next": "^16.4.3",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "@mirthmix/game-engine": "workspace:*"
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
