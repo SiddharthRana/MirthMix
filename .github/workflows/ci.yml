@@ -1,13 +1,17 @@
 name: CI
 
+# Every push and PR runs the checks. On main, three deploy jobs follow; each waits for approval in
+# its GitHub environment ("Review deployments" on the run page). Setup: docs/deployment.md.
 on:
   push:
     branches: ['**']
   pull_request:
 
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Branch builds cancel older ones. Main builds never cancel each other, so a deploy is never cut
+  # off half way and a build waiting for approval doesn't hold up the next one.
+  group: ci-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || 'branch' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions:
   contents: read
@@ -103,3 +107,150 @@ jobs:
         run: flutter build apk --release --split-per-abi
       - name: Report APK sizes
         run: ls -la build/app/outputs/flutter-apk/*.apk
+
+  api-image:
+    name: API container image
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build the image Fly.io deploys
+        run: docker build -f apps/api/Dockerfile -t mirthmix-api:ci .
+
+  # ---------------------------------------------------------------------------------------------
+  # Deploys: main only, after every check passes, each behind its environment's required reviewers.
+  # A target stays switched off until its repository variable (DEPLOY_BACKEND / DEPLOY_WEB /
+  # DEPLOY_ANDROID) is "true", so nothing runs before its accounts and secrets exist.
+  # ---------------------------------------------------------------------------------------------
+
+  deploy-backend:
+    name: Deploy backend (Supabase migrations, API on Fly.io)
+    needs: [typescript, database, flutter, api-image]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_BACKEND == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: backend
+      url: ${{ vars.API_URL }}
+    concurrency:
+      group: deploy-backend
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      # Migrations first: each one must work with the API version already running.
+      - name: Apply database migrations to Supabase
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: supabase db push --db-url "$SUPABASE_DB_URL" --yes
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy the API to Fly.io
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP: ${{ vars.FLY_APP || 'mirthmix-api' }}
+        run: >-
+          flyctl deploy --remote-only --config apps/api/fly.toml --dockerfile apps/api/Dockerfile
+          --app "$FLY_APP" --wait-timeout 300
+      - name: Smoke test
+        if: vars.API_URL != ''
+        env:
+          API_URL: ${{ vars.API_URL }}
+        run: |
+          curl -fsS --retry 6 --retry-delay 5 --retry-all-errors "$API_URL/ready"
+          curl -fsS "$API_URL/v1/billing/config"
+
+  deploy-web:
+    name: Deploy website (Vercel)
+    needs: [typescript, database, flutter, api-image]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_WEB == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: web
+      url: ${{ vars.SITE_URL }}
+    concurrency:
+      group: deploy-web
+      cancel-in-progress: false
+    env:
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: npm install --global vercel@latest
+      # Pulls the production NEXT_PUBLIC_* values and project settings (root directory apps/web).
+      - run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      # Built here, from the commit that passed CI, then uploaded as is.
+      - run: vercel build --prod --token="$VERCEL_TOKEN"
+      - run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+  deploy-android:
+    name: Release Android app (Google Play)
+    needs: [typescript, database, flutter, api-image]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_ANDROID == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: play-store
+    concurrency:
+      group: deploy-android
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Upload key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          cat > android/key.properties <<PROPS
+          storeFile=$RUNNER_TEMP/upload.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          PROPS
+      - run: flutter pub get
+      # The workflow run number is the Play version code, so every release is higher than the last.
+      - name: Build the signed app bundle
+        env:
+          API_URL: ${{ vars.API_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+        run: >-
+          flutter build appbundle --release --build-number=${{ github.run_number }}
+          --dart-define=API_BASE_URL="$API_URL" --dart-define=SITE_URL="$SITE_URL"
+          --dart-define=SUPABASE_URL="$SUPABASE_URL"
+          --dart-define=SUPABASE_PUBLISHABLE_KEY="$SUPABASE_PUBLISHABLE_KEY"
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.mirthmix.app
+          releaseFiles: apps/mobile/build/app/outputs/bundle/release/app-release.aab
+          # internal → closed → production; promote in Play Console or change the variable.
+          track: ${{ vars.PLAY_TRACK || 'internal' }}
+          status: ${{ vars.PLAY_RELEASE_STATUS || 'completed' }}
+      - name: Remove the upload key
+        if: always()
+        run: rm -f android/key.properties "$RUNNER_TEMP/upload.jks"

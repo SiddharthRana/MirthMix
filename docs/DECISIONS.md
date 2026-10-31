@@ -2,6 +2,20 @@
 
 Short, dated records of non-trivial choices. Newest first.
 
+## 2026-10-31 — Deploy pipeline
+
+**One workflow, three approval-gated deploys.** The CI workflow ends with `deploy-backend`, `deploy-web` and `deploy-android` jobs on `main`. Each needs every check to pass and waits on a GitHub environment with required reviewers, so a green build shows "Review deployments" and each target ships only when approved. _Rejected:_ a separate deploy workflow triggered by `workflow_run` (harder to follow, and approvals would sit on a different run).
+
+**Off until configured.** Each deploy job also needs a repository variable (`DEPLOY_BACKEND`, `DEPLOY_WEB`, `DEPLOY_ANDROID`) set to `true`, so `main` stays green before any account exists.
+
+**Backend = Supabase migrations + Fly.io.** Supabase can't run the NestJS API, so the API runs as a container on Fly.io (Weblume's guide also suggests Fly). Migrations run first in the same job (`supabase db push`), so the database is never behind the code. One machine always runs, because webhooks arrive at any time.
+
+**Web builds in CI, then uploads to Vercel** (`vercel build` + `deploy --prebuilt`), so production is the commit that passed the checks. Vercel's own Git deploys should be turned off for production.
+
+**Android: version code = workflow run number;** Google Play's `internal` track by default. The first upload is manual (Google's API can't create an app). No App Store job until iOS is in scope.
+
+**Main builds never cancel each other.** Branch builds still cancel older ones, but a deploy must not be cut off half way, and a build waiting for approval mustn't block the next one.
+
 ## 2026-10-31 — Phase 4 payments
 
 **Weblume's billing module, ported nearly unchanged.** `apps/api` copies Weblume's NestJS billing code (Play verify + acknowledge + RTDN, Paddle/Dodo adapters, `SubscriptionStore` as the single writer, webhook ledger, out-of-order guard, `billing` kill switch) with the plan renamed `starter` → `premium` and the scan features left out. The Flutter purchase gateway and controller are ported too. _Rejected:_ RevenueCat, a rewrite, or a second web provider at once.

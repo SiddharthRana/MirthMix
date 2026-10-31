@@ -120,7 +120,7 @@ CI (`.github/workflows/ci.yml`) runs all of the above plus an Android release AP
 
 ## Deployment
 
-Nothing is deployed yet, and nothing should be without the owner's go-ahead.
+Nothing is deployed yet. The CI workflow deploys from `main` only after you approve each target: backend (Supabase migrations + API on Fly.io), website (Vercel) and Android (Google Play). Every target is off until its accounts and secrets exist. Setup and rollback: [`docs/deployment.md`](docs/deployment.md).
 
 - **Website:** any Next.js host (e.g. Vercel's free tier). Set the `NEXT_PUBLIC_*` variables above. Every page is static.
 - **API:** any Node 22 host (Fly.io, Render, a small VM): `pnpm --filter @mirthmix/api build && node apps/api/dist/main.js`, with the env from `apps/api/.env.example`, `TRUST_PROXY_HOPS` set behind a proxy, liveness `/health` and readiness `/ready`. Database and auth: a Supabase project with `supabase/migrations` applied. Full steps in `docs/payments-setup.md`.

@@ -37,6 +37,13 @@
 - Maintenance runs on a timer inside the API process (no job queue); fine for one instance, idempotent with several.
 - No device run yet, so the Play purchase sheet, acknowledgement and RTDN have not been exercised end to end.
 
+## Deploy pipeline (between Phases 4 and 5)
+
+- `.github/workflows/ci.yml`: after every check passes on `main`, approval-gated deploys for the backend (Supabase migrations + API on Fly.io), the website (Vercel) and Android (Google Play, internal track by default). A new `api-image` job builds the API container on every push.
+- New: `apps/api/Dockerfile`, `.dockerignore`, `apps/api/fly.toml`, `apps/web/vercel.json`, `supabase/config.toml`, `docs/deployment.md`.
+- **Verified here:** actionlint passes; the API image builds and runs healthy as a non-root user against a migrated Postgres; `supabase db push` applies the migration and is a no-op on a second run; the Vercel build command builds the site.
+- **Not verified:** the deploy jobs against real Supabase, Fly.io, Vercel or Google Play (no accounts yet), and the approval flow on GitHub. Each target stays off until its `DEPLOY_*` variable is `true`. No App Store deploy (iOS out of scope).
+
 ## Next: Phase 5 — Polish and launch prep
 
 See BUILD_PROMPT §12: content to target counts (WYR 150, ToT 150, Trivia 200 verified, Guess 80), accessibility review, performance budgets, optional analytics/crash reporting, privacy review (now including purchaser accounts), Play listing, Data Safety answers (email, purchase history), IARC notes, app signing, App Links domain, and the closed test (≥ 12 testers for 14 days). Configure billing per `docs/payments-setup.md` alongside the closed test.

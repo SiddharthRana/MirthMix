@@ -11,6 +11,7 @@ Phases 1–4 are complete. Phase 4 (payments) is on branch `claude/phase-4-payme
 ## Where things are
 
 - **Branches:** `main` holds Phases 1–3. `claude/phase-4-payments` holds Phase 4 until merged. Start new work on a branch from `main` and open a PR into it.
+- **Deploys:** `.github/workflows/ci.yml` has approval-gated deploy jobs (environments `backend`, `web`, `play-store`), switched on by `DEPLOY_*` repository variables. Setup: `docs/deployment.md`.
 - **Payments:** `apps/api` (NestJS billing API), `supabase/migrations`, `packages/plans`, app `lib/account` + `lib/billing`, web `/pricing` + `/account`. Setup steps: `docs/payments-setup.md`.
 - **Status and next steps:** `docs/PROGRESS.md` (always the source of truth; updated at every commit).
 - **Why things are the way they are:** `docs/DECISIONS.md`.
