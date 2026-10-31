@@ -2,6 +2,26 @@
 
 Short, dated records of non-trivial choices. Newest first.
 
+## 2026-10-31 — Phase 4 payments
+
+**Weblume's billing module, ported nearly unchanged.** `apps/api` copies Weblume's NestJS billing code (Play verify + acknowledge + RTDN, Paddle/Dodo adapters, `SubscriptionStore` as the single writer, webhook ledger, out-of-order guard, `billing` kill switch) with the plan renamed `starter` → `premium` and the scan features left out. The Flutter purchase gateway and controller are ported too. _Rejected:_ RevenueCat, a rewrite, or a second web provider at once.
+
+**One entitlement, `premiumContent`.** Premium unlocks premium categories in every mode. "Advanced customisation" and "longer sessions" from BUILD_PROMPT §11 aren't built, so they aren't entitlements yet; adding one is a field in `packages/plans` plus the check where it's used.
+
+**`packages/plans` instead of Weblume's `packages/shared`.** MirthMix already has content and engine packages; plans and access rules are the only billing code the API and website share, so they get a small package of their own.
+
+**Purchasers sign in with an email one-time code.** No passwords to reset and no deep links to configure; the same flow works in the app (`signInWithOtp` / `verifyOTP`) and on the website. Weblume uses email + password; a party game's buyers sign in rarely, so a code is simpler. _Rejected:_ Google sign-in (needs OAuth client setup per platform) for v1.
+
+**The API says when to re-check (`validUntil`), and the app adds a 3-day offline grace.** The app caches the last verified answer (user id, premium, `validUntil`, checked at) and keeps Premium until the end of the paid period plus 3 days without a connection, so it doesn't vanish at a party with bad signal. Any successful refresh replaces the cache, so a refund, cancellation or the kill switch takes effect as soon as the phone is online; 401/403 signs out and drops it. A cache for another user id is ignored. _Trade-off:_ the cache lives on the phone and premium content is in the bundle, so a rooted phone could unlock it; acceptable for v1 per §11.
+
+**Account deletion in the app and on the website.** Google Play requires in-app deletion for apps that create accounts. Deletion disables the account at once and removes the Supabase auth user (subscriptions cascade); without `SUPABASE_SECRET_KEY` it stays pending and the hourly maintenance retries. Store subscriptions aren't cancelled automatically; both UIs say to cancel first.
+
+**Maintenance on a timer, not pg-boss.** Weblume runs retention in a pg-boss worker because it already has scan jobs. MirthMix's only periodic work is purging webhook payloads after 30 days and retrying deletions, so an hourly `setInterval` (unref'd, idempotent) is enough.
+
+**The web player stays free-only for now.** Unlocking premium categories in `/play` for web subscribers needs the player to check the entitlement; it's a small follow-up, not needed to sell Premium.
+
+**Premium is visible but honest when unconfigured.** A build without `--dart-define`s, or a website without Supabase, says Premium isn't available instead of hiding it, and every free feature works without any backend.
+
 ## 2026-10-30 — Phase 3 web player and sharing
 
 **A share link carries the setup and the seed, nothing else** (base64url JSON, validated strictly on decode). No server, no rooms, no personal data; two devices opening the same link get the same deal. _Rejected:_ short links stored server-side (needs a backend and storage).

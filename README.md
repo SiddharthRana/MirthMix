@@ -2,7 +2,7 @@
 
 Party games for one shared phone: Would You Rather, This or That, Trivia Blitz, Guess the Answer and custom party packs, for friends, couples and families playing together in person. No sign-up needed.
 
-> **Status: Phases 1–3 of 5 are complete.** All four modes plus custom party packs are playable on Android, and in the browser at `/play` with shareable links. Nothing is deployed. See [`docs/PROGRESS.md`](docs/PROGRESS.md) for exactly what works and what doesn't, and [`docs/BUILD_PROMPT.md`](docs/BUILD_PROMPT.md) for the full plan.
+> **Status: Phases 1–4 of 5 are complete.** All four modes plus custom party packs are playable on Android, and in the browser at `/play` with shareable links. Premium (Google Play Billing in the app, Paddle or Dodo Payments on the web) is built and tested against fakes and a local database, but no store, provider or Supabase project is set up yet. Nothing is deployed. See [`docs/PROGRESS.md`](docs/PROGRESS.md) for exactly what works and what doesn't, and [`docs/BUILD_PROMPT.md`](docs/BUILD_PROMPT.md) for the full plan.
 
 ## Architecture
 
@@ -12,41 +12,54 @@ flowchart LR
     tokens[design-tokens<br/>tokens.json]
     content[content<br/>packs/*.json + schema + validator]
     engine[game-engine<br/>TS engine + test vectors]
+    plans[plans<br/>plans + access rules]
   end
   subgraph apps
     mobile[mobile<br/>Flutter, Android-first]
     web[web<br/>Next.js site]
+    api[api<br/>NestJS billing API]
   end
+  db[(Supabase<br/>auth + Postgres)]
   tokens -- CSS variables --> web
   tokens -- tokens.g.dart --> mobile
   content -- pnpm content:sync --> mobile
   content -- import --> web
   engine -- test vectors --> mobile
+  plans --> api
+  plans --> web
+  mobile -- verify purchase, entitlement --> api
+  web -- checkout, account --> api
+  api --> db
 ```
 
-- **All game logic runs on the device.** There is no backend in Phase 1. A NestJS billing API and Supabase arrive in Phase 4 (same design as Weblume: Google Play Billing + Paddle or Dodo Payments, verified server-side).
+- **All game logic runs on the device.** The only backend is the billing API (`apps/api`, same design as Weblume): Google Play Billing and Paddle or Dodo Payments, verified server-side, with Supabase for purchaser sign-in and storage. Guests never touch it. See [`docs/payments-setup.md`](docs/payments-setup.md).
 - **Content is data, not code.** Packs live in `packages/content/packs/`, are validated in CI and copied into the app.
 - **The game engine exists in TypeScript (web) and Dart (mobile).** The TypeScript engine generates test vectors that the Dart tests replay, so the two can't drift apart.
 
 ```
 apps/
   mobile/              Flutter app (see apps/mobile/README.md)
-  web/                 Next.js 16 marketing site (web player arrives in Phase 3)
+  web/                 Next.js 16 site, web player, Premium and account pages
+  api/                 NestJS 12 billing API: purchaser accounts, Play Billing, Paddle/Dodo, entitlements
 packages/
   design-tokens/       tokens.json → CSS variables, TS object, Dart constants; WCAG contrast tests
   content/             starter packs, zod schema, generated JSON Schema, validator, sync script
   game-engine/         seeded shuffle + Would You Rather reducer; generates test-vectors/*.json
+  plans/               plan config (free / premium), indicative prices, subscription access rules
+supabase/              migrations (schema source of truth) and RLS tests
+scripts/               db-verify.sh (migrations + RLS on plain Postgres), db-test-setup.sh (API e2e DB)
 docs/                  BUILD_PROMPT, PROGRESS, DECISIONS, QA checklist, brand assets
 ```
 
 ## Prerequisites
 
-| Tool    | Version                                            |
-| ------- | -------------------------------------------------- |
-| Node.js | 22 LTS (`.nvmrc`)                                  |
-| pnpm    | 10 (`corepack enable` picks up the pinned version) |
-| Flutter | 3.47 stable (Dart 3.13)                            |
-| Android | Android SDK + Java 17 for APK builds               |
+| Tool     | Version                                                           |
+| -------- | ----------------------------------------------------------------- |
+| Node.js  | 22 LTS (`.nvmrc`)                                                 |
+| pnpm     | 10 (`corepack enable` picks up the pinned version)                |
+| Flutter  | 3.47 stable (Dart 3.13)                                           |
+| Android  | Android SDK + Java 17 for APK builds                              |
+| Postgres | 17 with `psql`, for the database tests (optional; Docker is fine) |
 
 ## Setup
 
@@ -61,6 +74,9 @@ cd apps/mobile && flutter pub get
 | Command                                       | What it does                                                          |
 | --------------------------------------------- | --------------------------------------------------------------------- |
 | `pnpm dev:web`                                | Website at http://localhost:3000                                      |
+| `pnpm dev:api`                                | Billing API at http://localhost:4000 (needs `apps/api/.env`)          |
+| `pnpm db:verify`                              | Apply migrations to a throwaway database and run the RLS tests        |
+| `pnpm db:test-setup`                          | Create `mirthmix_test` for the API's database e2e tests               |
 | `pnpm lint` / `pnpm typecheck` / `pnpm test`  | All TypeScript packages and the website                               |
 | `pnpm format` / `pnpm format:check`           | Prettier                                                              |
 | `pnpm tokens`                                 | Regenerate CSS/TS/Dart design tokens after editing `tokens.json`      |
@@ -80,17 +96,24 @@ New categories need `tier` (`free` / `premium`), `ageRating` (`all` / `13+`), `r
 
 ## Environment variables
 
-| App | Variable               | Purpose                                                                 |
-| --- | ---------------------- | ----------------------------------------------------------------------- |
-| web | `NEXT_PUBLIC_SITE_URL` | Canonical URLs, sitemap and robots (default `https://mirthmix.example`) |
+| App    | Variable                                                                               | Purpose                                                                 |
+| ------ | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| web    | `NEXT_PUBLIC_SITE_URL`                                                                 | Canonical URLs, sitemap and robots (default `https://mirthmix.example`) |
+| web    | `NEXT_PUBLIC_API_URL`                                                                  | Billing API origin (default `http://localhost:4000`)                    |
+| web    | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`                     | Purchaser sign-in; without them the Account page says it's unavailable  |
+| web    | `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, `NEXT_PUBLIC_PADDLE_ENV`                            | Paddle.js on `/checkout/paddle`                                         |
+| api    | see `apps/api/.env.example`                                                            | Database, Supabase, billing providers, kill switch behaviour            |
+| mobile | `--dart-define` `API_BASE_URL`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SITE_URL` | Premium and sign-in; without them the app is free-only                  |
 
-The mobile app needs no configuration in Phase 1. `.env.example` files contain placeholders only; never commit real values.
+`.env.example` files contain placeholders only; never commit real values.
 
 ## Testing
 
 - **TypeScript:** Vitest for tokens (contrast), content (validator and shipped packs) and the engine (rules + vectors).
 - **Flutter:** unit tests for the engine, content parsing and the shared vectors; widget tests for complete game flows, quitting, persistence across a relaunch, setup rules, settings and accessibility guidelines.
 - **Web:** Playwright on desktop, mobile and dark mode, with axe (WCAG 2.2 AA) on every page.
+- **API:** Vitest unit tests (webhook signatures, provider mapping, Play client, RTDN verification, env) and in-process HTTP tests (auth, rate limits, health); with `TEST_DATABASE_URL` set (CI does), database e2e tests cover checkout, webhooks, idempotency, out-of-order events, Play verify/acknowledge/RTDN, entitlements, the kill switch, account deletion and payload purging. `pnpm db:verify` checks the migration and row-level security.
+- **Entitlements in the app:** widget tests with a fake API, store and sign-in cover free vs premium, the offline grace window, revocation by the server, purchase success/rejection/cancel and account deletion.
 - **Manual:** [`docs/qa-checklist.md`](docs/qa-checklist.md).
 
 CI (`.github/workflows/ci.yml`) runs all of the above plus an Android release APK build.
@@ -99,7 +122,8 @@ CI (`.github/workflows/ci.yml`) runs all of the above plus an Android release AP
 
 Nothing is deployed yet, and nothing should be without the owner's go-ahead.
 
-- **Website:** any Next.js host (e.g. Vercel's free tier). Set `NEXT_PUBLIC_SITE_URL`. Every page is static.
+- **Website:** any Next.js host (e.g. Vercel's free tier). Set the `NEXT_PUBLIC_*` variables above. Every page is static.
+- **API:** any Node 22 host (Fly.io, Render, a small VM): `pnpm --filter @mirthmix/api build && node apps/api/dist/main.js`, with the env from `apps/api/.env.example`, `TRUST_PROXY_HOPS` set behind a proxy, liveness `/health` and readiness `/ready`. Database and auth: a Supabase project with `supabase/migrations` applied. Full steps in `docs/payments-setup.md`.
 - **Android:** build an app bundle signed with the upload key (see `apps/mobile/README.md`). New personal Play Console accounts must run a closed test with at least 12 testers for 14 consecutive days before production access.
 
 ## Troubleshooting
@@ -107,4 +131,5 @@ Nothing is deployed yet, and nothing should be without the owner's go-ahead.
 - **`apps/mobile/assets/content/... is stale`:** run `pnpm content:sync`.
 - **`tokens.g.dart is stale`:** run `pnpm tokens`.
 - **`test-vectors are stale`:** engine behaviour changed. If intended, regenerate with `pnpm --filter @mirthmix/game-engine vectors` and make the Dart engine match (`flutter test` will tell you).
-- **Web can't resolve `@mirthmix/*`:** build the packages first (`pnpm --filter "./packages/*" run build`).
+- **Web or API can't resolve `@mirthmix/*`:** build the packages first (`pnpm --filter "./packages/*" run build`).
+- **API database tests are skipped:** set `TEST_DATABASE_URL` after `pnpm db:test-setup` (e.g. `docker run -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:17`).

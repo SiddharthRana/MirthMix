@@ -2,15 +2,16 @@
 
 Paste this into a new Claude Code session on the `siddharthrana/mirthmix` repository:
 
-> Continue building MirthMix. Read `docs/HANDOFF.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md` and `docs/BUILD_PROMPT.md` first, then carry on from "Next steps" in PROGRESS.md. Branch from `main` for new work. Payments must match the Weblume repo (`siddharthrana/weblume`, `apps/api/src/billing`): Google Play Billing verified by NestJS + Paddle/Dodo on the web. Commit and push after each step.
+> Continue building MirthMix. Read `docs/HANDOFF.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md` and `docs/BUILD_PROMPT.md` first, then carry on from "Next" in PROGRESS.md. Branch from `main` for new work. Payments are built (`apps/api`, ported from Weblume) and set up per `docs/payments-setup.md`. Commit and push after each step.
 
 ## Status
 
-Phases 1–3 are complete and pushed. **Next is Phase 4 (payments, same design as Weblume)** — see "Next" in `docs/PROGRESS.md`. Start by reading Weblume's `apps/api/src/billing`, `supabase/migrations/*billing*.sql` and `docs/payments-setup.md` (add the repo with the session's add-repo tool).
+Phases 1–4 are complete. Phase 4 (payments) is on branch `claude/phase-4-payments` (open a PR into `main`). **Next is Phase 5 (polish and launch prep)** — see "Next" in `docs/PROGRESS.md`. Billing still has to be configured (Supabase, Play Console, provider) following `docs/payments-setup.md`.
 
 ## Where things are
 
-- **Branches:** `main` holds Phases 1–3 (merged from `claude/upbeat-feynman-o2ywiv`). Start new work on a branch from `main` and open a PR into it.
+- **Branches:** `main` holds Phases 1–3. `claude/phase-4-payments` holds Phase 4 until merged. Start new work on a branch from `main` and open a PR into it.
+- **Payments:** `apps/api` (NestJS billing API), `supabase/migrations`, `packages/plans`, app `lib/account` + `lib/billing`, web `/pricing` + `/account`. Setup steps: `docs/payments-setup.md`.
 - **Status and next steps:** `docs/PROGRESS.md` (always the source of truth; updated at every commit).
 - **Why things are the way they are:** `docs/DECISIONS.md`.
 - **The full product spec and phases:** `docs/BUILD_PROMPT.md`.
@@ -27,12 +28,21 @@ export PATH=/opt/flutter/bin:$PATH
 cd apps/mobile && flutter pub get
 ```
 
-The Android SDK host (dl.google.com) was blocked in the container, so APK builds only run in GitHub Actions.
+The Android SDK host (dl.google.com) was blocked in the container, so APK builds only run in GitHub Actions. On a Mac with the Android SDK, `flutter build apk --release --split-per-abi` works locally (Phase 4 was built that way).
+
+Database tests need Postgres 17 and `psql`. Without a local `psql`, run Postgres in Docker and point `DB_ADMIN_URL` at it:
+
+```bash
+docker run -d --name mirthmix-pg -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:17
+pnpm db:verify && pnpm db:test-setup
+TEST_DATABASE_URL=postgres://postgres:postgres@localhost:5432/mirthmix_test pnpm test
+```
 
 ## Checks to run before every commit
 
 ```bash
-pnpm format && pnpm format:check && pnpm content:validate && pnpm lint && pnpm typecheck && pnpm test
+pnpm format && pnpm format:check && pnpm content:validate && pnpm lint && pnpm typecheck && pnpm test   # with TEST_DATABASE_URL for the API e2e
+pnpm db:verify
 pnpm --filter @mirthmix/web build && pnpm --filter @mirthmix/web test:e2e
 cd apps/mobile && dart format lib test && flutter analyze && flutter test
 ```
@@ -42,6 +52,7 @@ cd apps/mobile && dart format lib test && flutter analyze && flutter test
 - Content lives in `packages/content/packs/*.json`; after editing run `pnpm content:validate` and `pnpm content:sync`.
 - Game rules exist twice: TypeScript (`packages/game-engine`) is the reference, Dart (`apps/mobile/lib/game`) is a port. After changing rules, run `pnpm --filter @mirthmix/game-engine vectors` and make `flutter test` pass.
 - UI strings go in `apps/mobile/lib/l10n/app_en.arb`.
-- Never trust a client-side premium flag; `premiumProvider` stays `false` until Phase 4.
+- Never trust a client-side premium flag: `premiumProvider` derives only from the server-verified entitlement (`lib/account/entitlement.dart`). Entitlements change in `packages/plans`; the API's `SubscriptionStore` is the only writer of `subscriptions`.
+- API errors carry a stable `code`; the app and website branch on codes, not messages.
 - Commit after each step and push to the branch; keep `docs/PROGRESS.md` accurate.
 - Widget tests: use the scroll-aware `tapText`/`reveal` helpers; on screens with a running countdown use `tester.pump(...)` instead of `pumpAndSettle()`.
