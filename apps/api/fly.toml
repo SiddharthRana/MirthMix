@@ -1,0 +1,37 @@
+# Fly.io app for the billing API. CI deploys it from the repo root:
+#   flyctl deploy --config apps/api/fly.toml --dockerfile apps/api/Dockerfile --app <name>
+# Secrets (DATABASE_URL, SUPABASE_*, billing keys) are set with `fly secrets set`, never here.
+# See docs/deployment.md.
+app = "mirthmix-api"
+# Mumbai, nearest the first users. Change before the first deploy if needed.
+primary_region = "bom"
+
+[env]
+NODE_ENV = "production"
+PORT = "4000"
+# Fly's proxy sits in front of the app.
+TRUST_PROXY_HOPS = "1"
+LOG_LEVEL = "info"
+
+[http_service]
+internal_port = 4000
+force_https = true
+# Store webhooks and Play notifications can arrive at any time: keep one machine running.
+auto_stop_machines = "off"
+auto_start_machines = true
+min_machines_running = 1
+
+[[http_service.checks]]
+grace_period = "20s"
+interval = "30s"
+timeout = "5s"
+method = "GET"
+path = "/ready"
+
+[deploy]
+# Replace machines one at a time; a machine that fails /ready stops the rollout.
+strategy = "rolling"
+
+[[vm]]
+size = "shared-cpu-1x"
+memory = "512mb"

@@ -71,20 +71,20 @@ cd apps/mobile && flutter pub get
 
 ## Commands
 
-| Command                                       | What it does                                                          |
-| --------------------------------------------- | --------------------------------------------------------------------- |
-| `pnpm dev:web`                                | Website at http://localhost:3000                                      |
-| `pnpm dev:api`                                | Billing API at http://localhost:4000 (needs `apps/api/.env`)          |
-| `pnpm db:verify`                              | Apply migrations to a throwaway database and run the RLS tests        |
-| `pnpm db:test-setup`                          | Create `mirthmix_test` for the API's database e2e tests               |
-| `pnpm lint` / `pnpm typecheck` / `pnpm test`  | All TypeScript packages and the website                               |
-| `pnpm format` / `pnpm format:check`           | Prettier                                                              |
-| `pnpm tokens`                                 | Regenerate CSS/TS/Dart design tokens after editing `tokens.json`      |
-| `pnpm content:validate`                       | Validate every pack, refresh the JSON Schema, check the app's copy    |
-| `pnpm content:sync`                           | Copy packs into `apps/mobile/assets/content/`                         |
-| `pnpm --filter @mirthmix/game-engine vectors` | Regenerate engine test vectors after changing engine behaviour        |
-| `pnpm --filter @mirthmix/web test:e2e`        | Playwright + axe tests against a production build (run `build` first) |
-| `pnpm mobile:analyze` / `pnpm mobile:test`    | `flutter analyze` / `flutter test`                                    |
+| Command                                       | What it does                                                                                  |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `pnpm dev:web`                                | Website at http://localhost:3000                                                              |
+| `pnpm dev:api`                                | Billing API at http://localhost:4000 (needs `apps/api/.env`)                                  |
+| `pnpm db:verify`                              | Apply migrations to a throwaway database and run the RLS tests                                |
+| `pnpm db:test-setup`                          | Create `mirthmix_test` for the API's database e2e tests                                       |
+| `pnpm lint` / `pnpm typecheck` / `pnpm test`  | All TypeScript packages and the website                                                       |
+| `pnpm format` / `pnpm format:check`           | Prettier                                                                                      |
+| `pnpm tokens`                                 | Regenerate CSS/TS/Dart design tokens after editing `tokens.json`                              |
+| `pnpm content:validate`                       | Validate every pack, refresh the JSON Schema, check the app's copy                            |
+| `pnpm content:sync`                           | Copy packs into `apps/mobile/assets/content/`                                                 |
+| `pnpm --filter @mirthmix/game-engine vectors` | Regenerate engine test vectors after changing engine behaviour                                |
+| `pnpm --filter @mirthmix/web test:e2e`        | Playwright + axe tests against the static export via `wrangler pages dev` (run `build` first) |
+| `pnpm mobile:analyze` / `pnpm mobile:test`    | `flutter analyze` / `flutter test`                                                            |
 
 ## Adding or editing questions
 
@@ -120,9 +120,9 @@ CI (`.github/workflows/ci.yml`) runs all of the above plus an Android release AP
 
 ## Deployment
 
-Nothing is deployed yet, and nothing should be without the owner's go-ahead.
+Nothing is deployed yet. The CI workflow deploys from `main` only after you approve each target: backend (Supabase migrations + API on Fly.io), website (Cloudflare Pages) and Android (Google Play). Every target is off until its accounts and secrets exist. Setup and rollback: [`docs/deployment.md`](docs/deployment.md).
 
-- **Website:** any Next.js host (e.g. Vercel's free tier). Set the `NEXT_PUBLIC_*` variables above. Every page is static.
+- **Website:** a static export (`pnpm --filter @mirthmix/web build` → `apps/web/out/`) served by Cloudflare Pages, with headers from `apps/web/public/_headers`. Set the `NEXT_PUBLIC_*` variables above at build time.
 - **API:** any Node 22 host (Fly.io, Render, a small VM): `pnpm --filter @mirthmix/api build && node apps/api/dist/main.js`, with the env from `apps/api/.env.example`, `TRUST_PROXY_HOPS` set behind a proxy, liveness `/health` and readiness `/ready`. Database and auth: a Supabase project with `supabase/migrations` applied. Full steps in `docs/payments-setup.md`.
 - **Android:** build an app bundle signed with the upload key (see `apps/mobile/README.md`). New personal Play Console accounts must run a closed test with at least 12 testers for 14 consecutive days before production access.
 

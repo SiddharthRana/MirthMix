@@ -1,0 +1,35 @@
+# Supabase CLI config. Local development: `supabase start`. Production migrations are applied by
+# the deploy workflow with `supabase db push` (see docs/deployment.md).
+project_id = "mirthmix"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+max_rows = 100
+
+[db]
+port = 54322
+major_version = 17
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+
+# Purchasers sign in with a 6-digit email code (app and website); no passwords or redirect links.
+[auth.email]
+enable_signup = true
+enable_confirmations = false
+otp_length = 6
+otp_expiry = 3600

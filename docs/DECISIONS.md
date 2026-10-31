@@ -2,6 +2,20 @@
 
 Short, dated records of non-trivial choices. Newest first.
 
+## 2026-10-31 — Deploy pipeline
+
+**One workflow, three approval-gated deploys.** The CI workflow ends with `deploy-backend`, `deploy-web` and `deploy-android` jobs on `main`. Each needs every check to pass and waits on a GitHub environment with required reviewers, so a green build shows "Review deployments" and each target ships only when approved. _Rejected:_ a separate deploy workflow triggered by `workflow_run` (harder to follow, and approvals would sit on a different run).
+
+**Off until configured.** Each deploy job also needs a repository variable (`DEPLOY_BACKEND`, `DEPLOY_WEB`, `DEPLOY_ANDROID`) set to `true`, so `main` stays green before any account exists.
+
+**Backend = Supabase migrations + Fly.io.** Supabase can't run the NestJS API, so the API runs as a container on Fly.io (Weblume's guide also suggests Fly). Migrations run first in the same job (`supabase db push`), so the database is never behind the code. One machine always runs, because webhooks arrive at any time.
+
+**The website is a static export on Cloudflare Pages.** Every page was already prerendered and the web player runs in the browser, so `output: 'export'` loses nothing. Cloudflare's free plan allows commercial use, where Vercel's Hobby plan doesn't (Pro is $20 per seat per month). Security headers moved from `next.config.ts` to `public/_headers`, and the e2e tests run against `wrangler pages dev`, so headers, clean URLs and 404s are tested as Cloudflare serves them. CI builds the files from the commit that passed the checks and uploads them with `wrangler pages deploy`. _Rejected:_ Vercel (cost once Premium is on sale), and OpenNext on Workers (only needed if the site needs a server).
+
+**Android: version code = workflow run number;** Google Play's `internal` track by default. The first upload is manual (Google's API can't create an app). No App Store job until iOS is in scope.
+
+**Main builds never cancel each other.** Branch builds still cancel older ones, but a deploy must not be cut off half way, and a build waiting for approval mustn't block the next one.
+
 ## 2026-10-31 — Phase 4 payments
 
 **Weblume's billing module, ported nearly unchanged.** `apps/api` copies Weblume's NestJS billing code (Play verify + acknowledge + RTDN, Paddle/Dodo adapters, `SubscriptionStore` as the single writer, webhook ledger, out-of-order guard, `billing` kill switch) with the plan renamed `starter` → `premium` and the scan features left out. The Flutter purchase gateway and controller are ported too. _Rejected:_ RevenueCat, a rewrite, or a second web provider at once.
