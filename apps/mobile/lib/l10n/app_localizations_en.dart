@@ -171,7 +171,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get premiumLabel => 'Premium';
 
   @override
-  String get premiumLocked => 'Premium packs are coming soon.';
+  String get premiumLocked => 'Unlock with Premium.';
 
   @override
   String get regionIndia => 'India';
@@ -339,7 +339,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsPrivacyBody =>
-      'MirthMix has no accounts and no analytics in this version. Games, settings and player counts are stored only on this phone.';
+      'You can play without an account. An account is only for buying Premium: it stores your email and subscription status on the MirthMix server. There are no analytics in this version. Games, settings and players are stored only on this phone.';
 
   @override
   String get settingsAge => 'Age guidance';
@@ -652,4 +652,163 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareBroken => 'This game link is broken or out of date.';
+
+  @override
+  String get premiumTitle => 'MirthMix Premium';
+
+  @override
+  String get premiumPitch => 'Unlock every premium category in every game. Free play never needs a subscription.';
+
+  @override
+  String get premiumIncludes => 'Premium categories';
+
+  @override
+  String get premiumActive => 'Premium is on';
+
+  @override
+  String premiumPaidThrough(String date) {
+    return 'Paid through $date.';
+  }
+
+  @override
+  String premiumEndsOn(String date) {
+    return 'Ends on $date. You won’t be charged again.';
+  }
+
+  @override
+  String premiumOffline(String date) {
+    return 'You’re offline. Premium stays on until $date.';
+  }
+
+  @override
+  String get premiumUnavailableBuild => 'Premium isn’t available in this version of the app yet.';
+
+  @override
+  String get premiumUnavailableNow => 'Premium purchases aren’t available right now. Please try again later.';
+
+  @override
+  String get premiumSignInPrompt =>
+      'Sign in with your email to buy Premium or restore it on this phone. Guests never need an account.';
+
+  @override
+  String get premiumSignIn => 'Sign in to continue';
+
+  @override
+  String premiumPerMonth(String price) {
+    return '$price per month';
+  }
+
+  @override
+  String premiumPerYear(String price) {
+    return '$price per year';
+  }
+
+  @override
+  String get premiumRestore => 'Restore purchases';
+
+  @override
+  String get premiumManagePlay => 'Manage in Google Play';
+
+  @override
+  String get premiumManageWeb => 'You subscribed on the website. Manage your subscription there.';
+
+  @override
+  String get premiumPending => 'Waiting for Google Play to confirm the payment…';
+
+  @override
+  String get premiumVerifying => 'Confirming your purchase…';
+
+  @override
+  String get premiumSuccess => 'Premium is unlocked. Enjoy!';
+
+  @override
+  String get premiumDuplicate => 'You also have a subscription on the website. Cancel one so you aren’t charged twice.';
+
+  @override
+  String get premiumErrorStore => 'Google Play billing isn’t available on this device.';
+
+  @override
+  String get premiumErrorPurchase => 'The purchase didn’t go through. You haven’t been charged.';
+
+  @override
+  String get premiumErrorMismatch =>
+      'This purchase belongs to a different MirthMix account. Sign in with that account to use it.';
+
+  @override
+  String get premiumErrorVerify =>
+      'We couldn’t confirm the purchase yet. We’ll try again the next time you open the app.';
+
+  @override
+  String get premiumErrorNetwork => 'We couldn’t reach the server. Check your connection and try again.';
+
+  @override
+  String get premiumSee => 'See Premium';
+
+  @override
+  String get signInTitle => 'Sign in';
+
+  @override
+  String get signInBody => 'We’ll email you a 6-digit code. No password needed.';
+
+  @override
+  String get signInEmail => 'Email';
+
+  @override
+  String get signInSendCode => 'Send code';
+
+  @override
+  String get signInCode => '6-digit code';
+
+  @override
+  String get signInVerify => 'Sign in';
+
+  @override
+  String signInCodeSent(String email) {
+    return 'We sent a code to $email.';
+  }
+
+  @override
+  String get signInChangeEmail => 'Use a different email';
+
+  @override
+  String get signInBadEmail => 'Enter a valid email address.';
+
+  @override
+  String get signInErrorCode => 'That code is wrong or has expired.';
+
+  @override
+  String get signInErrorRate => 'Too many attempts. Please wait a few minutes.';
+
+  @override
+  String get signInErrorUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get accountTitle => 'Account';
+
+  @override
+  String accountSignedInAs(String email) {
+    return 'Signed in as $email';
+  }
+
+  @override
+  String get accountSignOut => 'Sign out';
+
+  @override
+  String get accountDelete => 'Delete account';
+
+  @override
+  String get accountDeleteBody =>
+      'This permanently deletes your MirthMix account. It doesn’t cancel a Google Play subscription, so cancel that in Google Play first. Type DELETE to confirm.';
+
+  @override
+  String get accountDeleteConfirm => 'Delete';
+
+  @override
+  String get accountDeleted => 'Your account was deleted.';
+
+  @override
+  String get accountDeleteFailed => 'We couldn’t delete your account. Please try again.';
+
+  @override
+  String get settingsPremium => 'Premium';
 }

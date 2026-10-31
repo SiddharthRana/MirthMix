@@ -155,7 +155,7 @@ void main() {
     expect(find.text('How to play'), findsOneWidget);
 
     // Premium category is visible, labelled and can't be ticked.
-    expect(find.textContaining('Premium packs are coming soon.'), findsOneWidget);
+    expect(find.textContaining('Unlock with Premium.'), findsOneWidget);
     expect(find.text('Serious topics'), findsOneWidget);
     final deep = tester.widget<CheckboxListTile>(find.widgetWithText(CheckboxListTile, 'Deep'));
     expect(deep.onChanged, isNull);
@@ -208,8 +208,8 @@ void main() {
     final context = tester.element(find.text('Big text'));
     expect(MediaQuery.textScalerOf(context).scale(10), closeTo(12.5, 0.01));
     expect(Theme.of(context).brightness, Brightness.dark);
-    await reveal(tester, find.textContaining('no accounts and no analytics'));
-    expect(find.textContaining('no accounts and no analytics'), findsOneWidget);
+    await reveal(tester, find.textContaining('You can play without an account'));
+    expect(find.textContaining('You can play without an account'), findsOneWidget);
   });
 
   testWidgets('the real starter content plays', (tester) async {

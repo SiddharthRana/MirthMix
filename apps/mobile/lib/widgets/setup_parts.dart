@@ -39,6 +39,7 @@ class CategoryTile extends StatelessWidget {
     required this.locked,
     required this.selected,
     required this.onChanged,
+    this.onUnlock,
   });
 
   final Category category;
@@ -46,6 +47,9 @@ class CategoryTile extends StatelessWidget {
   final bool locked;
   final bool selected;
   final ValueChanged<bool> onChanged;
+
+  /// Shown on locked premium categories: opens the Premium screen.
+  final VoidCallback? onUnlock;
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +97,11 @@ class CategoryTile extends StatelessWidget {
               locked ? '${tags.join(' · ')} — ${l.premiumLocked}' : tags.join(' · '),
               style: theme.textTheme.labelMedium?.copyWith(color: palette.textMuted),
             ),
+            if (locked && onUnlock != null)
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(onPressed: onUnlock, child: Text(l.premiumSee)),
+              ),
           ],
         ),
       ),
