@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { modes, siteUrl } from '@/lib/site';
 
+// Generated once at build time (static export).
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     '/',

@@ -39,10 +39,10 @@
 
 ## Deploy pipeline (between Phases 4 and 5)
 
-- `.github/workflows/ci.yml`: after every check passes on `main`, approval-gated deploys for the backend (Supabase migrations + API on Fly.io), the website (Vercel) and Android (Google Play, internal track by default). A new `api-image` job builds the API container on every push.
-- New: `apps/api/Dockerfile`, `.dockerignore`, `apps/api/fly.toml`, `apps/web/vercel.json`, `supabase/config.toml`, `docs/deployment.md`.
-- **Verified here:** actionlint passes; the API image builds and runs healthy as a non-root user against a migrated Postgres; `supabase db push` applies the migration and is a no-op on a second run; the Vercel build command builds the site.
-- **Not verified:** the deploy jobs against real Supabase, Fly.io, Vercel or Google Play (no accounts yet), and the approval flow on GitHub. Each target stays off until its `DEPLOY_*` variable is `true`. No App Store deploy (iOS out of scope).
+- `.github/workflows/ci.yml`: after every check passes on `main`, approval-gated deploys for the backend (Supabase migrations + API on Fly.io), the website (Cloudflare Pages, as a static export) and Android (Google Play, internal track by default). A new `api-image` job builds the API container on every push.
+- New: `apps/api/Dockerfile`, `.dockerignore`, `apps/api/fly.toml`, `apps/web/public/_headers`, `supabase/config.toml`, `docs/deployment.md`.
+- **Verified here:** actionlint passes; the API image builds and runs healthy as a non-root user against a migrated Postgres; `supabase db push` applies the migration and is a no-op on a second run; the site exports as static files and all 84 Playwright tests pass against `wrangler pages dev` (headers, clean URLs, 404s).
+- **Not verified:** the deploy jobs against real Supabase, Fly.io, Cloudflare or Google Play (no accounts yet), and the approval flow on GitHub. Each target stays off until its `DEPLOY_*` variable is `true`. No App Store deploy (iOS out of scope).
 
 ## Next: Phase 5 — Polish and launch prep
 

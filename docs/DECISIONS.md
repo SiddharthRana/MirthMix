@@ -10,7 +10,7 @@ Short, dated records of non-trivial choices. Newest first.
 
 **Backend = Supabase migrations + Fly.io.** Supabase can't run the NestJS API, so the API runs as a container on Fly.io (Weblume's guide also suggests Fly). Migrations run first in the same job (`supabase db push`), so the database is never behind the code. One machine always runs, because webhooks arrive at any time.
 
-**Web builds in CI, then uploads to Vercel** (`vercel build` + `deploy --prebuilt`), so production is the commit that passed the checks. Vercel's own Git deploys should be turned off for production.
+**The website is a static export on Cloudflare Pages.** Every page was already prerendered and the web player runs in the browser, so `output: 'export'` loses nothing. Cloudflare's free plan allows commercial use, where Vercel's Hobby plan doesn't (Pro is $20 per seat per month). Security headers moved from `next.config.ts` to `public/_headers`, and the e2e tests run against `wrangler pages dev`, so headers, clean URLs and 404s are tested as Cloudflare serves them. CI builds the files from the commit that passed the checks and uploads them with `wrangler pages deploy`. _Rejected:_ Vercel (cost once Premium is on sale), and OpenNext on Workers (only needed if the site needs a server).
 
 **Android: version code = workflow run number;** Google Play's `internal` track by default. The first upload is manual (Google's API can't create an app). No App Store job until iOS is in scope.
 

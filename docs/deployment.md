@@ -2,11 +2,11 @@
 
 One GitHub Actions workflow (`.github/workflows/ci.yml`) tests everything and, on `main`, offers three deploys. Each deploy waits for your approval in its GitHub environment:
 
-| Target  | Environment  | What it does                                                                              | Host                  |
-| ------- | ------------ | ----------------------------------------------------------------------------------------- | --------------------- |
-| Backend | `backend`    | `supabase db push` (migrations), then `flyctl deploy` of the API image, then a smoke test | Supabase + **Fly.io** |
-| Website | `web`        | `vercel pull` → `vercel build --prod` → `vercel deploy --prebuilt --prod`                 | **Vercel**            |
-| Android | `play-store` | Signed app bundle (version code = workflow run number), uploaded to a Play track          | **Google Play**       |
+| Target  | Environment  | What it does                                                                                 | Host                  |
+| ------- | ------------ | -------------------------------------------------------------------------------------------- | --------------------- |
+| Backend | `backend`    | `supabase db push` (migrations), then `flyctl deploy` of the API image, then a smoke test    | Supabase + **Fly.io** |
+| Website | `web`        | Static export (`next build` → `out/`), then `wrangler pages deploy` to the production branch | **Cloudflare Pages**  |
+| Android | `play-store` | Signed app bundle (version code = workflow run number), uploaded to a Play track             | **Google Play**       |
 
 Supabase hosts the database and sign-in but can't run the NestJS API, so the API runs on Fly.io and talks to Supabase. The App Store isn't included: iOS is out of scope until an Apple developer account and iOS payments exist (BUILD_PROMPT §11, §16).
 
@@ -69,21 +69,30 @@ Shared repository variables (read by more than one job):
 
 The machine keeps running (`min_machines_running = 1`) because store webhooks and Play notifications can arrive any time. Fly checks `/ready` (API and database up) and rolls machines one at a time.
 
-### 3. Website: Vercel
+### 3. Website: Cloudflare Pages
 
-1. Import the repository in Vercel with **Root Directory `apps/web`**. Install and build commands come from `apps/web/vercel.json` (they build the shared packages first).
-2. **Settings → Environment Variables (Production):** `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, and for Paddle `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, `NEXT_PUBLIC_PADDLE_ENV`. They're baked in at build time.
-3. **Settings → Git:** disconnect Git deployments (or turn off production auto-deploys), so production only changes through the approved workflow.
-4. Create a token (Account Settings → Tokens). Find the org and project IDs in `.vercel/project.json` after `vercel link`, or in the project settings.
-5. `web` environment:
+Every page is static (the web player runs in the browser), so the site is exported as plain files and served by Cloudflare Pages. Security headers come from `apps/web/public/_headers`; Pages serves `/pricing` from `pricing.html` and unknown paths from `404.html` with a 404 status.
 
-   | Kind     | Name                | Value       |
-   | -------- | ------------------- | ----------- |
-   | secret   | `VERCEL_TOKEN`      | The token   |
-   | variable | `VERCEL_ORG_ID`     | Team/org ID |
-   | variable | `VERCEL_PROJECT_ID` | Project ID  |
+1. Create the project once (no Git connection, so production only changes through the approved workflow):
+   ```bash
+   pnpm --filter @mirthmix/web exec wrangler login
+   pnpm --filter @mirthmix/web exec wrangler pages project create mirthmix --production-branch main
+   ```
+2. Add your domain under the project's **Custom domains**, and add it to the API's `CORS_ORIGINS`.
+3. Create an API token (My Profile → API Tokens → Create token) with **Account → Cloudflare Pages → Edit**. Copy your account ID from the dashboard sidebar.
+4. `web` environment:
 
-Vercel's Hobby plan doesn't allow commercial use; selling Premium needs Pro. Add the site's domain in Vercel, and to the API's `CORS_ORIGINS`.
+   | Kind     | Name                       | Value                                       |
+   | -------- | -------------------------- | ------------------------------------------- |
+   | secret   | `CLOUDFLARE_API_TOKEN`     | The token                                   |
+   | variable | `CLOUDFLARE_ACCOUNT_ID`    | Account ID                                  |
+   | variable | `CLOUDFLARE_PAGES_PROJECT` | Project name, if not `mirthmix`             |
+   | variable | `PADDLE_CLIENT_TOKEN`      | Paddle client-side token (public by design) |
+   | variable | `PADDLE_ENV`               | `sandbox` or `production`                   |
+
+   The site also reads the shared `SITE_URL`, `API_URL`, `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` repository variables. They're baked into the files at build time, so redeploy after changing them.
+
+Cloudflare's free plan covers a static site of this size (check Cloudflare's current limits and terms before launch). Because nothing runs server-side, there's no server to pay for or scale.
 
 ### 4. Android: Google Play
 
@@ -107,7 +116,7 @@ Start on `internal`, move to `alpha` for the closed test (≥ 12 testers for 14 
 ## Rollback
 
 - **API:** `fly releases --app mirthmix-api`, then `fly deploy --image <previous image>`; or revert the commit on `main` and approve the backend deploy.
-- **Website:** promote the previous deployment in the Vercel dashboard ("Instant Rollback").
+- **Website:** in the Pages project's **Deployments**, open an earlier production deployment and choose **Rollback**.
 - **Android:** halt the rollout in Play Console; ship a fix with a higher version code (Play never accepts a lower one).
 - **Database:** migrations are forward-only. Write a new migration to undo a change and check it with `pnpm db:verify`.
 - **Emergency:** `update public.feature_flags set enabled = false where key = 'billing';` stops purchases within 30 seconds, no deploy needed.
@@ -117,5 +126,5 @@ Start on `internal`, move to `alpha` for the closed test (≥ 12 testers for 14 
 - The workflow passes `actionlint`.
 - The API image builds and runs as the `node` user. Against a migrated Postgres 17 it reports healthy and answers `/health`, `/ready` and `/v1/billing/config`.
 - `supabase db push` applies the migration to a fresh Postgres (with the auth stub), records it, and on a second run reports the database up to date.
-- The `vercel.json` build command builds the site from `apps/web`.
-- **Not verified:** the deploy jobs against real Supabase, Fly.io, Vercel or Google Play (no accounts exist yet), and the approval flow on GitHub. The first approved deploy of each target is the real test; watch its log.
+- The site exports as static files, and all 84 Playwright tests (axe, headers, clean URLs, 404 status) pass against `wrangler pages dev`, Cloudflare's local Pages server.
+- **Not verified:** the deploy jobs against real Supabase, Fly.io, Cloudflare or Google Play (no accounts exist yet), and the approval flow on GitHub. The first approved deploy of each target is the real test; watch its log.
